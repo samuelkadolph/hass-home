@@ -1,0 +1,77 @@
+close_family_room_shades:
+  alias: Shades - Close Family Room Shades
+  icon: mdi:roller-shade-closed
+  mode: single
+  sequence:
+  - service: cover.close_cover
+    target:
+      entity_id: >
+        cover.living_room_shade_a
+        ,cover.living_room_shade_b
+        {% if true %},cover.living_room_shade_c{% endif %}
+        {% if is_state('binary_sensor.living_room_window_d_sensor_window_door_is_open', 'off') %},cover.living_room_shade_d{% endif %}
+        {% if is_state('binary_sensor.back_door', 'off') %},cover.back_door_shades{% endif %}
+        {% if true %},cover.kitchen_shade_a{% endif %}
+        {% if is_state('binary_sensor.kitchen_window_b_sensor_window_door_is_open', 'off') %},cover.kitchen_shade_b{% endif %}
+close_office_shades:
+  alias: Shades - Close Office Shades
+  icon: mdi:roller-shade-closed
+  mode: single
+  sequence:
+  - service: cover.close_cover
+    target:
+      entity_id: >
+        cover.big_office_shade
+        {% if is_state('binary_sensor.office_window_sensor_window_door_is_open', 'off') %},cover.little_office_shade{% endif %}
+
+lockdown_family_room:
+  alias: Lockdown - Family Room
+  icon: mdi:shield-lock
+  mode: single
+  sequence:
+  - service: script.close_family_room_shades
+  - delay:
+      seconds: 20
+  - service: light.turn_on
+    target:
+      entity_id: light.family_room_lights
+lockdown_office:
+  alias: Lockdown - Office
+  icon: mdi:shield-lock
+  mode: single
+  sequence:
+  - service: script.close_office_shades
+  - delay:
+      seconds: 20
+  - service: light.turn_on
+    target:
+      entity_id: light.office_lights
+
+misc_living_room_dyson_point_at_sam:
+  alias: Misc - Living Room Dyson point at Sam
+  icon: mdi:air-purifier
+  mode: single
+  sequence:
+  - service: dyson_local.set_angle
+    data:
+      entity_id: fan.living_room_dyson
+      angle_low: '{{ states("input_number.living_room_dyson_sam_angle") }} '
+      angle_high: '{{ states("input_number.living_room_dyson_sam_angle") }} '
+misc_sync_harmony:
+  alias: Misc - Sync Harmony
+  icon: mdi:remote
+  mode: restart
+  sequence:
+  - service: harmony.sync
+    target:
+      entity_id: '{{ states.remote | map(attribute="entity_id") | list }}'
+misc_theatre_dyson_point_at_sam:
+  alias: Misc - Theatre Dyson point at Sam
+  icon: mdi:air-purifier
+  mode: single
+  sequence:
+  - service: dyson_local.set_angle
+    data:
+      entity_id: fan.theatre_dyson
+      angle_low: '{{ states("input_number.theatre_dyson_sam_angle") }} '
+      angle_high: '{{ states("input_number.theatre_dyson_sam_angle") }} '

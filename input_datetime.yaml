@@ -1,0 +1,14 @@
+bookshelf_lights_off_time: &time
+  has_date: false
+  has_time: true
+  icon: mdi:lightbulb-night
+  name: Bookshelf Lights Off Time
+
+master_bedroom_air_day_time:
+  <<: *time
+  icon: mdi:clock-time-ten
+  name: Master Bedroom Air Day Time
+master_bedroom_shades_open_time:
+  <<: *time
+  icon: mdi:roller-shade
+  name: Master Bedroom Shades Open Time

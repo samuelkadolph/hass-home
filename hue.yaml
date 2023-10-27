@@ -1,0 +1,56 @@
+host_ip: 10.4.16.60
+advertise_ip: 10.4.16.60
+advertise_port: 8300
+
+expose_by_default: false
+
+entities:
+  fan.theatre_dyson:
+    hidden: false
+  light.basement_lights:
+    hidden: false
+  light.gym_lights:
+    hidden: false
+  light.theatre_lights:
+    hidden: false
+  # switch.lighthouses:
+  #   hidden: false
+
+  fan.den_fan:
+    hidden: false
+  light.den_fan_lights:
+    hidden: false
+  light.den_lamps:
+    hidden: false
+  light.den_lights:
+    hidden: false
+
+  fan.guest_bedroom_fan:
+    hidden: false
+  light.guest_bedroom_lights:
+    hidden: false
+
+  fan.master_bedroom_fan:
+    hidden: false
+  # fan.master_bedroom_pedestal_fan:
+  #   hidden: false
+  light.master_bedroom_fan_lights:
+    hidden: false
+  light.master_bedroom_lights:
+    hidden: false
+
+  # fan.living_room_fan:
+  #   hidden: false
+  fan.living_room_dyson:
+    hidden: false
+  light.family_room_lights:
+    hidden: false
+  light.living_room_lights:
+    hidden: false
+
+  fan.office_fan:
+    hidden: false
+  light.office_lights:
+    hidden: false
+  light.workbench_lights:
+    hidden: false
