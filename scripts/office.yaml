@@ -1,0 +1,51 @@
+close_office_shades:
+  alias: Office - Close Shades
+  icon: mdi:roller-shade-closed
+  mode: single
+  sequence:
+  - service: cover.close_cover
+    target:
+      entity_id: >
+        cover.big_office_shade
+        {% if is_state('binary_sensor.office_window_sensor_window_door_is_open', 'off') %},cover.little_office_shade{% endif %}
+
+lockdown_office:
+  alias: Office - Lockdown
+  icon: mdi:shield-lock
+  mode: single
+  sequence:
+  - service: script.close_office_shades
+  - delay: { seconds: 20 }
+  - service: light.turn_on
+    target: { entity_id: light.office_lights }
+
+turn_off_office:
+  alias: Office - Turn Off
+  icon: mdi:power-off
+  mode: single
+  sequence:
+  - parallel:
+    - service: remote.send_command
+      data: { device: PC, command: Ctrl+Alt+9 }
+      target: { entity_id: remote.office }
+    - service: media_player.turn_off
+      target: { entity_id: media_player.office_receiver_main_zone }
+    - if:
+      - condition: state
+        entity_id: climate.office_air
+        attribute: power
+        state: true
+      then:
+      - service: climate.turn_off
+        target: { entity_id: climate.office_air }
+turn_on_office:
+  alias: Office - Turn On
+  icon: mdi:power-on
+  mode: single
+  sequence:
+  - parallel:
+    - service: remote.send_command
+      data: { device: PC, command: Break }
+      target: { entity_id: remote.office }
+    - service: media_player.turn_on
+      target: { entity_id: media_player.office_receiver_main_zone }

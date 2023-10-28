@@ -1,0 +1,104 @@
+sleep_bedtime:
+  alias: Sleep - Bedtime
+  icon: mdi:bed-king
+  mode: restart
+  sequence:
+  - parallel:
+    - service: script.turn_off_garage
+    - service: script.turn_off_office
+    - service: fan.turn_off
+      target:
+        entity_id: '{{ states.fan | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - service: light.turn_off
+      target:
+        entity_id: '{{ states.light | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - service: lock.lock
+      target:
+        entity_id: '{{ states.lock | selectattr("state", "eq", "unlocked") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - service: remote.turn_off
+      target:
+        entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - if:
+      - condition: state
+        entity_id: person.sasha_keller
+        state: not_home
+      then:
+      - service: light.turn_on
+        data: { brightness_pct: '{{ is_state("person.sasha_keller", "home") and 25 or 75 }}' }
+        target: { entity_id: light.master_bedroom_fan_lights }
+
+sleep_good_morning:
+  alias: Sleep - Good Morning
+  icon: mdi:white-balance-sunny
+  mode: restart
+  sequence:
+  - parallel:
+    - if:
+      - condition: numeric_state
+        entity_id: cover.master_bedroom_shades
+        attribute: current_position
+        below: input_number.master_bedroom_shades_open_percent
+      then:
+      - service: cover.set_cover_position
+        data: { position: '{{ states("input_number.master_bedroom_shades_open_percent") }}' }
+        target: { entity_id: cover.master_bedroom_shades }
+    - if:
+      - condition: state
+        entity_id: fan.master_bedroom_fan
+        state: 'on'
+      then:
+      - service: fan.turn_off
+        target: { entity_id: fan.master_bedroom_fan }
+    - if:
+      - condition: template
+        value_template: '{{ state_attr("climate.master_bedroom_air", "temperature") | float == states("input_number.master_bedroom_air_night_temperature") | float }}'
+      then:
+      - service: weather.get_forecast
+        data: { type: hourly }
+        target: { entity_id: weather.forecast_home }
+        response_variable: forecast
+      - if:
+        - condition: template
+          value_template: '{{ (forecast.forecast | map(attribute="temperature") | max) > (states("input_number.master_bedroom_air_day_threshold") | float) }}'
+        then:
+        - service: climate.set_temperature
+          data:
+            hvac_mode: cool
+            temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
+          target: { entity_id: climate.master_bedroom_air }
+        else:
+        - service: climate.turn_off
+          target: { entity_id: climate.master_bedroom_air }
+
+sleep_good_night:
+  alias: Sleep - Good Night
+  icon: mdi:sleep
+  mode: restart
+  sequence:
+  - parallel:
+    - service: light.turn_off
+      target:
+        entity_id:
+        - light.master_bedroom_closet_lights
+        - light.master_bedroom_fan_lights
+        - light.master_bedroom_lights
+    - if:
+      - condition: state
+        entity_id: person.samuel_kadolph
+        state: home
+      then:
+      - service: fan.set_percentage
+        data: { percentage: 75 }
+        target: { entity_id: fan.master_bedroom_pedestal_fan }
+        enabled: false
+
+sleep_preheat_bed:
+  alias: Sleep - Preheat Bed
+  icon: mdi:radiator
+  mode: single
+  sequence:
+  - service: select.select_option
+    data:
+      option: '4'
+    target:
+      entity_id: select.side_b_heat_level

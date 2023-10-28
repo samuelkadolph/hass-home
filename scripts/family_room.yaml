@@ -1,0 +1,25 @@
+close_family_room_shades:
+  alias: Family Room - Close Shades
+  icon: mdi:roller-shade-closed
+  mode: single
+  sequence:
+  - service: cover.close_cover
+    target:
+      entity_id: >
+        cover.living_room_shade_a
+        ,cover.living_room_shade_b
+        {% if true %},cover.living_room_shade_c{% endif %}
+        {% if is_state('binary_sensor.living_room_window_d_sensor_window_door_is_open', 'off') %},cover.living_room_shade_d{% endif %}
+        {% if is_state('binary_sensor.back_door', 'off') %},cover.back_door_shades{% endif %}
+        {% if true %},cover.kitchen_shade_a{% endif %}
+        {% if is_state('binary_sensor.kitchen_window_b_sensor_window_door_is_open', 'off') %},cover.kitchen_shade_b{% endif %}
+
+lockdown_family_room:
+  alias: Family Room - Lockdown
+  icon: mdi:shield-lock
+  mode: single
+  sequence:
+  - service: script.close_family_room_shades
+  - delay: { seconds: 20 }
+  - service: light.turn_on
+    target: { entity_id: light.family_room_lights }

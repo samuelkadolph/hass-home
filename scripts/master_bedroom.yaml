@@ -1,0 +1,20 @@
+turn_off_master_bedroom:
+  alias: Master Bedroom - Turn Off
+  icon: mdi:power-off
+  mode: single
+  sequence:
+  - parallel:
+    - if:
+      - condition: state
+        entity_id: climate.master_bedroom_air
+        attribute: power
+        state: true
+      then:
+      - service: climate.turn_off
+        target: { entity_id: climate.master_bedroom_air }
+turn_on_master_bedroom:
+  alias: Master Bedroom - Turn On
+  icon: mdi:power-on
+  mode: single
+  sequence:
+    - parallel: []

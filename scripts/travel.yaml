@@ -1,0 +1,19 @@
+going_to_cottage:
+  alias: Travel - Going to Cottage
+  icon: mdi:home-export-outline
+  mode: restart
+  sequence:
+  - parallel:
+    - service: script.cottage_travel_arriving
+    - service: script.turn_off_garage
+    - service: script.turn_off_master_bedroom
+    - service: script.turn_off_office
+    - service: fan.turn_off
+      target:
+        entity_id: '{{ states.fan | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - service: light.turn_off
+      target:
+        entity_id: '{{ states.light | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - service: remote.turn_off
+      target:
+        entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'

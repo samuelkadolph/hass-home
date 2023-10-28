@@ -1,0 +1,71 @@
+- id: office_monitor_receiver_on_motion
+  alias: Office Monitor & Receiver - On @ Motion
+  mode: single
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.office_sensor_motion_detection
+    - binary_sensor.office_fan_occupancy
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: media_player.office_receiver_main_zone
+    state: 'off'
+  - condition: time
+    after: '07:00:00'
+    before: '22:00:00'
+  action:
+  - service: script.turn_on_office
+
+- id: office_shades_close_open
+  alias: Office Shades - Close & Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_elevation_helper: input_number.shades_close_sun_elevation
+      first_conditions:
+      - condition: state
+        entity_id:
+        - binary_sensor.office_fan_occupancy
+        - binary_sensor.office_sensor_motion_detection
+        match: any
+        state: 'on'
+      first_actions:
+      - service: script.lockdown_office
+      second_time_helper: sensor.shades_open_time
+      second_actions:
+      - service: cover.open_cover
+        target: { entity_id: cover.office_shades }
+
+- id: office_shade_a_shade_switch_double
+  alias: Office Shade A - Shade Switch (Double)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: &office_shade_switch
+        9c842e4e183b8c0983dc86c6e5486b4d
+      paddle_taps: KeyPressed2x
+      paddle_hold: false
+      state_variable: input_number.office_shade_a_control_state
+      covers:
+      - cover.office_shade_a
+- id: office_shade_b_shade_switch_triple
+  alias: Office Shade B - Shade Switch (Triple)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: *office_shade_switch
+      paddle_taps: KeyPressed3x
+      paddle_hold: false
+      state_variable: input_number.office_shade_b_control_state
+      covers:
+      - cover.office_shade_b
+- id: office_shades_shade_switch_single
+  alias: Office Shades - Shade Switch (Single)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: *office_shade_switch
+      state_variable: input_number.office_shades_control_state
+      covers:
+      - cover.office_shades
