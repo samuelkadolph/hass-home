@@ -1,23 +1,25 @@
-living_room_dyson_sam_angle: &dyson-angle
-  icon: mdi:angle-obtuse
-  max: 355.0
-  min: 5.0
-  mode: box
+living_room_dyson_sam_angle:
+  <<: &dyson-angle
+    icon: mdi:angle-obtuse
+    max: 355.0
+    min: 5.0
+    mode: box
+    step: 1.0
+    unit_of_measurement: °
   name: Living Room Dyson Sam Angle
-  step: 1.0
-  unit_of_measurement: °
 theatre_dyson_sam_angle:
   <<: *dyson-angle
   name: Theatre Dyson Sam Angle
 
-master_bedroom_air_day_temperature: &temperature
+master_bedroom_air_day_temperature:
+  <<: &temperature
+    max: 30.0
+    mode: slider
+    step: 0.5
+    unit_of_measurement: °C
   icon: mdi:snowflake-thermometer
-  max: 30.0
   min: 16.0
-  mode: slider
   name: Master Bedroom Air Day Temperature
-  step: 0.5
-  unit_of_measurement: °C
 master_bedroom_air_day_threshold:
   <<: *temperature
   icon: mdi:sun-thermometer
@@ -25,6 +27,8 @@ master_bedroom_air_day_threshold:
   name: Master Bedroom Air Day Threshold
 master_bedroom_air_night_temperature:
   <<: *temperature
+  icon: mdi:snowflake-thermometer
+  min: 16.0
   name: Master Bedroom Air Night Temperature
 master_bedroom_shades_open_percent:
   icon: mdi:roller-shade
@@ -35,25 +39,27 @@ master_bedroom_shades_open_percent:
   step: 1.0
   unit_of_measurement: '%'
 
-lights_on_sun_elevation: &elevation
-  icon: mdi:sun-angle
-  max: 4.0
-  min: -18.0
-  mode: slider
+lights_on_sun_elevation:
+  <<: &elevation
+    icon: mdi:sun-angle
+    max: 4.0
+    min: -18.0
+    mode: slider
+    step: 0.5
+    unit_of_measurement: °
   name: Lights On Sun Elevation
-  step: 0.5
-  unit_of_measurement: °
 shades_close_sun_elevation:
   <<: *elevation
   name: Shades Close Sun Elevation
 
-back_door_shade_a_control_state: &shade-control
-  min: 0.0
-  max: 4.0
+back_door_shade_a_control_state:
+  <<: &shade-control
+    min: 0.0
+    max: 4.0
+    mode: box
+    step: 1.0
+    icon: mdi:swap-vertical-bold
   name: Back Door Shade A Control State
-  mode: box
-  step: 1.0
-  icon: mdi:swap-vertical-bold
 back_door_shade_b_control_state:
   <<: *shade-control
   name: Back Door Shade B Control State
@@ -78,7 +84,7 @@ living_room_shades_control_state:
 laundry_room_shade_control_state:
   <<: *shade-control
   name: Laundry Room Shade Control State
-master_bedroom_shade_control_state:
+master_bedroom_shades_control_state:
   <<: *shade-control
   name: Master Bedroom Shades Control State
 nook_shade_control_state:
