@@ -1,0 +1,95 @@
+- platform: group
+  name: Basement Lights
+  unique_id: basement_lights
+  entities:
+  - light.bar_lights
+  - light.bulkhead_lights
+  - light.gym_lights
+  - light.lounge_lights
+  - light.tbd_lights
+  - light.theatre_lights
+- platform: group
+  name: Bookshelf Lights
+  unique_id: bookshelf_lights
+  entities:
+  - light.bookshelf_potlights
+  - light.bookshelf_spotlights
+- platform: group
+  name: Bottom Floor Lights
+  unique_id: bottom_floor_lights
+  entities:
+  - light.bar_lights
+  - light.basement_bathroom_lights
+  - light.basement_closet_lights
+  - light.bulkhead_lights
+  - light.cold_storage_lights
+  - light.downstairs_lights
+  - light.gym_lights
+  - light.lounge_lights
+  - light.side_stairs_lights
+  - light.tbd_lights
+  - light.theatre_lights
+  - light.utility_room_lights
+- platform: group
+  name: Den Lamps
+  unique_id: den_lamps
+  entities:
+  - light.den_lamp_a
+  - light.den_lamp_b
+  - light.den_lamp_c
+- platform: group
+  name: Family Room Lights
+  unique_id: family_room_lights
+  entities:
+  - light.dmz_lights
+  - light.kitchen_lights
+  - light.living_room_lights
+- platform: group
+  name: Main Floor Lights
+  unique_id: main_floor_lights
+  entities:
+  - light.backyard_lights
+  - light.den_fan_lights
+  - light.den_lamps
+  - light.den_lights
+  - light.dining_room_ceiling_lights
+  - light.dining_room_chandelier_lights
+  - light.dmz_lights
+  - light.foyer_lights
+  - light.garage_lights
+  - light.kitchen_ceiling_lights
+  - light.kitchen_counter_lights
+  - light.kitchen_island_lights
+  - light.living_room_lights
+  - light.mudroom_lights
+  - light.powder_room_lights
+- platform: group
+  name: Outside Lights
+  unique_id: outside_lights
+  entities:
+  - light.porch_lights
+  - light.side_door_lights
+  - light.soffit_lights
+- platform: group
+  name: Second Floor Lights
+  unique_id: second_floor_lights
+  entities:
+  - light.bookshelf_lights
+  - light.guest_bedroom_lights
+  - light.hallway_lights
+  - light.laundry_room_lights
+  - light.master_bedroom_closet_lights
+  - light.master_bedroom_fan_lights
+  - light.master_bedroom_lights
+  - light.office_closet_lights
+  - light.office_lights
+  - light.spare_bedroom_closet_lights
+  - light.spare_bedroom_lights
+  - light.upstairs_lights
+  - light.workbench_lights
+- platform: group
+  name: Workbench Lights
+  unique_id: workbench_lights
+  entities:
+  - light.workbench_light_a
+  - light.workbench_light_b

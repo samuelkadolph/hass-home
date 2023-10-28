@@ -1,0 +1,77 @@
+- platform: group
+  name: Back Door Shades
+  unique_id: back_door_shades
+  entities:
+  - cover.back_door_shade_a
+  - cover.back_door_shade_b
+- platform: group
+  name: Big Den Shade
+  unique_id: big_den_shade
+  entities:
+  - cover.den_shade_a
+- platform: group
+  name: Big Living Room Shades
+  unique_id: big_living_room_shades
+  entities:
+  - cover.living_room_shade_c
+  - cover.living_room_shade_d
+- platform: group
+  name: Big Office Shade
+  unique_id: big_office_shade
+  entities:
+  - cover.office_shade_b
+- platform: group
+  name: Den Shades
+  unique_id: den_shades
+  entities:
+  - cover.den_shade_a
+  - cover.den_shade_b
+- platform: group
+  name: Family Room Shades
+  unique_id: family_room_shades
+  entities:
+  - cover.back_door_shades
+  - cover.kitchen_shades
+  - cover.living_room_shades
+- platform: group
+  name: Kitchen Shades
+  unique_id: kitchen_shades
+  entities:
+  - cover.kitchen_shade_a
+  - cover.kitchen_shade_b
+- platform: group
+  name: Little Den Shade
+  unique_id: little_den_shade
+  entities:
+  - cover.den_shade_b
+- platform: group
+  name: Little Living Room Shades
+  unique_id: little_living_room_shades
+  entities:
+  - cover.living_room_shade_a
+  - cover.living_room_shade_b
+- platform: group
+  name: Little Office Shade
+  unique_id: little_office_shade
+  entities:
+  - cover.office_shade_b
+- platform: group
+  name: Living Room Shades
+  unique_id: living_room_shades
+  entities:
+  - cover.living_room_shade_a
+  - cover.living_room_shade_b
+  - cover.living_room_shade_c
+  - cover.living_room_shade_d
+- platform: group
+  name: Master Bedroom Shades
+  unique_id: master_bedroom_shades
+  entities:
+  - cover.master_bedroom_shade_a
+  - cover.master_bedroom_shade_b
+- platform: group
+  name: Office Shades
+  unique_id: office_shades
+  entities:
+  - cover.office_shade_a
+  - cover.office_shade_b
