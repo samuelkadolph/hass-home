@@ -5,4 +5,5 @@ fan: !include fans.yaml
 input_datetime: !include input_datetime.yaml
 input_number: !include input_number.yaml
 light: !include lights.yaml
+media_player: !include media_player.yaml
 script: !include_dir_merge_named scripts

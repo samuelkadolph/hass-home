@@ -1,0 +1,42 @@
+# - platform: yamaha
+#   host: 10.4.0.88
+#   name: Living Room Receiver
+
+- platform: yamaha
+  host: 10.4.0.89
+  name: Office Receiver
+  source_ignore:
+  - AUDIO1
+  - AUDIO2
+  - AUDIO3
+  - AUX
+  - AV4
+  - AV5
+  - AV6
+  - AV7
+  - AirPlay
+  - Alexa
+  - Amazon Music
+  - Deezer
+  - MusicCast Link
+  - NET RADIO
+  - Napster
+  - PHONO
+  - Pandora
+  - SERVER
+  - SiriusXM
+  - Spotify
+  - TIDAL
+  - TUNER
+  - USB
+  source_names:
+    AV1: Computer
+    AV2: Shield
+    AV3: Fibe TV
+  zone_names:
+    Main_Zone: Main Zone
+    Zone_2: TV Zone
+
+# - platform: yamaha
+#   host: 10.4.0.87
+#   name: Theatre Receiver
