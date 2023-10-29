@@ -19,7 +19,7 @@
   name: Big Office Shade
   unique_id: big_office_shade
   entities:
-  - cover.office_shade_b
+  - cover.office_shade_a
 - platform: group
   name: Den Shades
   unique_id: den_shades
