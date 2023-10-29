@@ -42,7 +42,7 @@
   unique_id: family_room_lights
   entities:
   - light.dmz_lights
-  - light.kitchen_lights
+  - light.kitchen_ceiling_lights
   - light.living_room_lights
 - platform: group
   name: Main Floor Lights
