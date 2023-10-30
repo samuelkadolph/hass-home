@@ -1,0 +1,31 @@
+- id: fountains_on_04_00
+  alias: Fountains - On @ 04:00
+  mode: single
+  trigger:
+  - platform: time
+    at: '04:00:00'
+  action:
+  - service: switch.turn_on
+    target:
+      entity_id: '{{ states.switch | selectattr("entity_id", "search", "fountain$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+
+- id: kitchen_shades_counter_lights_switch_double
+  alias: Kitchen Shades - Counter Lights Switch (Double)
+  use_blueprint:
+    path: samuelkadolph/homeseer_wx300_covers.yaml
+    input:
+      switch: d434278ac9a7062b9be01fea43ebe600
+      paddle_taps: KeyPressed2x
+      paddle_hold: false
+      state_variable: input_number.kitchen_shades_control_state
+      covers: cover.kitchen_shades
+
+- id: toaster_oven_off_04_00
+  alias: Toaster Oven - Off @ 04:00
+  mode: single
+  trigger:
+  - platform: time
+    at: '04:00:00'
+  action:
+  - service: switch.turn_off
+    target: { entity_id: switch.toaster_oven }

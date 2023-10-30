@@ -1,0 +1,9 @@
+- id: theatre_remote_on_off
+  alias: Theatre Remote - On & Off
+  use_blueprint:
+    path: samuelkadolph/remote_automation.yaml
+    input:
+      remote: remote.theatre
+      off_actions:
+      - service: fan.turn_off
+        target: { entity_id: fan.theatre_dyson }

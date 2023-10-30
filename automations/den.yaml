@@ -1,0 +1,20 @@
+- id: den_shades_lights_switch_double
+  alias: Den Shades - Lights Switch (Double)
+  use_blueprint:
+    path: samuelkadolph/homeseer_wx300_covers.yaml
+    input:
+      switch: 7ecb8d060a5e8516489971d191a0f593
+      paddle_taps: KeyPressed2x
+      paddle_hold: false
+      state_variable: input_number.den_shades_control_state
+      covers: cover.den_shades
+- id: den_shades_open
+  alias: Den Shades - Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_trigger: none
+      second_time_helper: sensor.shades_open_time
+      second_actions:
+      - service: cover.open_cover
+        entity_id: cover.den_shades

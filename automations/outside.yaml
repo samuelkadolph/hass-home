@@ -1,0 +1,52 @@
+- id: outside_lights_on_arrival
+  alias: Outside Lights - On @ Arrival
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: zone.home
+  condition:
+  - '{{ trigger.from_state and trigger.to_state and (trigger.from_state.state | int < trigger.to_state.state | int) }}'
+  - condition: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: input_number.lights_on_sun_elevation
+  action:
+  - parallel:
+    - if:
+      - '{{ is_state("light.porch_lights", "off") }}'
+      then:
+      - service: light.turn_on
+        target: { entity_id: light.porch_lights }
+      - delay: { minutes: '{{ states("input_number.outside_lights_arrival_on_time") }}' }
+      - service: light.turn_off
+        target: { entity_id: light.porch_lights }
+    - if:
+      - '{{ is_state("light.side_door_lights", "off") }}'
+      then:
+      - service: light.turn_on
+        target: { entity_id: light.side_door_lights }
+      - delay: { minutes: '{{ states("input_number.outside_lights_arrival_on_time") }}' }
+      - service: light.turn_off
+        target: { entity_id: light.side_door_lights }
+    - if:
+      - '{{ is_state("light.soffit_lights", "off") }}'
+      then:
+      - service: light.turn_on
+        target: { entity_id: light.soffit_lights }
+      - delay: { minutes: '{{ states("input_number.outside_lights_arrival_on_time") }}' }
+      - service: light.turn_off
+        target: { entity_id: light.soffit_lights }
+
+- id: outside_lights_on_off
+  alias: Outside Lights - On & Off
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_elevation_helper: input_number.lights_on_sun_elevation
+      first_actions:
+      - service: light.turn_on
+        entity_id: light.soffit_lights
+      second_time_helper: sensor.outside_lights_off_time
+      second_actions:
+      - service: light.turn_off
+        entity_id: light.outside_lights

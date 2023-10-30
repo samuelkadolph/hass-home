@@ -5,10 +5,7 @@ turn_off_master_bedroom:
   sequence:
   - parallel:
     - if:
-      - condition: state
-        entity_id: climate.master_bedroom_air
-        attribute: power
-        state: true
+      - '{{ is_state_attr("climate.master_bedroom_air", "power", true) }}'
       then:
       - service: climate.turn_off
         target: { entity_id: climate.master_bedroom_air }
@@ -17,4 +14,44 @@ turn_on_master_bedroom:
   icon: mdi:power-on
   mode: single
   sequence:
-    - parallel: []
+  - parallel: []
+
+set_day_master_bedroom_air:
+  alias: Master Bedroom Air - Day
+  icon: mdi:sun-thermometer
+  mode: single
+  sequence:
+  - if:
+    - '{{ is_state_attr("climate.master_bedroom_air", "power", true) }}'
+    - '{{ is_state_attr("climate.master_bedroom_air", "temperature", states("input_number.master_bedroom_air_night_temperature") | float) }}'
+    then:
+    - service: weather.get_forecast
+      data: { type: hourly }
+      target: { entity_id: weather.forecast_home }
+      response_variable: forecast
+    - if:
+      - '{{ (forecast.forecast | map(attribute="temperature") | max) > (states("input_number.master_bedroom_air_day_threshold") | float) }}'
+      then:
+      - service: climate.set_temperature
+        data:
+          hvac_mode: cool
+          temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
+        target: { entity_id: climate.master_bedroom_air }
+      else:
+      - service: climate.turn_off
+        target: { entity_id: climate.master_bedroom_air }
+set_night_master_bedroom_air:
+  alias: Master Bedroom Air - Night
+  icon: mdi:snowflake-thermometer
+  mode: single
+  sequence:
+  - if:
+    - condition: zone
+      entity_id: person.samuel_kadolph
+      zone: zone.home
+    then:
+    - service: climate.set_temperature
+      data:
+        hvac_mode: cool
+        temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
+      target: { entity_id: climate.master_bedroom_air }

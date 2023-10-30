@@ -1,0 +1,8 @@
+- id: mudroom_lights_motion
+  alias: Mudroom Lights - Motion
+  use_blueprint:
+    path: homeassistant/motion_light.yaml
+    input:
+      motion_entity: binary_sensor.mudroom_sensor_motion_detection
+      light_target: { entity_id: light.mudroom_lights }
+      no_motion_wait: 0

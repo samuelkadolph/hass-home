@@ -1,0 +1,30 @@
+- id: away_lighting_family_room
+  alias: Away Lighting - Family Room
+  use_blueprint:
+    path: samuelkadolph/away_lighting.yaml
+    input:
+      on_elevation_manual: -1
+      off_time_manual: '23:00:00'
+      lights:
+      - light.family_room_lights
+      zone: zone.home
+- id: away_lighting_master_bedroom
+  alias: Away Lighting - Master Bedroom
+  use_blueprint:
+    path: samuelkadolph/away_lighting.yaml
+    input:
+      on_elevation_manual: -4.5
+      off_time_manual: 01:00:00
+      lights:
+      - light.master_bedroom_lights
+      zone: zone.home
+- id: away_lighting_hallway
+  alias: Away Lighting - Hallway
+  use_blueprint:
+    path: samuelkadolph/away_lighting.yaml
+    input:
+      on_elevation_manual: -3.5
+      off_time_manual: 00:00:00
+      lights:
+      - light.hallway_lights
+      zone: zone.home

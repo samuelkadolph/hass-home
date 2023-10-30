@@ -1,0 +1,8 @@
+- id: guest_bedroom_shade_shade_switch_double
+  alias: Guest Bedroom Shade - Shade Switch (Single)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: decf8774dca4411d666dbcc15825bce6
+      state_variable: input_number.guest_bedroom_shade_control_state
+      covers: cover.guest_bedroom_shade

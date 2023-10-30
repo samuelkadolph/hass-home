@@ -1,0 +1,135 @@
+- id: master_bedroom_air_night_day
+  alias: Master Bedroom Air - Night & Day
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_trigger: time
+      first_time_helper: sensor.master_bedroom_air_night_time
+      first_actions:
+      - service: script.set_night_master_bedroom_air
+      second_time_helper: input_datetime.master_bedroom_air_day_time
+      second_actions:
+      - service: script.set_day_master_bedroom_air
+- id: master_bedroom_air_night_sam_arrival
+  alias: Master Bedroom Air - Night @ Sam Arrival
+  mode: single
+  trigger:
+  - platform: state
+    entity_id:
+    - person.samuel_kadolph
+    to: home
+  condition:
+  - condition: time
+    after: sensor.master_bedroom_air_night_time
+    before: "06:00:00"
+  action:
+  - service: script.set_night_master_bedroom_air
+
+- id: master_bedroom_shades_close_open
+  alias: Master Bedroom Shades - Close & Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_elevation_helper: input_number.shades_close_sun_elevation
+      first_actions:
+      - service: cover.close_cover
+        target: { entity_id: cover.master_bedroom_shades }
+      second_time_helper: input_datetime.master_bedroom_shades_open_time
+      second_conditions:
+      - condition: numeric_state
+        entity_id: cover.master_bedroom_shades
+        attribute: current_position
+        below: input_number.master_bedroom_shades_open_percent
+      second_actions:
+      - service: cover.set_cover_position
+        data: { position: '{{ states("input_number.master_bedroom_shades_open_percent") }}' }
+        target: { entity_id: cover.master_bedroom_shades }
+
+- id: master_bedroom_fan_left_controller_bottom_left
+  alias: Master Bedroom Fan - Left Controller (Bottom Left)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: &left_controller
+        fdc3fcf41cfc1a5b5b8f7a2e610b4e12
+      key: '003'
+      subjects: fan.master_bedroom_fan
+- id: master_bedroom_fan_right_controller_bottom_left
+  alias: Master Bedroom Fan - Right Controller (Bottom Left)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: &right_controller
+        38a6f1c8886c258de36eccf3e2e8e992
+      key: '003'
+      subjects: fan.master_bedroom_fan
+
+- id: master_bedroom_fan_lights_left_controller_mid_left
+  alias: Master Bedroom Fan Lights - Left Controller (Mid Left)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: *left_controller
+      key: '001'
+      subjects: light.master_bedroom_fan_lights
+- id: master_bedroom_fan_lights_right_controller_mid_left
+  alias: Master Bedroom Fan Lights - Right Controller (Mid Left)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: *right_controller
+      key: '001'
+      subjects: light.master_bedroom_fan_lights
+
+- id: master_bedroom_lights_left_controller_top
+  alias: Master Bedroom Lights - Left Controller (Top)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: *left_controller
+      subjects: light.master_bedroom_lights
+- id: master_bedroom_lights_right_controller_top
+  alias: Master Bedroom Lights - Right Controller (Top)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: *right_controller
+      subjects: light.master_bedroom_lights
+
+- id: master_bedroom_shades_left_controller_mid_right
+  alias: Master Bedroom Shades - Left Controller (Mid Right)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_covers.yaml
+    input:
+      controller: *left_controller
+      key: '002'
+      state_variable: input_number.master_bedroom_shades_control_state
+      covers: cover.master_bedroom_shades
+- id: master_bedroom_shades_lights_switch_double
+  alias: Master Bedroom Shades - Lights Switch (Double)
+  use_blueprint:
+    path: samuelkadolph/homeseer_wx300_covers.yaml
+    input:
+      switch: dfa420b844960f66da0255ed7435d07f
+      paddle_taps: KeyPressed2x
+      paddle_hold: false
+      state_variable: input_number.master_bedroom_shades_control_state
+      covers: cover.master_bedroom_shades
+- id: master_bedroom_shades_right_controller_mid_right
+  alias: Master Bedroom Shades - Right Controller (Mid Right)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_covers.yaml
+    input:
+      controller: *right_controller
+      key: '002'
+      state_variable: input_number.master_bedroom_shades_control_state
+      covers: cover.master_bedroom_shades
+
+- id: master_bedroom_pedestal_fan_left_controller_bottom_right
+  alias: Master Bedroom Pedestal Fan - Left Controller (Bottom Right)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: *left_controller
+      key: '004'
+      subjects: light.master_bedroom_pedestal_fan

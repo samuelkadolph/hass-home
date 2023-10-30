@@ -1,0 +1,47 @@
+- id: spare_bedroom_lights_bed_switch_single
+  alias: Spare Bedroom Lights - Bed Switch (Single)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_lights.yaml
+    input:
+      switch: &bed_switch
+        70ee8763d0a78a902de6072fa6c21c50
+      subjects: light.spare_bedroom_lights
+- id: spare_bedroom_lights_shade_switch_single
+  alias: Spare Bedroom Lights - Shade Switch (Single)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_lights.yaml
+    input:
+      switch: &shade_switch
+        e6792db4d8773b0c8a01a137c7b94942
+      subjects: light.spare_bedroom_lights
+
+- id: spare_bedroom_shade_bed_switch_double
+  alias: Spare Bedroom Shade - Bed Switch (Double)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: *bed_switch
+      paddle_taps: KeyPressed2x
+      paddle_hold: false
+      state_variable: input_number.spare_bedroom_shade_control_state
+      covers: cover.spare_bedroom_shade
+- id: spare_bedroom_shade_open
+  alias: Spare Bedroom Shade - Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_trigger: none
+      second_time_helper: sensor.shades_open_time
+      second_actions:
+      - service: cover.open_cover
+        entity_id: cover.spare_bedroom_shade
+- id: spare_bedroom_shade_shade_switch_double
+  alias: Spare Bedroom Shade - Shade Switch (Double)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: *shade_switch
+      paddle_taps: KeyPressed2x
+      paddle_hold: false
+      state_variable: input_number.spare_bedroom_shade_control_state
+      covers: cover.spare_bedroom_shade

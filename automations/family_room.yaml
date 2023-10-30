@@ -1,0 +1,30 @@
+- id: family_room_shades_close_arrival
+  alias: Family Room Shades - Close @ Arrival
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: zone.home
+    from: '0'
+  condition:
+  - condition: numeric_state
+    entity_id: sun.sun
+    attribute: elevation
+    below: input_number.shades_close_sun_elevation
+  action:
+  - service: script.close_family_room_shades
+- id: family_room_shades_close_open
+  alias: Family Room Shades - Close & Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_elevation_helper: input_number.shades_close_sun_elevation
+      first_conditions:
+      - condition: state
+        entity_id: light.family_room_lights
+        state: 'on'
+      first_actions:
+      - service: script.close_family_room_shades
+      second_time_helper: sensor.shades_open_time
+      second_actions:
+      - service: cover.open_cover
+        entity_id: cover.family_room_shades

@@ -1,0 +1,76 @@
+- id: alert_bar_dishwasher_leak
+  alias: Alert - Bar Dishwasher Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Bar Dishwasher
+      leak_sensors: binary_sensor.bar_dishwasher_leak_sensor
+- id: alert_bar_ice_maker_leak
+  alias: Alert - Bar Ice Maker Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Bar Ice Maker
+      leak_sensors:
+      - binary_sensor.bar_ice_maker_leak_sensor
+- id: alert_bar_sink_link
+  alias: Alert - Bar Sink Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Bar Sink
+      leak_sensors: binary_sensor.bar_sink_leak_sensor
+- id: alert_washer_leak
+  alias: Alert - Washer Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Washer
+      leak_sensors:
+      - binary_sensor.laundry_room_leak_sensor_water_leak_detected
+      - binary_sensor.laundry_room_leak_sensor_water_leak_detected_2
+- id: alert_water_heater_leak
+  alias: Alert - Water Heater Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Water Heater
+      leak_sensors:
+      - binary_sensor.utility_room_leak_sensor_water_leak_detected
+      - binary_sensor.utility_room_leak_sensor_water_leak_detected_2
+
+- id: alert_bar_fridge_door_ajar
+  alias: Alert - Bar Fridge Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Bar Fridge
+      door_sensors: binary_sensor.bar_fridge_door
+- id: alert_basement_freezer_door_ajar
+  alias: Alert - Basement Freezer Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Basement Freezer
+      door_sensors: binary_sensor.basement_freezer_door_sensor_window_door_is_open_2
+
+- id: alert_dryer_finished
+  alias: Alert - Dryer Finished
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: sensor.dryer_job_state
+    to: finished
+  action:
+  - service: notify.notify
+    data: { title: Dryer, message: Cycle complete. }
+- id: alert_washer_finished
+  alias: Alert - Washer Finished
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: sensor.washer_job_state
+    to: finish
+  action:
+  - service: notify.notify
+    data: { title: Washer, message: Cycle complete. }
