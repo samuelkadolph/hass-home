@@ -1,0 +1,10 @@
+- sensor:
+  - name: Dead ZWave Entities
+    unique_id: dead_zwave_entities
+    unit_of_measurement: entities
+    state: '{{ (state_attr("sensor.dead_zwave_entities", "entities") or []) | count }}'
+    attributes:
+      entities: >
+        {{ expand(integration_entities("zwave_js") | select("search", "node_status"))
+         | selectattr("state", "in", "dead, unavailable, unknown")
+         | map(attribute="object_id") | list }}
