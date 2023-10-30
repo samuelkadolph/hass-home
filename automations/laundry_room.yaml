@@ -16,7 +16,8 @@
       paddle_taps: KeyPressed2x
       paddle_hold: false
       state_variable: input_number.laundry_room_shade_control_state
-      covers: cover.laundry_room_shade
+      covers:
+      - cover.laundry_room_shade
 - id: laundry_room_shade_open
   alias: Laundry Room Shade - Open
   use_blueprint:

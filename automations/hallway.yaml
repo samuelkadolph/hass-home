@@ -5,7 +5,8 @@
     input:
       switch: 03993ec59ce020155be44f997fd62d81
       paddle_taps: KeyPressed3x
-      subjects: light.bookshelf_lights
+      subjects:
+      - light.bookshelf_lights
 - id: bookshelf_lights_on_arrival
   alias: Bookshelf Lights - On @ Arrival
   mode: single
@@ -62,4 +63,5 @@
     input:
       switch: 03993ec59ce020155be44f997fd62d81
       state_variable: input_number.nook_shade_control_state
-      covers: cover.nook_shade
+      covers:
+      - cover.nook_shade

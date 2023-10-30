@@ -5,7 +5,8 @@
     input:
       switch: &bed_switch
         70ee8763d0a78a902de6072fa6c21c50
-      subjects: light.spare_bedroom_lights
+      subjects:
+      - light.spare_bedroom_lights
 - id: spare_bedroom_lights_shade_switch_single
   alias: Spare Bedroom Lights - Shade Switch (Single)
   use_blueprint:
@@ -13,7 +14,8 @@
     input:
       switch: &shade_switch
         e6792db4d8773b0c8a01a137c7b94942
-      subjects: light.spare_bedroom_lights
+      subjects:
+      - light.spare_bedroom_lights
 
 - id: spare_bedroom_shade_bed_switch_double
   alias: Spare Bedroom Shade - Bed Switch (Double)
@@ -24,7 +26,8 @@
       paddle_taps: KeyPressed2x
       paddle_hold: false
       state_variable: input_number.spare_bedroom_shade_control_state
-      covers: cover.spare_bedroom_shade
+      covers:
+      - cover.spare_bedroom_shade
 - id: spare_bedroom_shade_open
   alias: Spare Bedroom Shade - Open
   use_blueprint:
@@ -44,4 +47,5 @@
       paddle_taps: KeyPressed2x
       paddle_hold: false
       state_variable: input_number.spare_bedroom_shade_control_state
-      covers: cover.spare_bedroom_shade
+      covers:
+      - cover.spare_bedroom_shade

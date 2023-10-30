@@ -5,4 +5,5 @@
     input:
       switch: decf8774dca4411d666dbcc15825bce6
       state_variable: input_number.guest_bedroom_shade_control_state
-      covers: cover.guest_bedroom_shade
+      covers:
+      - cover.guest_bedroom_shade

@@ -22,4 +22,5 @@
       paddle_taps: KeyPressed2x
       paddle_hold: false
       state_variable: input_number.living_room_shades_control_state
-      covers: cover.living_room_shades
+      covers:
+      - cover.living_room_shades

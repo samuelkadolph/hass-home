@@ -7,7 +7,8 @@
       paddle_taps: KeyPressed2x
       paddle_hold: false
       state_variable: input_number.den_shades_control_state
-      covers: cover.den_shades
+      covers:
+      - cover.den_shades
 - id: den_shades_open
   alias: Den Shades - Open
   use_blueprint:
