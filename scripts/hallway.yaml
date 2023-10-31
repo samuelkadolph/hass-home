@@ -1,0 +1,10 @@
+close_nook_shade:
+  alias: Nook - Close Shade
+  icon: mdi:roller-shade-closed
+  mode: single
+  sequence:
+  - condition: state
+    entity_id: binary_sensor.nook_window_sensor_window_door_is_open
+    state: 'off'
+  - service: cover.close_cover
+    target: { entity_id: cover.nook_shade }

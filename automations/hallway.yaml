@@ -50,8 +50,7 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_actions:
-      - service: cover.close_cover
-        entity_id: cover.nook_shade
+      - service: script.close_nook_shade
       second_time_helper: sensor.shades_open_time
       second_actions:
       - service: cover.open_cover
