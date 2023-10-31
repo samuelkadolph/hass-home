@@ -7,4 +7,5 @@ input_number: !include input_number.yaml
 light: !include lights.yaml
 media_player: !include media_player.yaml
 script: !include_dir_merge_named scripts
+switch: !include switches.yaml
 template: !include_dir_merge_list templates
