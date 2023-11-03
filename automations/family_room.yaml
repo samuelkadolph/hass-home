@@ -19,9 +19,9 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_conditions:
-      - condition: state
-        entity_id: light.family_room_lights
-        state: 'on'
+      - condition: numeric_state
+        entity_id: zone.home
+        above: 0
       first_actions:
       - service: script.close_family_room_shades
       second_time_helper: sensor.shades_open_time
