@@ -1,0 +1,32 @@
+- sensor:
+  - name: Master Bedroom Air Night Time
+    unique_id: master_bedroom_air_night_time
+    device_class: timestamp
+    state: >
+      {% if now().month in [5,6,7,8,9] -%}
+        {{ now().replace(hour=22,minute=0,second=0,microsecond=0).isoformat() }}
+      {% else -%}
+        {{ now().replace(hour=23,minute=0,second=0,microsecond=0).isoformat() }}
+      {% endif -%}
+
+- sensor:
+  - name: Outside Lights Off Time
+    unique_id: outside_lights_off_time
+    device_class: timestamp
+    state: >
+      {% if now().month in [5,6,7,8,9] -%}
+        {{ now().replace(hour=22,minute=0,second=0,microsecond=0).isoformat() }}
+      {% else -%}
+        {{ now().replace(hour=21,minute=0,second=0,microsecond=0).isoformat() }}
+      {% endif -%}
+
+- sensor:
+  - name: Shades Open Time
+    unique_id: shades_open_time
+    device_class: timestamp
+    state: >
+      {% if now().month in [3,4,5,6,7,8,9,10,11] -%}
+        {{ (states("sensor.sun_next_rising") | as_datetime - timedelta(minutes=30)).isoformat() }}
+      {% else -%}
+        {{ now().replace(hour=4,minute=0,second=0,microsecond=0).isoformat() }}
+      {% endif -%}
