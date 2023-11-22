@@ -27,6 +27,7 @@
   - light.gym_lights
   - light.lounge_lights
   - light.side_stairs_lights
+  - light.storage_lights
   - light.tbd_lights
   - light.theatre_lights
   - light.utility_room_lights
@@ -61,6 +62,7 @@
   - light.kitchen_counter_lights
   - light.kitchen_island_lights
   - light.living_room_lights
+  - light.mudroom_closet_lights
   - light.mudroom_lights
   - light.powder_room_lights
 - platform: group
