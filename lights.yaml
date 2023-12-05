@@ -3,6 +3,7 @@
   unique_id: basement_lights
   entities:
   - light.bar_lights
+  - light.bar_counter_lights
   - light.bulkhead_lights
   - light.gym_lights
   - light.lounge_lights
@@ -19,6 +20,7 @@
   unique_id: bottom_floor_lights
   entities:
   - light.bar_lights
+  - light.bar_counter_lights
   - light.basement_bathroom_lights
   - light.basement_closet_lights
   - light.bulkhead_lights
