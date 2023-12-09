@@ -3,7 +3,8 @@ close_family_room_shades:
   icon: mdi:roller-shade-closed
   mode: single
   sequence:
-  - service: cover.close_cover
+  - service: cover.set_cover_position
+    data: { position: '{{ states("input_number.shades_open_percent_temp") }}' }
     target:
       entity_id: >
         cover.living_room_shade_a

@@ -89,7 +89,8 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_actions:
-      - service: cover.close_cover
+      - service: cover.set_cover_position
+        data: { position: '{{ states("input_number.shades_open_percent_temp") }}' }
         target: { entity_id: cover.master_bedroom_shades }
       second_time_helper: input_datetime.master_bedroom_shades_open_time
       second_conditions:
