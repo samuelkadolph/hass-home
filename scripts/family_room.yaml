@@ -4,7 +4,7 @@ close_family_room_shades:
   mode: single
   sequence:
   - service: cover.set_cover_position
-    data: { position: '{{ states("input_number.shades_open_percent_temp") }}' }
+    data: { position: '{{ states("sensor.shades_close_percent") }}' }
     target:
       entity_id: >
         cover.living_room_shade_a

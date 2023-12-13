@@ -61,14 +61,6 @@ outside_lights_arrival_on_time:
   step: 1.0
   unit_of_measurement: minutes
 
-shades_open_percent_temp:
-  max: 15
-  min: 5
-  mode: slider
-  name: Shades Open Percent
-  step: 1
-  unit_of_measurement: '%'
-
 back_door_shade_a_control_state:
   <<: &shade-control
     min: 0.0

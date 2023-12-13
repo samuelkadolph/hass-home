@@ -3,8 +3,7 @@ close_office_shades:
   icon: mdi:roller-shade-closed
   mode: single
   sequence:
-  - service: cover.set_cover_position
-    data: { position: '{{ states("input_number.shades_open_percent_temp") }}' }
+  - service: cover.close_cover
     target:
       entity_id: >
         cover.office_shade_a

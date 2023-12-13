@@ -6,6 +6,5 @@ close_nook_shade:
   - condition: state
     entity_id: binary_sensor.nook_window_sensor_window_door_is_open
     state: 'off'
-  - service: cover.set_cover_position
-    data: { position: '{{ states("input_number.shades_open_percent_temp") }}' }
+  - service: cover.close_cover
     target: { entity_id: cover.nook_shade }

@@ -1,0 +1,23 @@
+- trigger:
+  - platform: time
+    at: '12:00:00'
+  action:
+  - service: weather.get_forecast
+    data: { type: hourly }
+    target: { entity_id: weather.forecast_home }
+    response_variable: forecast
+  sensor:
+    - name: Shades Close Percent
+      unique_id: shades_close_percent
+      state: '{{ forecast.forecast | map(attribute="temperature") | min < -1.0 and 10 or 0 }}'
+
+- sensor:
+  - name: Shades Open Time
+    unique_id: shades_open_time
+    device_class: timestamp
+    state: >
+      {% if now().month in [3,4,5,6,7,8,9,10,11] -%}
+        {{ (states("sensor.sun_next_rising") | as_datetime - timedelta(minutes=30)).isoformat() }}
+      {% else -%}
+        {{ now().replace(hour=05,minute=00,second=00,microsecond=0).isoformat() }}
+      {% endif -%}

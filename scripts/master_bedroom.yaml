@@ -30,7 +30,7 @@ set_day_master_bedroom_air:
       target: { entity_id: weather.forecast_home }
       response_variable: forecast
     - if:
-      - '{{ (forecast.forecast | map(attribute="temperature") | max) > (states("input_number.master_bedroom_air_day_threshold") | float) }}'
+      - '{{ forecast.forecast | map(attribute="temperature") | max > states("input_number.master_bedroom_air_day_threshold") | float }}'
       then:
       - service: climate.set_temperature
         data:

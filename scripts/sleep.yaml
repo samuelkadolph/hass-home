@@ -18,6 +18,14 @@ sleep_bedtime:
     - service: remote.turn_off
       target:
         entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    - if:
+      - condition: numeric_state
+        entity_id: cover.master_bedroom_shades
+        attribute: current_position
+        above: 0
+      then:
+      - service: cover.close_cover
+        target: { entity_id: cover.master_bedroom_shades }
     - service: light.turn_on
       data: { brightness: '{{ is_state("person.sasha_keller", "home") and 16 or 160 }}' }
       target: { entity_id: light.master_bedroom_fan_lights }
