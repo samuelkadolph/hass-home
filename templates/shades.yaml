@@ -19,5 +19,5 @@
       {% if now().month in [3,4,5,6,7,8,9,10,11] -%}
         {{ (states("sensor.sun_next_rising") | as_datetime - timedelta(minutes=30)).isoformat() }}
       {% else -%}
-        {{ now().replace(hour=05,minute=00,second=00,microsecond=0).isoformat() }}
+        {{ now().replace(hour=5,minute=0,second=0,microsecond=0).isoformat() }}
       {% endif -%}
