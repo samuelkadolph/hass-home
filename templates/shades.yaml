@@ -2,14 +2,14 @@
   - platform: time
     at: '12:00:00'
   action:
-  - service: weather.get_forecast
+  - service: weather.get_forecasts
     data: { type: hourly }
-    target: { entity_id: weather.forecast_home }
+    target: { entity_id: weather.home }
     response_variable: forecast
   sensor:
     - name: Shades Close Percent
       unique_id: shades_close_percent
-      state: '{{ forecast.forecast | map(attribute="temperature") | min < -1.0 and 10 or 0 }}'
+      state: '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min < -1.0 and 10 or 0 }}'
 
 - sensor:
   - name: Shades Open Time

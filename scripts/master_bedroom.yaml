@@ -25,12 +25,12 @@ set_day_master_bedroom_air:
     - '{{ is_state_attr("climate.master_bedroom_air", "power", true) }}'
     - '{{ is_state_attr("climate.master_bedroom_air", "temperature", states("input_number.master_bedroom_air_night_temperature") | float) }}'
     then:
-    - service: weather.get_forecast
+    - service: weather.get_forecasts
       data: { type: hourly }
-      target: { entity_id: weather.forecast_home }
+      target: { entity_id: weather.home }
       response_variable: forecast
     - if:
-      - '{{ forecast.forecast | map(attribute="temperature") | max > states("input_number.master_bedroom_air_day_threshold") | float }}'
+      - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > states("input_number.master_bedroom_air_day_threshold") | float }}'
       then:
       - service: climate.set_temperature
         data:
