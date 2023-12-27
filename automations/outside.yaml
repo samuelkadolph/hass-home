@@ -43,6 +43,8 @@
     path: samuelkadolph/automaton.yaml
     input:
       first_elevation_helper: input_number.lights_on_sun_elevation
+      first_conditions:
+      - '{{ is_state("input_boolean.seasonal_lights_enabled", "off") }}'
       first_actions:
       - service: light.turn_on
         entity_id: light.soffit_lights

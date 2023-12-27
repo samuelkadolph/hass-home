@@ -4,6 +4,8 @@
     path: samuelkadolph/automaton.yaml
     input:
       first_elevation_helper: input_number.lights_on_sun_elevation
+      first_conditions:
+      - '{{ is_state("input_boolean.christmas_lights_enabled", "on") }}'
       first_actions:
       - service: switch.turn_on
         target:
@@ -21,6 +23,8 @@
     path: samuelkadolph/automaton.yaml
     input:
       first_elevation_helper: input_number.lights_on_sun_elevation
+      first_conditions:
+      - '{{ is_state("input_boolean.seasonal_lights_enabled", "on") }}'
       first_actions:
       - service: switch.turn_on
         target:
