@@ -1,0 +1,10 @@
+- sensor:
+  - name: Outside Lights Off Time
+    unique_id: outside_lights_off_time
+    device_class: timestamp
+    state: >
+      {% if now().month in [5,6,7,8,9] -%}
+        {{ now().replace(hour=22,minute=0,second=0,microsecond=0).isoformat() }}
+      {% else -%}
+        {{ now().replace(hour=21,minute=0,second=0,microsecond=0).isoformat() }}
+      {% endif -%}
