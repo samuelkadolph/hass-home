@@ -1,10 +1,10 @@
 living_room_dyson_sam_angle:
   <<: &dyson-angle
     icon: mdi:angle-obtuse
-    max: 355.0
-    min: 5.0
+    max: 355
+    min: 5
     mode: box
-    step: 1.0
+    step: 1
     unit_of_measurement: °
   name: Living Room Dyson Sam Angle
 theatre_dyson_sam_angle:
@@ -32,11 +32,11 @@ master_bedroom_air_night_temperature:
   name: Master Bedroom Air Night Temperature
 master_bedroom_shades_open_percent:
   icon: mdi:roller-shade
-  max: 100.0
-  min: 10.0
+  max: 100
+  min: 1
   mode: slider
   name: Master Bedroom Shades Open Percent
-  step: 1.0
+  step: 1
   unit_of_measurement: '%'
 
 lights_on_sun_elevation:
@@ -58,15 +58,15 @@ outside_lights_arrival_on_time:
   min: 1
   mode: slider
   name: Outside Lights Arrival On Time
-  step: 1.0
+  step: 1
   unit_of_measurement: minutes
 
 back_door_shade_a_control_state:
   <<: &shade-control
-    min: 0.0
-    max: 4.0
+    min: 0
+    max: 4
     mode: box
-    step: 1.0
+    step: 1
     icon: mdi:swap-vertical-bold
   name: Back Door Shade A Control State
 back_door_shade_b_control_state:
