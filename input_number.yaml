@@ -30,14 +30,18 @@ master_bedroom_air_night_temperature:
   icon: mdi:snowflake-thermometer
   min: 16.0
   name: Master Bedroom Air Night Temperature
-master_bedroom_shades_open_percent:
-  icon: mdi:roller-shade
-  max: 100
-  min: 1
-  mode: slider
-  name: Master Bedroom Shades Open Percent
-  step: 1
-  unit_of_measurement: '%'
+master_bedroom_first_shades_open_percent:
+  <<: &shades-open-percent
+    icon: mdi:roller-shade
+    max: 100
+    min: 1
+    mode: slider
+    step: 1
+    unit_of_measurement: '%'
+  name: Master Bedroom First Shades Open Percent
+master_bedroom_second_shades_open_percent:
+  <<: *shades-open-percent
+  name: Master Bedroom Second Shades Open Percent
 
 lights_on_sun_elevation:
   <<: &elevation

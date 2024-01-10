@@ -2,3 +2,8 @@ christmas_lights_enabled:
   name: Christmas Lights Enabled
 seasonal_lights_enabled:
   name: Seasonal Lights Enabled
+
+master_bedroom_first_shades_open_enabled:
+  name: Master Bedroom First Shades Open Enabled
+master_bedroom_second_shades_open_enabled:
+  name: Master Bedroom Second Shades Open Enabled

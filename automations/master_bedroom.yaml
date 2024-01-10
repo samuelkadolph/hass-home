@@ -92,15 +92,35 @@
       - service: cover.set_cover_position
         data: { position: '{{ states("sensor.shades_close_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
-      second_time_helper: input_datetime.master_bedroom_shades_open_time
+      second_time_helper: input_datetime.master_bedroom_first_shades_open_time
       second_conditions:
+      - condition: state
+        entity_id: input_boolean.master_bedroom_first_shades_open_enabled
+        state: 'on'
+      - condition: state
+        entity_id: person.sasha_keller
+        state: home
       - condition: numeric_state
         entity_id: cover.master_bedroom_shades
         attribute: current_position
-        below: input_number.master_bedroom_shades_open_percent
+        below: input_number.master_bedroom_first_shades_open_percent
       second_actions:
       - service: cover.set_cover_position
-        data: { position: '{{ states("input_number.master_bedroom_shades_open_percent") }}' }
+        data: { position: '{{ states("input_number.master_bedroom_first_shades_open_percent") }}' }
+        target: { entity_id: cover.master_bedroom_shades }
+      third_trigger: time
+      third_time_helper: input_datetime.master_bedroom_second_shades_open_time
+      third_conditions:
+      - condition: state
+        entity_id: input_boolean.master_bedroom_second_shades_open_enabled
+        state: 'on'
+      - condition: numeric_state
+        entity_id: cover.master_bedroom_shades
+        attribute: current_position
+        below: input_number.master_bedroom_second_shades_open_percent
+      third_actions:
+      - service: cover.set_cover_position
+        data: { position: '{{ states("input_number.master_bedroom_second_shades_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
 - id: master_bedroom_shades_left_controller_mid_right
   alias: Master Bedroom Shades - Left Controller (Mid Right)
