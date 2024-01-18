@@ -27,7 +27,7 @@ sleep_bedtime:
       - service: cover.close_cover
         target: { entity_id: cover.master_bedroom_shades }
     - service: light.turn_on
-      data: { brightness: '{{ is_state("person.sasha_keller", "home") and 16 or 160 }}' }
+      data: { brightness: 160 }
       target: { entity_id: light.master_bedroom_fan_lights }
 
 sleep_good_morning:

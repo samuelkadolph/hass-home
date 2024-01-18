@@ -97,9 +97,6 @@
       - condition: state
         entity_id: input_boolean.master_bedroom_first_shades_open_enabled
         state: 'on'
-      - condition: state
-        entity_id: person.sasha_keller
-        state: home
       - condition: numeric_state
         entity_id: cover.master_bedroom_shades
         attribute: current_position
