@@ -40,10 +40,10 @@ sleep_good_morning:
       - condition: numeric_state
         entity_id: cover.master_bedroom_shades
         attribute: current_position
-        below: input_number.master_bedroom_shades_open_percent
+        below: input_number.master_bedroom_second_shades_open_percent
       then:
       - service: cover.set_cover_position
-        data: { position: '{{ states("input_number.master_bedroom_shades_open_percent") }}' }
+        data: { position: '{{ states("input_number.master_bedroom_second_shades_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
     - if:
       - condition: state
