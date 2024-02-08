@@ -7,3 +7,8 @@ master_bedroom_first_shades_open_enabled:
   name: Master Bedroom First Shades Open Enabled
 master_bedroom_second_shades_open_enabled:
   name: Master Bedroom Second Shades Open Enabled
+
+sleep_good_night_arms_alarm_away:
+  name: Sleep - Good Night Arms Alarm Away
+sleep_good_night_arms_alarm_stay:
+  name: Sleep - Good Night Arms Alarm Stay
