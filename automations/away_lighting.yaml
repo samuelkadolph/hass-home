@@ -3,7 +3,8 @@
   use_blueprint:
     path: samuelkadolph/away_lighting.yaml
     input:
-      on_elevation_manual: -1
+      on_delay: { minutes: 10 }
+      on_elevation_manual: 2
       off_time_manual: '23:00:00'
       lights:
       - light.family_room_lights
