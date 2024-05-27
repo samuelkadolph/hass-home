@@ -17,6 +17,26 @@
   action:
   - service: script.office_turn_on
 
+- id: office_shades_close_open
+  alias: Office Shades - Close & Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_elevation_helper: input_number.shades_close_sun_elevation
+      first_conditions:
+      - condition: state
+        entity_id:
+        - binary_sensor.office_fan_occupancy
+        - binary_sensor.office_sensor_motion_detection
+        match: any
+        state: 'on'
+      first_actions:
+      - service: script.office_lockdown
+      second_time_helper: sensor.shades_open_time
+      second_actions:
+      - service: cover.open_cover
+        target: { entity_id: cover.office_shades }
+
 - id: office_shade_a_shade_switch_double
   alias: Office Shade A - Shade Switch (Double)
   use_blueprint:
@@ -40,27 +60,6 @@
       state_variable: input_number.office_shade_b_control_state
       covers:
       - cover.office_shade_b
-
-- id: office_shades_close_open
-  alias: Office Shades - Close & Open
-  use_blueprint:
-    path: samuelkadolph/automaton.yaml
-    input:
-      first_elevation_helper: input_number.shades_close_sun_elevation
-      first_conditions:
-      - condition: state
-        entity_id:
-        - binary_sensor.office_fan_occupancy
-        - binary_sensor.office_sensor_motion_detection
-        match: any
-        state: 'on'
-      first_actions:
-      - service: script.lockdown_office
-      second_time_helper: sensor.shades_open_time
-      second_actions:
-      - service: cover.open_cover
-        target: { entity_id: cover.office_shades }
-
 - id: office_shades_shade_switch_single
   alias: Office Shades - Shade Switch (Single)
   use_blueprint:
