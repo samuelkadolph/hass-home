@@ -20,15 +20,12 @@ sleep_bedtime:
       target:
         entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
     - if:
-      - condition: numeric_state
-        entity_id: cover.master_bedroom_shades
-        attribute: current_position
-        above: 0
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") > 0 }}'
       then:
       - service: cover.close_cover
         target: { entity_id: cover.master_bedroom_shades }
     - service: light.turn_on
-      data: { brightness: 160 }
+      data: { brightness: '{{ is_state("person.sasha_keller", "home") and 32 or 160 }}' }
       target: { entity_id: light.master_bedroom_fan_lights }
 
 sleep_good_morning:
@@ -68,31 +65,23 @@ sleep_good_night:
         - light.master_bedroom_fan_lights
         - light.master_bedroom_lights
     - if:
-      - condition: state
-        entity_id: person.samuel_kadolph
-        state: home
+      - '{{ is_state("person.samuel_kadolph", "home") }}'
       then:
       - service: fan.set_percentage
         data: { percentage: 75 }
         target: { entity_id: fan.master_bedroom_pedestal_fan }
         enabled: false
     - if:
-      - condition: state
-        entity_id: binary_sensor.armed_state
-        state: 'on'
+      - '{{ is_state("binary_sensor.armed_state", "on") }}'
       then:
       - if:
-        - condition: state
-          entity_id: input_boolean.sleep_good_night_arms_alarm_stay
-          state: 'on'
+        - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_stay", "on") }}'
         then:
         - service: switch.turn_on
           target: { entity_id: switch.arm_stay }
         else:
         - if:
-          - condition: state
-            entity_id: input_boolean.sleep_good_night_arms_alarm_away
-            state: 'on'
+          - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_away", "on") }}'
           then:
           - service: switch.turn_on
             target: { entity_id: switch.arm_away }

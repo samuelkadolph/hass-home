@@ -30,6 +30,13 @@ master_bedroom_air_night_temperature:
   icon: mdi:snowflake-thermometer
   min: 16.0
   name: Master Bedroom Air Night Temperature
+master_bedroom_air_night_bed_heat:
+  icon: mdi:snowflake-thermometer
+  max: 10
+  min: 1
+  mode: slider
+  name: Master Bedroom Air Night Bed Heat
+  step: 1
 master_bedroom_first_shades_open_percent:
   <<: &shades-open-percent
     icon: mdi:roller-shade

@@ -46,12 +46,22 @@ master_bedroom_air_set_night:
   mode: single
   sequence:
   - if:
-    - condition: zone
-      entity_id: person.samuel_kadolph
-      zone: zone.home
+    - '{{ is_state("person.samuel_kadolph", "home") }}'
+    - condition: or
+      conditions:
+      - '{{ not is_state_attr("climate.master_bedroom_air", "power", true) }}'
+      - '{{ not is_state_attr("climate.master_bedroom_air", "temperature", states("input_number.master_bedroom_air_night_temperature") | float) }}'
     then:
     - service: climate.set_temperature
       data:
         hvac_mode: cool
         temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
       target: { entity_id: climate.master_bedroom_air }
+    - if:
+      - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat_enabled", "on") }}'
+      - '{{ is_state("person.sasha_keller", "home") }}'
+      - '{{ is_state("switch.side_b_power", "off") }}'
+      then:
+      - service: select.select_option
+        data: { option: '{{ states("input_number.master_bedroom_air_night_bed_heat") | int }}' }
+        target: { entity_id: select.side_b_heat_level }

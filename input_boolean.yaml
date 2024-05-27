@@ -3,6 +3,8 @@ christmas_lights_enabled:
 seasonal_lights_enabled:
   name: Seasonal Lights Enabled
 
+master_bedroom_air_night_bed_heat_enabled:
+  name: Master Bedroom Air Night Bed Heat Enabled
 master_bedroom_first_shades_open_enabled:
   name: Master Bedroom First Shades Open Enabled
 master_bedroom_second_shades_open_enabled:
