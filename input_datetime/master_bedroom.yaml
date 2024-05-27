@@ -1,0 +1,16 @@
+master_bedroom_air_day:
+  <<: &time
+    has_date: false
+    has_time: true
+  icon: mdi:clock-time-ten
+  name: Master Bedroom Air - Day Time
+
+master_bedroom_shades_first_open:
+  <<: *time
+  icon: mdi:roller-shade
+  name: Master Bedroom Shades - First Open Time
+
+master_bedroom_shades_second_open:
+  <<: *time
+  icon: mdi:roller-shade
+  name: Master Bedroom Shades - Second Open Time

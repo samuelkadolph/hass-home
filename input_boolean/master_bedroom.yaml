@@ -1,0 +1,8 @@
+master_bedroom_air_night_bed_heat:
+  name: Master Bedroom Air Night Bed Heat Enabled
+
+master_bedroom_shades_first_open:
+  name: Master Bedroom Shades - First Open Enabled
+
+master_bedroom_shades_second_open:
+  name: Master Bedroom Shades - Second Open Enabled

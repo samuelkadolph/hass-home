@@ -1,0 +1,13 @@
+living_room_dyson_sam_angle:
+  <<: &dyson_angle
+    icon: mdi:angle-obtuse
+    max: 355
+    min: 5
+    mode: box
+    step: 1
+    unit_of_measurement: °
+  name: Living Room Dyson - Sam Angle
+
+theatre_dyson_sam_angle:
+  <<: *dyson_angle
+  name: Theatre Dyson - Sam Angle

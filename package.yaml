@@ -1,10 +1,9 @@
 automation: !include_dir_merge_list automations
 cover: !include covers.yaml
 emulated_hue: !include hue.yaml
-fan: !include fans.yaml
-input_boolean: !include input_boolean.yaml
-input_datetime: !include input_datetime.yaml
-input_number: !include input_number.yaml
+input_boolean: !include_dir_merge_named input_boolean
+input_datetime: !include_dir_merge_named input_datetime
+input_number: !include_dir_merge_named input_number
 light: !include lights.yaml
 media_player: !include media_player.yaml
 script: !include_dir_merge_named scripts

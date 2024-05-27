@@ -1,0 +1,14 @@
+office_air_indoor_temperature_threshold:
+  <<: &threshold
+    max: 30.0
+    min: 16.0
+    mode: slider
+    step: 0.5
+    unit_of_measurement: °C
+  icon: mdi:sun-thermometer
+  name: Office Air - Indoor Temperature Threshold
+
+office_air_outdoor_temperature_threshold:
+  <<: *threshold
+  icon: mdi:sun-thermometer-outline
+  name: Office Air - Outdoor Temperature Threshold
