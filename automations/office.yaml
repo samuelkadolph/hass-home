@@ -1,5 +1,5 @@
-- id: office_monitor_receiver_on_motion
-  alias: Office Monitor & Receiver - On @ Motion
+- id: office_on_with_motion
+  alias: Office On w/ Motion
   mode: single
   trigger:
   - platform: state
@@ -15,7 +15,7 @@
     after: '07:00:00'
     before: '22:00:00'
   action:
-  - service: script.turn_on_office
+  - service: script.office_turn_on
 
 - id: office_shade_a_shade_switch_double
   alias: Office Shade A - Shade Switch (Double)

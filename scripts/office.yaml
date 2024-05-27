@@ -1,4 +1,4 @@
-close_office_shades:
+office_close_shades:
   alias: Office - Close Shades
   icon: mdi:roller-shade-closed
   mode: single
@@ -9,17 +9,17 @@ close_office_shades:
         cover.office_shade_a
         {% if is_state('binary_sensor.office_window_sensor_window_door_is_open', 'off') %},cover.office_shade_b{% endif %}
 
-lockdown_office:
+office_lockdown:
   alias: Office - Lockdown
   icon: mdi:shield-lock
   mode: single
   sequence:
-  - service: script.close_office_shades
+  - service: script.office_close_shades
   - delay: { seconds: 20 }
   - service: light.turn_on
     target: { entity_id: light.office_lights }
 
-turn_off_office:
+office_turn_off:
   alias: Office - Turn Off
   icon: mdi:power-off
   mode: single
@@ -34,7 +34,10 @@ turn_off_office:
       target: { entity_id: media_player.office_receiver_main_zone }
     - service: switch.turn_off
       target: { entity_id: switch.office_monitor }
-turn_on_office:
+    - service: remote.send_command
+      data: { device: PC, command: LockPC, num_repeats: 2 }
+      target: { entity_id: remote.office }
+office_turn_on:
   alias: Office - Turn On
   icon: mdi:power-on
   mode: single
@@ -43,7 +46,7 @@ turn_on_office:
     - service: media_player.turn_on
       target: { entity_id: media_player.office_receiver_main_zone }
     - service: remote.send_command
-      data: { device: PC, command: Break }
+      data: { device: PC, command: Break, num_repeats: 2 }
       target: { entity_id: remote.office }
     - service: switch.turn_on
       target: { entity_id: switch.office_monitor }

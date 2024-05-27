@@ -50,7 +50,7 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_actions:
-      - service: script.close_nook_shade
+      - service: script.nook_close_shade
       second_time_helper: sensor.shades_open_time
       second_actions:
       - service: cover.open_cover

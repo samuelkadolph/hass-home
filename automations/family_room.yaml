@@ -11,7 +11,7 @@
     attribute: elevation
     below: input_number.shades_close_sun_elevation
   action:
-  - service: script.close_family_room_shades
+  - service: script.family_room_close_shades
 - id: family_room_shades_close_open
   alias: Family Room Shades - Close & Open
   use_blueprint:
@@ -23,7 +23,7 @@
         entity_id: zone.home
         above: 0
       first_actions:
-      - service: script.close_family_room_shades
+      - service: script.family_room_close_shades
       second_time_helper: sensor.shades_open_time
       second_actions:
       - service: cover.open_cover

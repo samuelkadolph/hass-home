@@ -5,4 +5,4 @@
   - platform: time
     at: '22:00:00'
   action:
-  - service: script.turn_off_garage
+  - service: script.garage_turn_off

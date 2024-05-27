@@ -4,8 +4,9 @@ sleep_bedtime:
   mode: restart
   sequence:
   - parallel:
-    - service: script.turn_off_garage
-    - service: script.turn_off_office
+    - service: script.master_bedroom_air_set_night
+    - service: script.garage_turn_off
+    - service: script.office_turn_off
     - service: fan.turn_off
       target:
         entity_id: '{{ states.fan | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
@@ -37,29 +38,22 @@ sleep_good_morning:
   sequence:
   - parallel:
     - if:
-      - condition: numeric_state
-        entity_id: cover.master_bedroom_shades
-        attribute: current_position
-        below: input_number.master_bedroom_second_shades_open_percent
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_second_shades_open_percent") | float }}'
       then:
       - service: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_second_shades_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
     - if:
-      - condition: state
-        entity_id: fan.master_bedroom_fan
-        state: 'on'
+      - '{{ is_state("fan.master_bedroom_fan", "on") }}'
       then:
       - service: fan.turn_off
         target: { entity_id: fan.master_bedroom_fan }
     - if:
-      - condition: state
-        entity_id: binary_sensor.armed_state
-        state: 'off'
+      - '{{ is_state("binary_sensor.armed_state", "off") }}'
       then:
       - service: switch.turn_on
         target: { entity_id: switch.disarm }
-    - service: script.set_day_master_bedroom_air
+    - service: script.master_bedroom_air_set_day
 
 sleep_good_night:
   alias: Sleep - Good Night

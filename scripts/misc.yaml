@@ -1,4 +1,4 @@
-living_room_dyson_point_at_sam:
+misc_living_room_dyson_point_at_sam:
   alias: Misc - Living Room Dyson point at Sam
   icon: mdi:air-purifier
   mode: single
@@ -8,7 +8,7 @@ living_room_dyson_point_at_sam:
       entity_id: fan.living_room_dyson
       angle_low: '{{ states("input_number.living_room_dyson_sam_angle") }}'
       angle_high: '{{ states("input_number.living_room_dyson_sam_angle") }}'
-theatre_dyson_point_at_sam:
+misc_theatre_dyson_point_at_sam:
   alias: Misc - Theatre Dyson point at Sam
   icon: mdi:air-purifier
   mode: single
@@ -19,7 +19,7 @@ theatre_dyson_point_at_sam:
       angle_low: '{{ states("input_number.theatre_dyson_sam_angle") }}'
       angle_high: '{{ states("input_number.theatre_dyson_sam_angle") }}'
 
-sync_harmony:
+misc_sync_harmony:
   alias: Misc - Sync Harmony
   icon: mdi:remote
   mode: restart

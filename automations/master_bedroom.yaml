@@ -6,10 +6,10 @@
       first_trigger: time
       first_time_helper: sensor.master_bedroom_air_night_time
       first_actions:
-      - service: script.set_night_master_bedroom_air
+      - service: script.master_bedroom_air_set_night
       second_time_helper: input_datetime.master_bedroom_air_day_time
       second_actions:
-      - service: script.set_day_master_bedroom_air
+      - service: script.master_bedroom_air_set_day
 - id: master_bedroom_air_night_sam_arrival
   alias: Master Bedroom Air - Night @ Sam Arrival
   mode: single
@@ -23,7 +23,7 @@
     after: sensor.master_bedroom_air_night_time
     before: "06:00:00"
   action:
-  - service: script.set_night_master_bedroom_air
+  - service: script.master_bedroom_air_set_night
 
 - id: master_bedroom_fan_left_controller_bottom_left
   alias: Master Bedroom Fan - Left Controller (Bottom Left)

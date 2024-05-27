@@ -1,4 +1,4 @@
-close_nook_shade:
+nook_close_shade:
   alias: Nook - Close Shade
   icon: mdi:roller-shade-closed
   mode: single
