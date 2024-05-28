@@ -1,5 +1,5 @@
 - sensor:
-  - name: Outside Lights Off Time
+  - name: Outside Lights - Off Time
     unique_id: outside_lights_off_time
     device_class: timestamp
     state: >

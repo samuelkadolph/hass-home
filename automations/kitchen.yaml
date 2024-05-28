@@ -1,4 +1,4 @@
-- id: fountains_on_04_00
+- id: fountains_on_at_04_00
   alias: Fountains - On @ 04:00
   mode: single
   trigger:
@@ -21,7 +21,7 @@
       covers:
       - cover.kitchen_shades
 
-- id: toaster_oven_off_04_00
+- id: toaster_oven_off_at_04_00
   alias: Toaster Oven - Off @ 04:00
   mode: single
   trigger:

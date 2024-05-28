@@ -18,4 +18,4 @@
       second_time_helper: sensor.shades_open_time
       second_actions:
       - service: cover.open_cover
-        entity_id: cover.den_shades
+        target: { entity_id: cover.den_shades }

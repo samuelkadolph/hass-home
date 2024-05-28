@@ -37,7 +37,7 @@
       second_time_helper: sensor.shades_open_time
       second_actions:
       - service: cover.open_cover
-        entity_id: cover.spare_bedroom_shade
+        target: { entity_id: cover.spare_bedroom_shade }
 - id: spare_bedroom_shade_shade_switch_double
   alias: Spare Bedroom Shade - Shade Switch (Double)
   use_blueprint:

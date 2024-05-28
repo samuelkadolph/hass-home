@@ -15,7 +15,7 @@
     path: samuelkadolph/away_lighting.yaml
     input:
       on_elevation_manual: -4.5
-      off_time_manual: 01:00:00
+      off_time_manual: '01:00:00'
       lights:
       - light.master_bedroom_lights
       zone: zone.home
@@ -25,7 +25,7 @@
     path: samuelkadolph/away_lighting.yaml
     input:
       on_elevation_manual: -3.5
-      off_time_manual: 00:00:00
+      off_time_manual: '00:00:00'
       lights:
       - light.hallway_lights
       zone: zone.home

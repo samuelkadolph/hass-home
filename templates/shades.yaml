@@ -12,7 +12,7 @@
       state: '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min < -1.0 and 10 or 0 }}'
 
 - sensor:
-  - name: Shades Open Time
+  - name: Shades - Open Time
     unique_id: shades_open_time
     device_class: timestamp
     state: >

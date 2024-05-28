@@ -1,10 +1,10 @@
 - sensor:
-  - name: Master Bedroom Air Night Time
+  - name: Master Bedroom Air - Night Time
     unique_id: master_bedroom_air_night_time
     device_class: timestamp
     state: >
       {% if now().month in [5,6,7,8,9] -%}
-        {{ now().replace(hour=22,minute=0,second=0,microsecond=0).isoformat() }}
+        {{ now().replace(hour=22,minute=30,second=0,microsecond=0).isoformat() }}
       {% else -%}
-        {{ now().replace(hour=23,minute=0,second=0,microsecond=0).isoformat() }}
+        {{ now().replace(hour=23,minute=30,second=0,microsecond=0).isoformat() }}
       {% endif -%}
