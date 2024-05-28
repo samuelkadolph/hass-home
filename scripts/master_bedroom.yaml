@@ -58,7 +58,7 @@ master_bedroom_air_set_night:
         temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
       target: { entity_id: climate.master_bedroom_air }
     - if:
-      - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat_enabled", "on") }}'
+      - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat", "on") }}'
       - '{{ is_state("person.sasha_keller", "home") }}'
       - '{{ is_state("switch.side_b_power", "off") }}'
       then:

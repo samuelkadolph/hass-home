@@ -18,7 +18,7 @@
   - condition: numeric_state
     entity_id: sun.sun
     attribute: elevation
-    below: input_number.lights_on_sun_elevation
+    below: input_number.outside_lights_on_sun_elevation
   - condition: time
     before: input_datetime.bookshelf_lights_off_time
     after: '12:00:00'
@@ -30,7 +30,7 @@
   use_blueprint:
     path: samuelkadolph/automaton.yaml
     input:
-      first_elevation_helper: input_number.lights_on_sun_elevation
+      first_elevation_helper: input_number.outside_lights_on_sun_elevation
       first_conditions:
       - condition: numeric_state
         entity_id: zone.home

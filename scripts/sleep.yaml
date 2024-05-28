@@ -35,10 +35,10 @@ sleep_good_morning:
   sequence:
   - parallel:
     - if:
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_second_shades_open_percent") | float }}'
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
       then:
       - service: cover.set_cover_position
-        data: { position: '{{ states("input_number.master_bedroom_second_shades_open_percent") }}' }
+        data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
     - if:
       - '{{ is_state("fan.master_bedroom_fan", "on") }}'
