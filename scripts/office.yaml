@@ -37,16 +37,36 @@ office_turn_off:
     - service: remote.send_command
       data: { device: PC, command: LockPC, num_repeats: 2 }
       target: { entity_id: remote.office }
+
 office_turn_on:
   alias: Office - Turn On
   icon: mdi:power-on
   mode: single
   sequence:
   - parallel:
+    - if:
+      - '{{ is_state("binary_sensor.office_window_sensor_window_door_is_open", "off") }}'
+      - '{{ is_state_attr("climate.office_air", "power", false) }}'
+      - condition: or
+        conditions:
+        - '{{ state_attr("climate.office_air", "current_temperature") | float > states("input_number.office_air_indoor_temperature_threshold") | float }}'
+        - '{{ states("sensor.office_fan_temperature") | float > states("input_number.office_air_indoor_temperature_threshold") | float }}'
+        - '{{ states("sensor.office_sensor_air_temperature") | float > states("input_number.office_air_indoor_temperature_threshold") | float }}'
+      then:
+      - service: weather.get_forecasts
+        data: { type: hourly }
+        target: { entity_id: weather.home }
+        response_variable: forecast
+      - if:
+        - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > states("input_number.office_air_outdoor_temperature_threshold") | float }}'
+        then:
+        - service: climate.set_hvac_mode
+          data: { hvac_mode: cool }
+          target: { entity_id: climate.office_air }
     - service: media_player.turn_on
       target: { entity_id: media_player.office_receiver_main_zone }
+    - service: switch.turn_on
+      target: { entity_id: switch.office_monitor }
     - service: remote.send_command
       data: { device: PC, command: Break, num_repeats: 2 }
       target: { entity_id: remote.office }
-    - service: switch.turn_on
-      target: { entity_id: switch.office_monitor }
