@@ -10,8 +10,8 @@
       second_time_helper: input_datetime.master_bedroom_air_day
       second_actions:
       - service: script.master_bedroom_air_set_day
-- id: master_bedroom_air_night_sam_arrival
-  alias: Master Bedroom Air - Night @ Sam Arrival
+- id: master_bedroom_air_night_with_sam_arrival
+  alias: Master Bedroom Air - Night w/ Sam Arrival
   mode: single
   trigger:
   - platform: state

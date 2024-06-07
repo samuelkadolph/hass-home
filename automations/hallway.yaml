@@ -7,8 +7,8 @@
       paddle_taps: KeyPressed3x
       subjects:
       - light.bookshelf_lights
-- id: bookshelf_lights_on_arrival
-  alias: Bookshelf Lights - On @ Arrival
+- id: bookshelf_lights_on_with_arrival
+  alias: Bookshelf Lights - On w/ Arrival
   mode: single
   trigger:
   - platform: state
@@ -37,11 +37,11 @@
         above: 0
       first_actions:
       - service: light.turn_on
-        entity_id: light.bookshelf_lights
+        target: { entity_id: light.bookshelf_lights }
       second_time_helper: input_datetime.bookshelf_lights_off_time
       second_actions:
       - service: light.turn_off
-        entity_id: light.bookshelf_lights
+        target: { entity_id: light.bookshelf_lights }
 
 - id: nook_shade_close_open
   alias: Nook Shade - Close & Open
@@ -54,7 +54,7 @@
       second_time_helper: sensor.shades_open_time
       second_actions:
       - service: cover.open_cover
-        entity_id: cover.nook_shade
+        target: { entity_id: cover.nook_shade }
 - id: nook_shade_scene_switch_single
   alias: Nook Shade - Scene Switch (Single)
   use_blueprint:
