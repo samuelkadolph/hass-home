@@ -21,7 +21,7 @@
   condition:
   - condition: time
     after: sensor.master_bedroom_air_night_time
-    before: "06:00:00"
+    before: '06:00:00'
   action:
   - service: script.master_bedroom_air_set_night
 
