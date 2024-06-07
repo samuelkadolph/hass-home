@@ -48,7 +48,7 @@
       third_trigger: time
       third_time_helper: input_datetime.master_bedroom_shades_second_open
       third_conditions:
-      - '{{ is_state("input_boolean.master_bedroom_shadess_second_open", "on") }}'
+      - '{{ is_state("input_boolean.master_bedroom_shades_second_open", "on") }}'
       - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
       third_actions:
       - service: cover.set_cover_position
