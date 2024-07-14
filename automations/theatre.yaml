@@ -4,6 +4,18 @@
     path: samuelkadolph/remote_automation.yaml
     input:
       remote: remote.theatre
+      on_actions:
+      - parallel:
+        - if:
+          - '{{ states("select.theatre_activities") is search("w/P$") }}'
+          then:
+          - service: zwave_js.set_config_parameter
+            data: { parameter: 3, value: 2 }
+            target: { entity_id: switch.basement_bathroom_lights }
       off_actions:
-      - service: fan.turn_off
-        target: { entity_id: fan.theatre_dyson }
+      - parallel:
+        - service: zwave_js.set_config_parameter
+          data: { parameter: 3, value: 3 }
+          target: { entity_id: switch.basement_bathroom_lights }
+        - service: fan.turn_off
+          target: { entity_id: fan.theatre_dyson }
