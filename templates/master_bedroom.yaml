@@ -8,3 +8,32 @@
       {% else -%}
         {{ now().replace(hour=23,minute=30,second=0,microsecond=0).isoformat() }}
       {% endif -%}
+
+- select:
+  - name: Master Bedroom Cat Door
+    unique_id: master_bedroom_cat_door
+    options: '{{ ["Unlocked", "Keep Pets Inside", "Keep Pets Outside", "Locked Both Ways"] }}'
+    state: >
+      {% if is_state("lock.master_bedroom_cat_door_locked_all", "locked") -%}
+        Locked Both Ways
+      {% elif is_state("lock.master_bedroom_cat_door_locked_in", "locked") -%}
+        Keep Pets Inside
+      {% elif is_state("lock.master_bedroom_cat_door_locked_out", "locked") -%}
+        Keep Pets Outside
+      {% else -%}
+        Unlocked
+      {% endif -%}
+    select_option:
+    - service: surepetcare.set_lock_state
+      data:
+        flap_id: "1301914"
+        lock_state: >
+          {% if option == "Locked Both Ways" -%}
+            locked_all
+          {% elif option == "Keep Pets Inside" -%}
+            locked_in
+          {% elif option == "Keep Pets Outside" -%}
+            locked_out
+          {% else -%}
+            unlocked
+          {% endif -%}
