@@ -15,7 +15,7 @@ sleep_bedtime:
         entity_id: '{{ states.light | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
     - service: lock.lock
       target:
-        entity_id: '{{ states.lock | selectattr("state", "eq", "unlocked") | rejectattr("entity_id", "search", "garage") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+        entity_id: '{{ states.lock | selectattr("state", "eq", "unlocked") | selectattr("entity_id", "search", "door$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
     - service: remote.turn_off
       target:
         entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
