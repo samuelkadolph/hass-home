@@ -7,7 +7,7 @@
       on_actions:
       - parallel:
         - if:
-          - '{{ states("select.theatre_activities") is search("w/P$") }}'
+          - '{{ state_attr("remote.theatre", "current_activity") is search("w/P$") }}'
           then:
           - service: zwave_js.set_config_parameter
             data: { parameter: 3, value: 2 }
