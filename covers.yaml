@@ -6,6 +6,12 @@
   - cover.back_door_shade_b
 
 - platform: group
+  name: Basement Shades
+  unique_id: basement_shades
+  entities:
+  - cover.basement_shade_c
+
+- platform: group
   name: Big Den Shade
   unique_id: big_den_shade
   entities:
