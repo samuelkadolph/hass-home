@@ -92,5 +92,5 @@ sleep_preheat_bed:
   mode: single
   sequence:
   - service: select.select_option
-    data: { option: 4 }
-    target: { entity_id: select.side_b_heat_level }
+    data: { option: '{{ states("input_number.master_bedroom_air_night_bed_heat") | int }}' }
+    target: { entity_id: select.master_bed_side_b_heat_level }

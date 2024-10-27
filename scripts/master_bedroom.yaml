@@ -60,8 +60,8 @@ master_bedroom_air_set_night:
     - if:
       - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat", "on") }}'
       - '{{ is_state("person.sasha_keller", "home") }}'
-      - '{{ is_state("switch.side_b_power", "off") }}'
+      - '{{ is_state("switch.master_bed_side_b_power", "off") }}'
       then:
       - service: select.select_option
         data: { option: '{{ states("input_number.master_bedroom_air_night_bed_heat") | int }}' }
-        target: { entity_id: select.side_b_heat_level }
+        target: { entity_id: select.master_bed_side_b_heat_level }
