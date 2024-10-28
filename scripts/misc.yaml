@@ -18,12 +18,3 @@ misc_theatre_dyson_point_at_sam:
       entity_id: fan.theatre_dyson
       angle_low: '{{ states("input_number.theatre_dyson_sam_angle") }}'
       angle_high: '{{ states("input_number.theatre_dyson_sam_angle") }}'
-
-misc_sync_harmony:
-  alias: Misc - Sync Harmony
-  icon: mdi:remote
-  mode: restart
-  sequence:
-  - service: harmony.sync
-    target:
-      entity_id: '{{ states.remote | map(attribute="entity_id") | list }}'
