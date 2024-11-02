@@ -1,4 +1,7 @@
 christmas_lights:
+  icon: mdi:string-lights
   name: Christmas Lights Enabled
+
 seasonal_lights:
+  icon: mdi:halloween
   name: Seasonal Lights Enabled

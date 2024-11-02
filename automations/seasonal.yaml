@@ -7,13 +7,13 @@
       first_conditions:
       - '{{ is_state("input_boolean.christmas_lights", "on") }}'
       first_actions:
-      - service: switch.turn_on
+      - action: switch.turn_on
         target:
           entity_id: &christmas_switches
             '{{ states.switch | selectattr("entity_id", "search", "^switch.christmas") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-      second_time_manual: '23:00:00'
+      second_time_helper: input_number.christmas_lights_off
       second_actions:
-      - service: switch.turn_off
+      - action: switch.turn_off
         target:
           entity_id: *christmas_switches
 
@@ -26,12 +26,12 @@
       first_conditions:
       - '{{ is_state("input_boolean.seasonal_lights", "on") }}'
       first_actions:
-      - service: switch.turn_on
+      - action: switch.turn_on
         target:
           entity_id: &seasonal_switches
             '{{ states.switch | selectattr("entity_id", "search", "^switch.seasonal") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-      second_time_manual: '01:00:00'
+      second_time_helper: input_number.seasonal_lights_off
       second_actions:
-      - service: switch.turn_off
+      - action: switch.turn_off
         target:
           entity_id: *seasonal_switches
