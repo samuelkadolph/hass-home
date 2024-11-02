@@ -39,4 +39,4 @@ master_bedroom_shades_first_open_percent:
   name: Master Bedroom First Shades Open Percent
 master_bedroom_shades_second_open_percent:
   <<: *shades_percent
-  name: Master Bedroom  Second Shades Open Percent
+  name: Master Bedroom Second Shades Open Percent

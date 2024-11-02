@@ -15,7 +15,7 @@
       second_actions:
       - service: switch.turn_off
         target:
-          entity_id:  *christmas_switches
+          entity_id: *christmas_switches
 
 - id: seasonal_lights_on_off
   alias: Seasonal Lights - On & Off
