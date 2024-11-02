@@ -1,0 +1,8 @@
+basement_guest_staying_over:
+  name: Basement Guest Staying Over
+
+theatre_projector_closes_shades:
+  name: Theatre Projector Closes Shades
+
+theatre_projector_disables_bathroom_occupancy:
+  name: Theatre Projector Disables Bathroom Occupancy

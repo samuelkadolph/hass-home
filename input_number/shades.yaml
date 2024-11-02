@@ -16,15 +16,6 @@ shades_close_percent:
   step: 1
   unit_of_measurement: '%'
 
-shades_close_sun_elevation:
-  icon: mdi:sun-angle
-  max: 4.0
-  min: -18.0
-  mode: slider
-  name: Shades - Close Sun Elevation
-  step: 0.5
-  unit_of_measurement: °
-
 back_door_shade_a_control_state:
   <<: &shade_control
     min: 0

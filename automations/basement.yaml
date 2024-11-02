@@ -1,0 +1,55 @@
+- id: basement_guest_staying_over_changed
+  alias: Basement - Guest Staying Over Changed
+  mode: single
+  trigger:
+  - platform: state
+    entity_id: input_boolean.basement_guest_staying_over
+  action:
+  - parallel:
+    - if:
+      - '{{ is_state("input_boolean.basement_guest_staying_over", "on") }}'
+      then: []
+      else: []
+
+- id: theatre_remote_on_off
+  alias: Theatre Remote - On & Off
+  use_blueprint:
+    path: samuelkadolph/remote_automation.yaml
+    input:
+      remote: remote.theatre
+      on_actions:
+      - parallel: []
+      off_actions:
+      - parallel:
+        - if:
+          - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+          then:
+          - action: fan.turn_off
+            target: { entity_id: fan.theatre_dyson }
+      change_actions:
+      - parallel:
+        - if:
+          - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+          - '{{ is_state("input_boolean.theatre_projector_disables_bathroom_occupancy", "on") }}'
+          then:
+          - action: zwave_js.set_config_parameter
+            data: { parameter: 3, value: '{{ state_attr("remote.theatre", "current_activity") is search("w/P$") and 2 or 3 }}' } # 2=Vacancy 3=Occupancy
+            target: { entity_id: switch.basement_bathroom_lights }
+        - if:
+          - '{{ is_state("input_boolean.theatre_projector_closes_shades", "on") }}'
+          then:
+          - if:
+            - '{{ state_attr("remote.theatre", "current_activity") is search("w/P$") }}'
+            then:
+            - if:
+              - '{{ state_attr("sun.sun", "elevation") > states("input_number.theatre_projector_closes_shades_sun_elevation") | float }}'
+              then:
+              - action: cover.close_cover
+                target: { entity_id: cover.basement_shades }
+            else:
+            - if:
+              - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+              then:
+              - action: cover.open_cover
+                target: { entity_id: cover.basement_shades }
+
