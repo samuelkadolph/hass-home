@@ -10,12 +10,12 @@
       entity_id: '{{ states.switch | selectattr("entity_id", "search", "fountain$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
 
 - id: kitchen_shades_counter_lights_switch_double
-  alias: Kitchen Shades - Counter Lights Switch (Double)
+  alias: Kitchen Shades - Counter Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: d434278ac9a7062b9be01fea43ebe600
-      paddle_taps: KeyPressed2x
+      switch: a57a0c1a456f8ba11102ca2f003c95e9
+      paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.kitchen_shades_control_state
       covers:

@@ -3,8 +3,8 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
-      switch: 03993ec59ce020155be44f997fd62d81
-      paddle_taps: KeyPressed3x
+      switch: &nook_switch
+        03993ec59ce020155be44f997fd62d81
       subjects:
       - light.bookshelf_lights
 - id: bookshelf_lights_on_with_arrival
@@ -60,7 +60,8 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
-      switch: 03993ec59ce020155be44f997fd62d81
+      switch: *nook_switch
+      paddle_taps: KeyPressed3x
       state_variable: input_number.nook_shade_control_state
       covers:
       - cover.nook_shade

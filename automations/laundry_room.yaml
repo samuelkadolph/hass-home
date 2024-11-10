@@ -8,12 +8,12 @@
       no_motion_wait: 0
 
 - id: laundry_roomy_shade_lights_switch_double
-  alias: Laundry Room Shade - Lights Switch (Double)
+  alias: Laundry Room Shade - Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: 534415cb5bc5bb55e56644bf0600c914
-      paddle_taps: KeyPressed2x
+      switch: 5e313d33714cd9fb4fd42ed99241a257
+      paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.laundry_room_shade_control_state
       covers:

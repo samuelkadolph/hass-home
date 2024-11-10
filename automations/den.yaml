@@ -1,10 +1,10 @@
 - id: den_shades_lights_switch_double
-  alias: Den Shades - Lights Switch (Double)
+  alias: Den Shades - Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
       switch: 7ecb8d060a5e8516489971d191a0f593
-      paddle_taps: KeyPressed2x
+      paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.den_shades_control_state
       covers:

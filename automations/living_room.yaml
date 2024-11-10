@@ -14,12 +14,12 @@
         target: { entity_id: switch.kitchen_fountain }
 
 - id: living_room_shades_lights_switch_double
-  alias: Living Room Shades - Lights Switch (Double)
+  alias: Living Room Shades - Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
       switch: a4af89bd7c1dd69000db873ff4268c13
-      paddle_taps: KeyPressed2x
+      paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.living_room_shades_control_state
       covers:
