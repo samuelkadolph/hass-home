@@ -1,5 +1,5 @@
-- id: bookshelf_lights_nook_scene_switch_triple
-  alias: Bookshelf Lights - Nook Scene Switch (Triple)
+- id: bookshelf_lights_nook_switch_triple
+  alias: Bookshelf Lights - Nook Switch (Triple)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
@@ -50,8 +50,8 @@
       second_actions:
       - action: cover.open_cover
         target: { entity_id: cover.nook_shade }
-- id: nook_shade_scene_switch_single
-  alias: Nook Shade - Scene Switch (Single)
+- id: nook_shade_nook_switch_single
+  alias: Nook Shade - Nook Switch (Single)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
