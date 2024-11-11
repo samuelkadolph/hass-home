@@ -11,6 +11,19 @@
       then: []
       else: []
 
+- id: basement_shades_open
+  alias: Basement Shades - Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_trigger: none
+      second_time_helper: sensor.shades_open_time
+      second_conditions:
+      - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+      second_actions:
+      - action: cover.open_cover
+        entity_id: cover.basement_shades
+
 - id: theatre_remote_on_off
   alias: Theatre Remote - On & Off
   use_blueprint:
