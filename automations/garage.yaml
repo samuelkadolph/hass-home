@@ -8,7 +8,6 @@
   actions:
   - action: cover.close_cover
     target: { entity_id: cover.garage_door }
-
 - id: garage_door_open_action
   alias: Garage - Door Open Action
   mode: single
