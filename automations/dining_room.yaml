@@ -1,0 +1,32 @@
+- id: dining_room_shade_ceiling_lights_switch_triple
+  alias: Dining Room Shade - Ceiling Lights Switch (Triple)
+  use_blueprint:
+    path: samuelkadolph/homeseer_wx300_covers.yaml
+    input:
+      switch: d19f541cd80d5fddc058bb86e16bc7b1
+      paddle_taps: KeyPressed3x
+      paddle_hold: false
+      state_variable: input_number.dining_room_shade_control_state
+      covers:
+      - cover.dining_room_shade
+- id: dining_room_shade_chandelier_lights_switch_triple
+  alias: Dining Room Shade - Chandelier Lights Switch (Triple)
+  use_blueprint:
+    path: samuelkadolph/homeseer_wx300_covers.yaml
+    input:
+      switch: 36f319b4eab6b3852966bc36fb71c77f
+      paddle_taps: KeyPressed3x
+      paddle_hold: false
+      state_variable: input_number.dining_room_shade_control_state
+      covers:
+      - cover.dining_room_shade
+- id: dining_room_shade_open
+  alias: Dining Room Shade - Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_trigger: none
+      second_time_helper: sensor.shades_open_time
+      second_actions:
+      - action: cover.open_cover
+        target: { entity_id: cover.dining_room_shade }
