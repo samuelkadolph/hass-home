@@ -1,9 +1,0 @@
-- platform: group
-  name: Seasonal Lights
-  unique_id: seasonal_lights
-  entities:
-  - switch.seasonal_outlet_a
-  - switch.seasonal_outlet_b
-  - switch.seasonal_outlet_c
-  - switch.seasonal_outlet_d
-  - switch.seasonal_outlet_e
