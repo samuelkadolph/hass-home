@@ -1,4 +1,4 @@
-- id: guest_bedroom_shade_shade_switch
+- id: guest_bedroom_shade_shade_switch_double
   alias: Guest Bedroom Shade - Shade Switch (Single)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml

@@ -9,7 +9,7 @@
     target:
       entity_id: '{{ states.switch | selectattr("entity_id", "search", "fountain$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
 
-- id: kitchen_shades_counter_lights_switch
+- id: kitchen_shades_counter_lights_switch_double
   alias: Kitchen Shades - Counter Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml

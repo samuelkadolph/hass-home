@@ -1,4 +1,4 @@
-- id: back_door_shade_a_backyard_lights_switch
+- id: back_door_shade_a_backyard_lights_switch_double
   alias: Back Door Shade A - Backyard Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
@@ -9,7 +9,7 @@
       state_variable: input_number.back_door_shade_a_control_state
       covers:
       - cover.back_door_shade_a
-- id: back_door_shade_b_dmz_lights_switch
+- id: back_door_shade_b_dmz_lights_switch_double
   alias: Back Door Shade B - DMZ Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
