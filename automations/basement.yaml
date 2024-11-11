@@ -1,10 +1,10 @@
 - id: basement_guest_staying_over_changed
   alias: Basement - Guest Staying Over Changed
   mode: single
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id: input_boolean.basement_guest_staying_over
-  action:
+  actions:
   - parallel:
     - if:
       - '{{ is_state("input_boolean.basement_guest_staying_over", "on") }}'

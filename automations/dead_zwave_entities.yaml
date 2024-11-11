@@ -1,11 +1,11 @@
 - id: dead_zwave_entities_ping
   alias: Dead ZWave Entities - Ping
   mode: restart
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id: sensor.dead_zwave_entities
     for: { minutes: 5 }
-  action:
+  actions:
   - repeat:
       while:
         - '{{ states("sensor.dead_zwave_entities") | int > 0 }}'
@@ -15,10 +15,10 @@
           for_each: '{{ state_attr("sensor.dead_zwave_entities", "entities") }}'
           sequence:
           - delay: { seconds: 30 }
-          - service: system_log.write
+          - action: system_log.write
             data:
               level: error
               message: 'Z-Wave: {{ repeat.item }} is dead, sending a ping'
-          - service: button.press
+          - action: button.press
             target: { entity_id: 'button.{{ repeat.item | replace("_node_status", "_ping") }}' }
 

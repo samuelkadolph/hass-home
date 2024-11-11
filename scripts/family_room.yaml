@@ -3,7 +3,7 @@ family_room_close_shades:
   icon: mdi:roller-shade-closed
   mode: single
   sequence:
-  - service: cover.set_cover_position
+  - action: cover.set_cover_position
     data: { position: '{{ states("sensor.shades_close_percent") }}' }
     target:
       entity_id: >
@@ -20,7 +20,7 @@ family_room_lockdown:
   icon: mdi:shield-lock
   mode: single
   sequence:
-  - service: script.family_room_close_shades
+  - action: script.family_room_close_shades
   - delay: { seconds: 20 }
-  - service: light.turn_on
+  - action: light.turn_on
     target: { entity_id: light.family_room_lights }

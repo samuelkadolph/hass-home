@@ -19,6 +19,6 @@ harmony_sync_all:
   icon: mdi:remote
   mode: restart
   sequence:
-  - service: harmony.sync
+  - action: harmony.sync
     target:
       entity_id: '{{ states.remote | map(attribute="entity_id") | list }}'

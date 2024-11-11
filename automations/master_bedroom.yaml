@@ -6,24 +6,24 @@
       first_trigger: time
       first_time_helper: sensor.master_bedroom_air_night_time
       first_actions:
-      - service: script.master_bedroom_air_set_night
+      - action: script.master_bedroom_air_set_night
       second_time_helper: input_datetime.master_bedroom_air_day
       second_actions:
-      - service: script.master_bedroom_air_set_day
+      - action: script.master_bedroom_air_set_day
 - id: master_bedroom_air_night_with_sam_arrival
   alias: Master Bedroom Air - Night w/ Sam Arrival
   mode: single
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id:
     - person.samuel_kadolph
     to: home
-  condition:
+  conditions:
   - condition: time
     after: sensor.master_bedroom_air_night_time
     before: '06:00:00'
-  action:
-  - service: script.master_bedroom_air_set_night
+  actions:
+  - action: script.master_bedroom_air_set_night
 
 - id: master_bedroom_shades_close_open
   alias: Master Bedroom Shades - Close & Open
@@ -32,7 +32,7 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_actions:
-      - service: cover.set_cover_position
+      - action: cover.set_cover_position
         data: { position: '{{ states("sensor.shades_close_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
       second_time_helper: input_datetime.master_bedroom_shades_first_open
@@ -42,7 +42,7 @@
       - '{{ now().weekday() < 5 }}'
       - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_first_open_percent") | float }}'
       second_actions:
-      - service: cover.set_cover_position
+      - action: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_shades_first_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
       third_trigger: time
@@ -51,7 +51,7 @@
       - '{{ is_state("input_boolean.master_bedroom_shades_second_open", "on") }}'
       - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
       third_actions:
-      - service: cover.set_cover_position
+      - action: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
 

@@ -1,15 +1,14 @@
 - id: family_room_shades_close_with_arrival
   alias: Family Room Shades - Close w/ Arrival
   mode: single
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id: zone.home
     from: '0'
-  condition:
+  conditions:
   - '{{ state_attr("sun.sun", "elevation") < states("input_number.shades_close_sun_elevation") | float }}'
-  action:
-  - service: script.family_room_close_shades
-
+  actions:
+  - action: script.family_room_close_shades
 - id: family_room_shades_close_open
   alias: Family Room Shades - Close & Open
   use_blueprint:
@@ -17,12 +16,10 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_conditions:
-      - condition: numeric_state
-        entity_id: zone.home
-        above: 0
+      - '{{ states("zone.home") | int > 0 }}'
       first_actions:
-      - service: script.family_room_close_shades
+      - action: script.family_room_close_shades
       second_time_helper: sensor.shades_open_time
       second_actions:
-      - service: cover.open_cover
+      - action: cover.open_cover
         target: { entity_id: cover.family_room_shades }

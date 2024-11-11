@@ -3,7 +3,7 @@ misc_living_room_dyson_point_at_sam:
   icon: mdi:air-purifier
   mode: single
   sequence:
-  - service: dyson_local.set_angle
+  - action: dyson_local.set_angle
     data:
       entity_id: fan.living_room_dyson
       angle_low: '{{ states("input_number.living_room_dyson_sam_angle") }}'
@@ -13,7 +13,7 @@ misc_theatre_dyson_point_at_sam:
   icon: mdi:air-purifier
   mode: single
   sequence:
-  - service: dyson_local.set_angle
+  - action: dyson_local.set_angle
     data:
       entity_id: fan.theatre_dyson
       angle_low: '{{ states("input_number.theatre_dyson_sam_angle") }}'

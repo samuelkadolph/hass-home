@@ -1,22 +1,20 @@
 - id: office_on_with_motion
   alias: Office On w/ Motion
   mode: single
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id:
     - binary_sensor.office_sensor_motion_detection
     - binary_sensor.office_fan_occupancy
     to: 'on'
-  condition:
-  - condition: state
-    entity_id: media_player.office_receiver_main_zone
-    state: 'off'
+  conditions:
   - condition: time
     after: '07:00:00'
     before: '22:00:00'
+  - '{{ is_state("media_player.office_receiver_main_zone", "off") }}'
   - '{{ is_state("person.samuel_kadolph", "home") }}'
-  action:
-  - service: script.office_turn_on
+  actions:
+  - action: script.office_turn_on
 
 - id: office_shades_close_open
   alias: Office Shades - Close & Open
@@ -32,10 +30,10 @@
         match: any
         state: 'on'
       first_actions:
-      - service: script.office_lockdown
+      - action: script.office_lockdown
       second_time_helper: sensor.shades_open_time
       second_actions:
-      - service: cover.open_cover
+      - action: cover.open_cover
         target: { entity_id: cover.office_shades }
 
 - id: office_shade_a_shade_switch_double

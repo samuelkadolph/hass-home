@@ -10,20 +10,17 @@
 - id: bookshelf_lights_on_with_arrival
   alias: Bookshelf Lights - On w/ Arrival
   mode: single
-  trigger:
-  - platform: state
+  triggers:
+  - trigger: state
     entity_id: zone.home
     from: '0'
-  condition:
-  - condition: numeric_state
-    entity_id: sun.sun
-    attribute: elevation
-    below: input_number.outside_lights_on_sun_elevation
+  conditions:
   - condition: time
     before: input_datetime.bookshelf_lights_off_time
     after: '12:00:00'
-  action:
-  - service: light.turn_on
+  - '{{ state_attr("sun.sun", "elevation") < states("input_number.outside_lights_on_sun_elevation") | float }}'
+  actions:
+  - action: light.turn_on
     target: { entity_id: light.bookshelf_lights }
 - id: bookshelf_lights_on_off
   alias: Bookshelf Lights - On & Off
@@ -32,15 +29,13 @@
     input:
       first_elevation_helper: input_number.outside_lights_on_sun_elevation
       first_conditions:
-      - condition: numeric_state
-        entity_id: zone.home
-        above: 0
+      - '{{ states("zone.home") | int > 0 }}'
       first_actions:
-      - service: light.turn_on
+      - action: light.turn_on
         target: { entity_id: light.bookshelf_lights }
       second_time_helper: input_datetime.bookshelf_lights_off_time
       second_actions:
-      - service: light.turn_off
+      - action: light.turn_off
         target: { entity_id: light.bookshelf_lights }
 
 - id: nook_shade_close_open
@@ -50,10 +45,10 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_actions:
-      - service: script.nook_close_shade
+      - action: script.nook_close_shade
       second_time_helper: sensor.shades_open_time
       second_actions:
-      - service: cover.open_cover
+      - action: cover.open_cover
         target: { entity_id: cover.nook_shade }
 - id: nook_shade_scene_switch_single
   alias: Nook Shade - Scene Switch (Single)

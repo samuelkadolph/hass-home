@@ -10,7 +10,7 @@
       {% endif -%}
 
 - select:
-  - name: Master Bedroom Cat Door
+  - name: Master Bedroom - Cat Door
     unique_id: master_bedroom_cat_door
     options: '{{ ["Unlocked", "Keep Pets Inside", "Keep Pets Outside", "Locked Both Ways"] }}'
     state: >
@@ -24,7 +24,7 @@
         Unlocked
       {% endif -%}
     select_option:
-    - service: surepetcare.set_lock_state
+    - action: surepetcare.set_lock_state
       data:
         flap_id: "727542"
         lock_state: >

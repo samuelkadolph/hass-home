@@ -11,8 +11,8 @@ travel_going_to_cottage:
   mode: restart
   sequence:
   - parallel:
-    - service: script.cottage_travel_arriving
-    - service: script.travel_leaving
+    - action: script.cottage_travel_arriving
+    - action: script.travel_leaving
 
 travel_leaving:
   alias: Travel - Leaving
@@ -20,15 +20,15 @@ travel_leaving:
   mode: restart
   sequence:
   - parallel:
-    - service: script.garage_turn_off
-    - service: script.master_bedroom_turn_off
-    - service: script.office_turn_off
-    - service: fan.turn_off
+    - action: script.garage_turn_off
+    - action: script.master_bedroom_turn_off
+    - action: script.office_turn_off
+    - action: fan.turn_off
       target:
         entity_id: '{{ states.fan | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - service: light.turn_off
+    - action: light.turn_off
       target:
         entity_id: '{{ states.light | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - service: remote.turn_off
+    - action: remote.turn_off
       target:
         entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'

@@ -57,20 +57,20 @@
 - id: alert_dryer_finished
   alias: Alert - Dryer Finished
   mode: single
-  trigger:
+  triggers:
   - platform: state
     entity_id: sensor.dryer_job_state
     to: finished
-  action:
-  - service: notify.notify
+  actions:
+  - action: notify.notify
     data: { title: Dryer, message: Cycle complete. }
 - id: alert_washer_finished
   alias: Alert - Washer Finished
   mode: single
-  trigger:
+  triggers:
   - platform: state
     entity_id: sensor.washer_job_state
     to: finish
-  action:
-  - service: notify.notify
+  actions:
+  - action: notify.notify
     data: { title: Washer, message: Cycle complete. }

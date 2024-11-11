@@ -6,5 +6,5 @@ nook_close_shade:
   - if:
     - '{{ is_state("binary_sensor.nook_window_sensor_window_door_is_open", "off") }}'
     then:
-    - service: cover.close_cover
+    - action: cover.close_cover
       target: { entity_id: cover.nook_shade }

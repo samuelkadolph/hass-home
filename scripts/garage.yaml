@@ -3,7 +3,7 @@ garage_close_door:
   icon: mdi:garage-variant
   mode: single
   sequence:
-  - service: cover.close_cover
+  - action: cover.close_cover
     target: { entity_id: cover.garage_door }
 
 garage_turn_off:
@@ -15,7 +15,7 @@ garage_turn_off:
     - if:
       - '{{ is_state_attr("climate.garage_air", "power", true) }}'
       then:
-      - service: climate.turn_off
+      - action: climate.turn_off
         target: { entity_id: climate.garage_air }
 garage_turn_on:
   alias: Garage - Turn On

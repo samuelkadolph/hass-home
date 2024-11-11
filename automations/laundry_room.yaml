@@ -26,5 +26,5 @@
       first_trigger: none
       second_time_helper: sensor.shades_open_time
       second_actions:
-      - service: cover.open_cover
+      - action: cover.open_cover
         entity_id: cover.laundry_room_shade

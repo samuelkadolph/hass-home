@@ -4,27 +4,27 @@ sleep_bedtime:
   mode: restart
   sequence:
   - parallel:
-    - service: script.master_bedroom_air_set_night
-    - service: script.garage_turn_off
-    - service: script.office_turn_off
-    - service: fan.turn_off
+    - action: script.master_bedroom_air_set_night
+    - action: script.garage_turn_off
+    - action: script.office_turn_off
+    - action: fan.turn_off
       target:
         entity_id: '{{ states.fan | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - service: light.turn_off
+    - action: light.turn_off
       target:
         entity_id: '{{ states.light | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - service: lock.lock
+    - action: lock.lock
       target:
         entity_id: '{{ states.lock | selectattr("state", "eq", "unlocked") | selectattr("entity_id", "search", "door$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - service: remote.turn_off
+    - action: remote.turn_off
       target:
         entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
     - if:
       - '{{ state_attr("cover.master_bedroom_shades", "current_position") > 0 }}'
       then:
-      - service: cover.close_cover
+      - action: cover.close_cover
         target: { entity_id: cover.master_bedroom_shades }
-    - service: light.turn_on
+    - action: light.turn_on
       data: { brightness: '{{ is_state("person.sasha_keller", "home") and 32 or 160 }}' }
       target: { entity_id: light.master_bedroom_fan_lights }
 
@@ -37,20 +37,20 @@ sleep_good_morning:
     - if:
       - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
       then:
-      - service: cover.set_cover_position
+      - action: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }
         target: { entity_id: cover.master_bedroom_shades }
     - if:
       - '{{ is_state("fan.master_bedroom_fan", "on") }}'
       then:
-      - service: fan.turn_off
+      - action: fan.turn_off
         target: { entity_id: fan.master_bedroom_fan }
     - if:
       - '{{ is_state("binary_sensor.armed_state", "off") }}'
       then:
-      - service: switch.turn_on
+      - action: switch.turn_on
         target: { entity_id: switch.disarm }
-    - service: script.master_bedroom_air_set_day
+    - action: script.master_bedroom_air_set_day
 
 sleep_good_night:
   alias: Sleep - Good Night
@@ -58,7 +58,7 @@ sleep_good_night:
   mode: restart
   sequence:
   - parallel:
-    - service: light.turn_off
+    - action: light.turn_off
       target:
         entity_id:
         - light.master_bedroom_closet_lights
@@ -67,7 +67,7 @@ sleep_good_night:
     - if:
       - '{{ is_state("person.samuel_kadolph", "home") }}'
       then:
-      - service: fan.set_percentage
+      - action: fan.set_percentage
         data: { percentage: 75 }
         target: { entity_id: fan.master_bedroom_pedestal_fan }
         enabled: false
@@ -77,13 +77,13 @@ sleep_good_night:
       - if:
         - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_stay", "on") }}'
         then:
-        - service: switch.turn_on
+        - action: switch.turn_on
           target: { entity_id: switch.arm_stay }
         else:
         - if:
           - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_away", "on") }}'
           then:
-          - service: switch.turn_on
+          - action: switch.turn_on
             target: { entity_id: switch.arm_away }
 
 sleep_preheat_bed:
@@ -91,6 +91,6 @@ sleep_preheat_bed:
   icon: mdi:radiator
   mode: single
   sequence:
-  - service: select.select_option
+  - action: select.select_option
     data: { option: '{{ states("input_number.master_bedroom_air_night_bed_heat") | int }}' }
     target: { entity_id: select.master_bed_side_b_heat_level }

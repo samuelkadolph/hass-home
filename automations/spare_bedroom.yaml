@@ -36,7 +36,7 @@
       first_trigger: none
       second_time_helper: sensor.shades_open_time
       second_actions:
-      - service: cover.open_cover
+      - action: cover.open_cover
         target: { entity_id: cover.spare_bedroom_shade }
 - id: spare_bedroom_shade_shade_switch_double
   alias: Spare Bedroom Shade - Shade Switch (Triple)
