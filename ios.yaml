@@ -1,0 +1,21 @@
+actions:
+- name: garage_door_close
+  background_color: '#202124'
+  icon:
+    icon: mdi:garage-variant
+    color: '#E8E9EC'
+  label:
+    text: Close Garage Door
+    color: '#E8E9EC'
+  show_in_carplay: true
+  show_in_watch: true
+- name: garage_door_open
+  background_color: '#202124'
+  icon:
+    icon: mdi:garage-open-variant
+    color: '#E8E9EC'
+  label:
+    text: Open Garage Door
+    color: '#E8E9EC'
+  show_in_carplay: true
+  show_in_watch: true

@@ -1,3 +1,25 @@
+- id: garage_door_close_action
+  alias: Garage - Door Close Action
+  mode: single
+  triggers:
+  - trigger: event
+    event_type: ios.action_fired
+    event_data: { actionName: garage_door_close }
+  actions:
+  - action: cover.close_cover
+    target: { entity_id: cover.garage_door }
+
+- id: garage_door_open_action
+  alias: Garage - Door Open Action
+  mode: single
+  triggers:
+  - trigger: event
+    event_type: ios.action_fired
+    event_data: { actionName: garage_door_open }
+  actions:
+  - action: cover.open_cover
+    target: { entity_id: cover.garage_door }
+
 - id: garage_off_at_22_00
   alias: Garage - Off @ 22:00
   mode: single
