@@ -17,7 +17,7 @@
       subjects:
       - light.spare_bedroom_lights
 
-- id: spare_bedroom_shade_bed_switch_double
+- id: spare_bedroom_shade_bed_switch_triple
   alias: Spare Bedroom Shade - Bed Switch (Triple)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
@@ -38,7 +38,7 @@
       second_actions:
       - action: cover.open_cover
         target: { entity_id: cover.spare_bedroom_shade }
-- id: spare_bedroom_shade_shade_switch_double
+- id: spare_bedroom_shade_shade_switch_triple
   alias: Spare Bedroom Shade - Shade Switch (Triple)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml

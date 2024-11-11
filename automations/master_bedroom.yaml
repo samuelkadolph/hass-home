@@ -121,7 +121,7 @@
       state_variable: input_number.master_bedroom_shades_control_state
       covers:
       - cover.master_bedroom_shades
-- id: master_bedroom_shades_lights_switch_double
+- id: master_bedroom_shades_lights_switch_triple
   alias: Master Bedroom Shades - Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml

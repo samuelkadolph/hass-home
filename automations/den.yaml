@@ -1,4 +1,4 @@
-- id: den_shades_lights_switch_double
+- id: den_shades_lights_switch_triple
   alias: Den Shades - Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
