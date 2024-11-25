@@ -5,6 +5,6 @@
     state: '{{ this.attributes.entities | default([]) | count }}'
     attributes:
       entities: >
-        {{ expand(integration_entities("zwave_js") | select("search", "node_status"))
+        {{ expand(integration_entities("zwave_js") | select("search", "node_status$"))
          | selectattr("state", "in", "dead, unavailable, unknown")
          | map(attribute="object_id") | list }}
