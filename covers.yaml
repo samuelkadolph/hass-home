@@ -9,6 +9,8 @@
   name: Basement Shades
   unique_id: basement_shades
   entities:
+  - cover.basement_shade_a
+  - cover.basement_shade_b
   - cover.basement_shade_c
 
 - platform: group
