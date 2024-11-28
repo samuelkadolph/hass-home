@@ -1,0 +1,23 @@
+- sensor:
+  - name: Dead ZWave Nodes
+    unique_id: dead_zwave_nodes
+    unit_of_measurement: nodes
+    state: '{{ this.attributes.nodes | default([]) | count }}'
+    attributes:
+      nodes: >
+        {{ expand(integration_entities("zwave_js") | select("search", "node_status$"))
+         | selectattr("state", "in", "dead, unavailable, unknown")
+         | map(attribute="object_id") | list }}
+
+- sensor:
+  - name: Offline Sensors
+    unique_id: offline_sensors
+    unit_of_measurement: sensors
+    state: '{{ this.attributes.sensors | default([]) | count }}'
+    attributes:
+      sensors: >
+        [{% for node in expand(integration_entities("zwave_js") | select("search", "sensor_last_seen$")) -%}
+        {% if as_datetime(node.state) < (utcnow() - timedelta(hours=24)) -%}
+        '{{ node.entity_id -}}',
+        {%- endif -%}
+        {% endfor %}]
