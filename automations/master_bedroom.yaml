@@ -10,7 +10,7 @@
       second_time_helper: input_datetime.master_bedroom_air_day
       second_actions:
       - action: script.master_bedroom_air_set_day
-- id: master_bedroom_air_night_with_sam_arrival
+- id: master_bedroom_air_night_w_sam_arrival
   alias: Master Bedroom Air - Night w/ Sam Arrival
   mode: single
   triggers:
@@ -24,36 +24,6 @@
     before: '06:00:00'
   actions:
   - action: script.master_bedroom_air_set_night
-
-- id: master_bedroom_shades_close_open
-  alias: Master Bedroom Shades - Close & Open
-  use_blueprint:
-    path: samuelkadolph/automaton.yaml
-    input:
-      first_elevation_helper: input_number.shades_close_sun_elevation
-      first_actions:
-      - action: cover.set_cover_position
-        data: { position: '{{ states("sensor.shades_close_percent") }}' }
-        target: { entity_id: cover.master_bedroom_shades }
-      second_time_helper: input_datetime.master_bedroom_shades_first_open
-      second_conditions:
-      - '{{ is_state("input_boolean.master_bedroom_shades_first_open", "on") }}'
-      - '{{ is_state("person.sasha_keller", "home") }}'
-      - '{{ now().weekday() < 5 }}'
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_first_open_percent") | float }}'
-      second_actions:
-      - action: cover.set_cover_position
-        data: { position: '{{ states("input_number.master_bedroom_shades_first_open_percent") }}' }
-        target: { entity_id: cover.master_bedroom_shades }
-      third_trigger: time
-      third_time_helper: input_datetime.master_bedroom_shades_second_open
-      third_conditions:
-      - '{{ is_state("input_boolean.master_bedroom_shades_second_open", "on") }}'
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
-      third_actions:
-      - action: cover.set_cover_position
-        data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }
-        target: { entity_id: cover.master_bedroom_shades }
 
 - id: master_bedroom_fan_left_controller_bottom_left
   alias: Master Bedroom Fan - Left Controller (Bottom Left)
@@ -94,6 +64,7 @@
       key: '001'
       subjects:
       - light.master_bedroom_fan_lights
+
 - id: master_bedroom_lights_left_controller_top
   alias: Master Bedroom Lights - Left Controller (Top)
   use_blueprint:
@@ -111,6 +82,45 @@
       subjects:
       - light.master_bedroom_lights
 
+- id: master_bedroom_pedestal_fan_left_controller_bottom_right
+  alias: Master Bedroom Pedestal Fan - Left Controller (Bottom Right)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen32_lights.yaml
+    input:
+      controller: *left_controller
+      key: '004'
+      subjects:
+      - light.master_bedroom_pedestal_fan
+
+- id: master_bedroom_shades_close_open
+  alias: Master Bedroom Shades - Close & Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_elevation_helper: input_number.shades_close_sun_elevation
+      first_actions:
+      - action: cover.set_cover_position
+        data: { position: '{{ states("sensor.shades_close_percent") }}' }
+        target: { entity_id: cover.master_bedroom_shades }
+      second_time_helper: input_datetime.master_bedroom_shades_first_open
+      second_conditions:
+      - '{{ is_state("input_boolean.master_bedroom_shades_first_open", "on") }}'
+      - '{{ is_state("person.sasha_keller", "home") }}'
+      - '{{ now().weekday() < 5 }}'
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_first_open_percent") | float }}'
+      second_actions:
+      - action: cover.set_cover_position
+        data: { position: '{{ states("input_number.master_bedroom_shades_first_open_percent") }}' }
+        target: { entity_id: cover.master_bedroom_shades }
+      third_trigger: time
+      third_time_helper: input_datetime.master_bedroom_shades_second_open
+      third_conditions:
+      - '{{ is_state("input_boolean.master_bedroom_shades_second_open", "on") }}'
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
+      third_actions:
+      - action: cover.set_cover_position
+        data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }
+        target: { entity_id: cover.master_bedroom_shades }
 - id: master_bedroom_shades_left_controller_mid_right
   alias: Master Bedroom Shades - Left Controller (Mid Right)
   use_blueprint:
@@ -142,13 +152,3 @@
       state_variable: input_number.master_bedroom_shades_control_state
       covers:
       - cover.master_bedroom_shades
-
-- id: master_bedroom_pedestal_fan_left_controller_bottom_right
-  alias: Master Bedroom Pedestal Fan - Left Controller (Bottom Right)
-  use_blueprint:
-    path: samuelkadolph/zooz_zen32_lights.yaml
-    input:
-      controller: *left_controller
-      key: '004'
-      subjects:
-      - light.master_bedroom_pedestal_fan

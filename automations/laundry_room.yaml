@@ -27,4 +27,4 @@
       second_time_helper: sensor.shades_open_time
       second_actions:
       - action: cover.open_cover
-        entity_id: cover.laundry_room_shade
+        target: { entity_id: cover.laundry_room_shade }

@@ -19,7 +19,7 @@
   - action: cover.open_cover
     target: { entity_id: cover.garage_door }
 
-- id: garage_off_at_22_00
+- id: garage_off_22_00
   alias: Garage - Off @ 22:00
   mode: single
   triggers:
