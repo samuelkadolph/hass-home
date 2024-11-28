@@ -5,11 +5,14 @@
   - trigger: state
     entity_id: input_boolean.basement_guest_staying_over
   actions:
-  - parallel:
-    - if:
-      - '{{ is_state("input_boolean.basement_guest_staying_over", "on") }}'
-      then: []
-      else: []
+  - if:
+    - '{{ is_state("input_boolean.basement_guest_staying_over", "on") }}'
+    then:
+    - parallel:
+      - action: script.basement_bathroom_disable_motion
+    else:
+    - parallel:
+      - action: script.basement_bathroom_enable_motion
 
 - id: basement_shade_a_bulkhead_lights_switch_triple
   alias: Basement Shade A - Bulkhead Lights Switch (Triple)

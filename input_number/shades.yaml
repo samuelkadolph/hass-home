@@ -27,6 +27,15 @@ back_door_shade_a_control_state:
 back_door_shade_b_control_state:
   <<: *shade_control
   name: Back Door Shade B Control State
+basement_shade_a_control_state:
+  <<: *shade_control
+  name: Basement Shade A Control State
+basement_shade_b_control_state:
+  <<: *shade_control
+  name: Basement Shade B Control State
+basement_shade_c_control_state:
+  <<: *shade_control
+  name: Basement Shade C Control State
 basement_shades_control_state:
   <<: *shade_control
   name: Basement Shades Control State
