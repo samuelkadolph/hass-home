@@ -1,0 +1,12 @@
+- id: utility_room_all_lights_of
+  alias: Utility Room - All Lights Off
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_actions.yaml
+    input:
+      switch: 196fc66f331c8b629743792c79d72516
+      down_actions:
+      - action: light.turn_off
+        target:
+          entity_id:
+          - light.cold_storage_lights
+          - light.storage_lights
