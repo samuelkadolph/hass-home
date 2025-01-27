@@ -5,7 +5,7 @@
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_conditions:
-      - '{{ states("zone.home") | int > 0 }}'
+      - '{{ int(states("zone.home")) > 0 }}'
       first_actions:
       - action: script.family_room_close_shades
       second_time_helper: sensor.shades_open_time
@@ -20,6 +20,6 @@
     entity_id: zone.home
     from: '0'
   conditions:
-  - '{{ state_attr("sun.sun", "elevation") < states("input_number.shades_close_sun_elevation") | float }}'
+  - '{{ state_attr("sun.sun", "elevation") < float(states("input_number.shades_close_sun_elevation")) }}'
   actions:
   - action: script.family_room_close_shades

@@ -14,6 +14,22 @@ harmony_living_room_watch_shield:
     target: { entity_id: remote.living_room }
     data: { activity: Watch Shield }
 
+harmony_office_off:
+  alias: Harmony - Office Off
+  icon: mdi:remote-tv
+  mode: restart
+  sequence:
+  - action: remote.turn_off
+    target: { entity_id: remote.office }
+harmony_office_watch_shield:
+  alias: Harmony - Office Watch Shield
+  icon: mdi:remote-tv
+  mode: restart
+  sequence:
+  - action: remote.turn_on
+    target: { entity_id: remote.office }
+    data: { activity: Watch Shield }
+
 harmony_sync_all:
   alias: Harmony - Sync All
   icon: mdi:remote
@@ -22,3 +38,19 @@ harmony_sync_all:
   - action: harmony.sync
     target:
       entity_id: '{{ states.remote | map(attribute="entity_id") | list }}'
+
+harmony_theatre_off:
+  alias: Harmony - Theatre Off
+  icon: mdi:remote-tv
+  mode: restart
+  sequence:
+  - action: remote.turn_off
+    target: { entity_id: remote.theatre }
+harmony_theatre_watch_shield:
+  alias: Harmony - Theatre Watch Shield
+  icon: mdi:remote-tv
+  mode: restart
+  sequence:
+  - action: remote.turn_on
+    target: { entity_id: remote.theatre }
+    data: { activity: Watch Shield }

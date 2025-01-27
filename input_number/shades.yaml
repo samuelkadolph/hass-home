@@ -45,6 +45,9 @@ den_shades_control_state:
 dining_room_shade_control_state:
   <<: *shade_control
   name: Dining Room Shade Control State
+garage_door_control_state:
+  <<: *shade_control
+  name: Garage Door Control State
 guest_bedroom_shade_control_state:
   <<: *shade_control
   name: Guest Bedroom Shade Control State

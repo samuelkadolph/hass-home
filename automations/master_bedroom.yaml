@@ -98,6 +98,8 @@
     path: samuelkadolph/automaton.yaml
     input:
       first_elevation_helper: input_number.shades_close_sun_elevation
+      first_conditions:
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") > float(states("sensor.shades_close_percent")) }}'
       first_actions:
       - action: cover.set_cover_position
         data: { position: '{{ states("sensor.shades_close_percent") }}' }
@@ -107,7 +109,7 @@
       - '{{ is_state("input_boolean.master_bedroom_shades_first_open", "on") }}'
       - '{{ is_state("person.sasha_keller", "home") }}'
       - '{{ now().weekday() < 5 }}'
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_first_open_percent") | float }}'
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < float(states("input_number.master_bedroom_shades_first_open_percent")) }}'
       second_actions:
       - action: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_shades_first_open_percent") }}' }
@@ -116,7 +118,7 @@
       third_time_helper: input_datetime.master_bedroom_shades_second_open
       third_conditions:
       - '{{ is_state("input_boolean.master_bedroom_shades_second_open", "on") }}'
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < float(states("input_number.master_bedroom_shades_second_open_percent")) }}'
       third_actions:
       - action: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }

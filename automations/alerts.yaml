@@ -1,61 +1,73 @@
-- id: alert_bar_dishwasher_leak
-  alias: Alert - Bar Dishwasher Leak
-  use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
-    input:
-      area: Bar Dishwasher
-      leak_sensors: binary_sensor.bar_dishwasher_leak_sensor
-- id: alert_bar_ice_maker_leak
-  alias: Alert - Bar Ice Maker Leak
-  use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
-    input:
-      area: Bar Ice Maker
-      leak_sensors:
-      - binary_sensor.bar_ice_maker_leak_sensor
-- id: alert_bar_sink_link
-  alias: Alert - Bar Sink Leak
-  use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
-    input:
-      area: Bar Sink
-      leak_sensors: binary_sensor.bar_sink_leak_sensor
-- id: alert_washer_leak
-  alias: Alert - Washer Leak
-  use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
-    input:
-      area: Washer
-      leak_sensors:
-      - binary_sensor.laundry_room_leak_sensor_water_leak_detected
-      - binary_sensor.laundry_room_leak_sensor_water_leak_detected_2
-- id: alert_water_heater_leak
-  alias: Alert - Water Heater Leak
-  use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
-    input:
-      area: Water Heater
-      leak_sensors:
-      - binary_sensor.utility_room_leak_sensor_water_leak_detected
-      - binary_sensor.utility_room_leak_sensor_water_leak_detected_2
-
-- id: alert_bar_fridge_door_ajar
-  alias: Alert - Bar Fridge Door Ajar
+- id: alert_door_bar_fridge_door_ajar
+  alias: Alert (Door) - Bar Fridge Door Ajar
   use_blueprint:
     path: samuelkadolph/door_ajar_alerts.yaml
     input:
       door: Bar Fridge
-      door_sensors: binary_sensor.bar_fridge_door
-- id: alert_basement_freezer_door_ajar
-  alias: Alert - Basement Freezer Door Ajar
+      door_sensors: sensor.bar_fridge_door
+- id: alert_door_basement_freezer_door_ajar
+  alias: Alert (Door) - Basement Freezer Door Ajar
   use_blueprint:
     path: samuelkadolph/door_ajar_alerts.yaml
     input:
       door: Basement Freezer
-      door_sensors: binary_sensor.basement_freezer_door_sensor_window_door_is_open_2
+      binary_sensors: binary_sensor.basement_freezer_door_sensor_window_door_is_open
 
-- id: alert_dryer_finished
-  alias: Alert - Dryer Finished
+- id: alert_garage_door_closing_failed
+  alias: Alert (Garage) - Closing Failed
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: cover.garage_door
+    from: closing
+    to: opening
+  conditions:
+  - '{{ trigger.from_state and trigger.to_state and trigger.from_state.attributes.current_position < 5 }}'
+  - '{{ is_state("binary_sensor.garage_door_obstruction", "off") }}'
+  - '{{ is_state("input_boolean.garage_door_closing_failed_alert", "on") }}'
+  actions:
+  - action: notify.notify
+    data: { title: Garage Door, message: Failed to close }
+  - action: notify.alexa_media
+    data:
+      data: { type: announce }
+      message: Garage Door failed to close
+      target:
+      - media_player.garage_echo
+      - media_player.kitchen_echo
+      - media_player.living_room_echo
+      title: Garage Door
+- id: alert_garage_door_left_open
+  alias: Alert (Garage) - Door Left Open
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: cover.garage_door
+    to: open
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  - trigger: state
+    entity_id:
+    - binary_sensor.garage_door_motion
+    - binary_sensor.garage_door_obstruction
+    to: 'off'
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  conditions:
+  - condition: state
+    entity_id: cover.garage_door
+    state: open
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  - condition: state
+    entity_id:
+    - binary_sensor.garage_door_motion
+    - binary_sensor.garage_door_obstruction
+    state: 'off'
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  actions:
+  - action: notify.notify
+    data: { title: Garage Door, message: Left open }
+
+- id: alert_laundry_dryer_finished
+  alias: Alert (Laundry) - Dryer Finished
   mode: single
   triggers:
   - platform: state
@@ -63,9 +75,9 @@
     to: finished
   actions:
   - action: notify.notify
-    data: { title: Dryer, message: Cycle complete. }
-- id: alert_washer_finished
-  alias: Alert - Washer Finished
+    data: { title: Dryer, message: Cycle complete }
+- id: alert_laundry_washer_finished
+  alias: Alert (Laundry) - Washer Finished
   mode: single
   triggers:
   - platform: state
@@ -73,4 +85,61 @@
     to: finish
   actions:
   - action: notify.notify
-    data: { title: Washer, message: Cycle complete. }
+    data: { title: Washer, message: Cycle complete }
+
+- id: alert_leak_bar_dishwasher_leak
+  alias: Alert (Leak) - Bar Dishwasher Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Bar Dishwasher
+      leak_sensors: binary_sensor.bar_dishwasher_leak_sensor_water_leak_detected
+- id: alert_leak_bar_ice_maker_leak
+  alias: Alert (Leak) - Bar Ice Maker Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Bar Ice Maker
+      leak_sensors: binary_sensor.bar_ice_maker_leak_sensor_water_leak_detected
+- id: alert_leak_bar_sink_leak
+  alias: Alert (Leak) - Bar Sink Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Bar Sink
+      leak_sensors: binary_sensor.bar_sink_leak_sensor_water_leak_detected
+- id: alert_leak_basement_bathroom_sink_leak
+  alias: Alert (Leak) - Basement Bathroom Sink Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Basement Bathroom Sink
+      leak_sensors: binary_sensor.basement_bathroom_sink_leak_sensor_water_leak_detected
+- id: alert_leak_furnace_leak
+  alias: Alert (Leak) - Furnace Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Furnace
+      leak_sensors: binary_sensor.furnace_leak_sensor_water_leak_detected
+- id: alert_leak_rack_leak
+  alias: Alert (Leak) - Rack Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Rack
+      leak_sensors: binary_sensor.rack_leak_sensor_water_leak_detected
+- id: alert_leak_water_chiller_leak
+  alias: Alert (Leak) - Water Chiller Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Water Chiller
+      leak_sensors: binary_sensor.water_chiller_leak_sensor_water_leak_detected
+- id: alert_leak_water_heater_leak
+  alias: Alert (Leak) - Water Heater Leak
+  use_blueprint:
+    path: samuelkadolph/water_leak_alerts.yaml
+    input:
+      area: Water Heater
+      leak_sensors: binary_sensor.water_heater_leak_sensor_water_leak_detected

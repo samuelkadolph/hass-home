@@ -9,7 +9,7 @@
   sensor:
   - name: Shades - Close Percent
     unique_id: shades_close_percent
-    state: '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min < states("input_number.shades_close_percent_temperature_threshold") | float and states("input_number.shades_close_percent") or 0 }}'
+    state: '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min < float(states("input_number.shades_close_percent_temperature_threshold")) and states("input_number.shades_close_percent") or 0 }}'
 
 - sensor:
   - name: Shades - Open Time

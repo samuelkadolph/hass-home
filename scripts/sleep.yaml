@@ -27,6 +27,8 @@ sleep_bedtime:
     - action: light.turn_on
       data: { brightness: '{{ is_state("person.sasha_keller", "home") and 32 or 160 }}' }
       target: { entity_id: light.master_bedroom_fan_lights }
+    - action: switch.turn_off
+      target: { entity_id: switch.smart_outlet_a }
 
 sleep_good_morning:
   alias: Sleep - Good Morning
@@ -35,7 +37,7 @@ sleep_good_morning:
   sequence:
   - parallel:
     - if:
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < states("input_number.master_bedroom_shades_second_open_percent") | float }}'
+      - '{{ state_attr("cover.master_bedroom_shades", "current_position") < float(states("input_number.master_bedroom_shades_second_open_percent")) }}'
       then:
       - action: cover.set_cover_position
         data: { position: '{{ states("input_number.master_bedroom_shades_second_open_percent") }}' }
@@ -51,6 +53,8 @@ sleep_good_morning:
       - action: switch.turn_on
         target: { entity_id: switch.disarm }
     - action: script.master_bedroom_air_set_day
+    - action: switch.turn_on
+      target: { entity_id: switch.smart_outlet_a }
 
 sleep_good_night:
   alias: Sleep - Good Night
@@ -92,5 +96,5 @@ sleep_preheat_bed:
   mode: single
   sequence:
   - action: select.select_option
-    data: { option: '{{ states("input_number.master_bedroom_air_night_bed_heat") | int }}' }
+    data: { option: '{{ int(states("input_number.master_bedroom_air_night_bed_heat")) }}' }
     target: { entity_id: select.master_bed_side_b_heat_level }

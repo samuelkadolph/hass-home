@@ -4,8 +4,8 @@ emulated_hue: !include hue.yaml
 input_boolean: !include_dir_merge_named input_boolean
 input_datetime: !include_dir_merge_named input_datetime
 input_number: !include_dir_merge_named input_number
-ios: !include ios.yaml
 light: !include_dir_merge_list lights
 script: !include_dir_merge_named scripts
+sensor: !include_dir_merge_list sensors
 switch: !include switches.yaml
 template: !include_dir_merge_list templates

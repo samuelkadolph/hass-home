@@ -69,7 +69,7 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: d8c61bb496d1e2300c15f6bf9ce6cb3c
+      switch: 051d79dabdf6302147b22a7125f489ab
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.basement_shades_control_state
@@ -102,7 +102,7 @@
           then:
           - action: fan.turn_off
             target: { entity_id: fan.theatre_dyson }
-      change_actions:
+      activity_changed_actions:
       - parallel:
         - if:
           - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
@@ -118,7 +118,7 @@
             - '{{ state_attr("remote.theatre", "current_activity") is search("w/P$") }}'
             then:
             - if:
-              - '{{ state_attr("sun.sun", "elevation") > states("input_number.theatre_projector_closes_shades_sun_elevation") | float }}'
+              - '{{ state_attr("sun.sun", "elevation") > float(states("input_number.theatre_projector_closes_shades_sun_elevation")) }}'
               then:
               - action: cover.close_cover
                 target: { entity_id: cover.basement_shades }

@@ -29,4 +29,28 @@ garage_turn_on:
   icon: mdi:power-on
   mode: single
   sequence:
-  - parallel: []
+  - parallel:
+    - if:
+      - '{{ float(states("sensor.garage_air_indoor_temperature")) < 15.0 }}'
+      - '{{ float(states("sensor.garage_sensor_air_temperature")) < 15.0 }}'
+      then:
+      - action: climate.set_temperature
+        data: { hvac_mode: heat, temperature: '20.0' }
+        target: { entity_id: climate.garage_air }
+      - action: switch.turn_on
+        target: { entity_id: switch.garage_fan }
+      - action: climate.set_preset_mode
+        data: { preset_mode: boost }
+        target: { entity_id: climate.garage_air }
+    - if:
+      - '{{ float(states("sensor.garage_air_indoor_temperature")) > 25.0 }}'
+      - '{{ float(states("sensor.garage_sensor_air_temperature")) > 25.0 }}'
+      then:
+      - action: climate.set_temperature
+        data: { hvac_mode: cool, temperature: '22.0' }
+        target: { entity_id: climate.garage_air }
+      - action: switch.turn_on
+        target: { entity_id: switch.garage_fan }
+      - action: climate.set_preset_mode
+        data: { preset_mode: boost }
+        target: { entity_id: climate.garage_air }

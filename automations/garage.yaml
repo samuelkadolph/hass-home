@@ -1,24 +1,3 @@
-- id: garage_door_close_action
-  alias: Garage - Door Close Action
-  mode: single
-  triggers:
-  - trigger: event
-    event_type: ios.action_fired
-    event_data: { actionName: garage_door_close }
-  actions:
-  - action: cover.close_cover
-    target: { entity_id: cover.garage_door }
-- id: garage_door_open_action
-  alias: Garage - Door Open Action
-  mode: single
-  triggers:
-  - trigger: event
-    event_type: ios.action_fired
-    event_data: { actionName: garage_door_open }
-  actions:
-  - action: cover.open_cover
-    target: { entity_id: cover.garage_door }
-
 - id: garage_off_22_00
   alias: Garage - Off @ 22:00
   mode: single
@@ -27,3 +6,14 @@
     at: '22:00:00'
   actions:
   - action: script.garage_turn_off
+
+- id: garage_door_garage_lights_switch_triple
+  alias: Garage Door - Garage Lights Switch (Triple)
+  use_blueprint:
+    path: samuelkadolph/zooz_zen7677_covers.yaml
+    input:
+      switch: 24425c7636ae955ad8bcec903cd323b8
+      paddle_taps: KeyPressed3x
+      paddle_hold: false
+      state_variable: input_number.garage_door_control_state
+      covers: cover.garage_door

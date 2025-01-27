@@ -14,15 +14,16 @@
       - action: light.turn_off
         target: { entity_id: light.outside_lights }
 
-- id: outside_lights_on_w_arrival
-  alias: Outside Lights - On w/ Arrival
+- id: outside_lights_on_with_arrival
+  alias: Outside Lights - On with Arrival
   mode: single
   triggers:
   - trigger: state
     entity_id: zone.home
   conditions:
-  - '{{ trigger.from_state and trigger.to_state and (trigger.from_state.state | int < trigger.to_state.state | int) }}'
-  - '{{ state_attr("sun.sun", "elevation") < states("input_number.outside_lights_on_sun_elevation") | float }}'
+  - '{{ is_state("input_boolean.outside_lights_on_with_arrival", "on") }}'
+  - '{{ trigger.from_state and trigger.to_state and (int(trigger.from_state.state) < int(trigger.to_state.state)) }}'
+  - '{{ state_attr("sun.sun", "elevation") < float(states("input_number.outside_lights_on_sun_elevation")) }}'
   actions:
   - parallel:
     - if:
