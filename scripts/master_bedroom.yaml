@@ -5,7 +5,7 @@ master_bedroom_turn_off:
   sequence:
   - parallel:
     - if:
-      - '{{ is_state_attr("climate.master_bedroom_air", "power", true) }}'
+      - '{{ not is_state("climate.master_bedroom_air", "off") }}'
       then:
       - action: climate.turn_off
         target: { entity_id: climate.master_bedroom_air }
@@ -22,15 +22,15 @@ master_bedroom_air_set_day:
   mode: single
   sequence:
   - if:
-    - '{{ is_state_attr("climate.master_bedroom_air", "power", true) }}'
-    - '{{ is_state_attr("climate.master_bedroom_air", "temperature", states("input_number.master_bedroom_air_night_temperature") | float) }}'
+    - '{{ not is_state("climate.master_bedroom_air", "off") }}'
+    - '{{ is_state_attr("climate.master_bedroom_air", "temperature", float(states("input_number.master_bedroom_air_night_temperature"))) }}'
     then:
     - action: weather.get_forecasts
       data: { type: hourly }
       target: { entity_id: weather.home }
       response_variable: forecast
     - if:
-      - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > states("input_number.master_bedroom_air_day_threshold") | float }}'
+      - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > float(states("input_number.master_bedroom_air_day_threshold")) }}'
       then:
       - action: climate.set_temperature
         data:
@@ -49,8 +49,8 @@ master_bedroom_air_set_night:
     - '{{ is_state("person.samuel_kadolph", "home") }}'
     - condition: or
       conditions:
-      - '{{ not is_state_attr("climate.master_bedroom_air", "power", true) }}'
-      - '{{ not is_state_attr("climate.master_bedroom_air", "temperature", states("input_number.master_bedroom_air_night_temperature") | float) }}'
+      - '{{ is_state("climate.master_bedroom_air", "off") }}'
+      - '{{ not is_state_attr("climate.master_bedroom_air", "temperature", float(states("input_number.master_bedroom_air_night_temperature"))) }}'
     then:
     - action: climate.set_temperature
       data:
@@ -63,5 +63,5 @@ master_bedroom_air_set_night:
       - '{{ is_state("switch.master_bed_side_b_power", "off") }}'
       then:
       - action: select.select_option
-        data: { option: '{{ states("input_number.master_bedroom_air_night_bed_heat") | int }}' }
+        data: { option: '{{ int(states("input_number.master_bedroom_air_night_bed_heat")) }}' }
         target: { entity_id: select.master_bed_side_b_heat_level }
