@@ -1,0 +1,40 @@
+cover_slowly_open:
+  alias: Cover - Slowly Open
+  icon: mdi:roller-shade
+  mode: parallel
+  fields:
+    covers:
+      name: Covers
+      description: Covers to slowly open
+      required: true
+      selector:
+        entity:
+          filter: { domain: cover }
+          multiple: true
+    open_percent:
+      name: Open Percent
+      description: How much to open the covers by
+      required: true
+      default: 30
+      selector:
+        number:
+          max: 100
+          min: 1
+          mode: slider
+          step: 1
+          unit_of_measurement: '%'
+    time:
+      name: Time
+      description: How long to take to open the covers
+      default: { minutes: 10 }
+      selector:
+        duration:
+  sequence:
+  - repeat:
+      count: '{{ open_percent }}'
+      sequence:
+        - action: cover.set_cover_position
+          target: { entity_id: '{{ covers }}' }
+          data: { position: '{{ repeat.index }}' }
+        - delay:
+            seconds: '{{ (time.hours * 3600 + time.minutes * 60 + time.seconds) / open_percent }}'
