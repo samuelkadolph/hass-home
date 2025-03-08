@@ -17,3 +17,35 @@
       paddle_hold: false
       state_variable: input_number.garage_door_control_state
       covers: cover.garage_door
+
+- id: garage_door_lights_garage_door_opened
+  alias: Garage Door Lights - Garage Door Opened
+  mode: single
+  max_exceeded: silent
+  triggers:
+  - platform: state
+    entity_id: binary_sensor.garage_door
+    to: 'on'
+  actions:
+  - if:
+    - '{{ is_state("light.garage_door_lights", "off") }}'
+    then:
+    - action: light.turn_on
+      target: { entity_id: light.garage_door_lights }
+    - repeat:
+        until:
+        - condition: state
+          entity_id:
+          - binary_sensor.garage_door
+          state: 'off'
+          for: { seconds: 30 }
+        - condition: state
+          entity_id:
+          - binary_sensor.garage_door_motion
+          - binary_sensor.garage_door_obstruction
+          state: 'off'
+          for: { seconds: 120 }
+        sequence:
+        - delay: { seconds: 5 }
+    - action: light.turn_off
+      target: { entity_id: light.garage_door_lights }
