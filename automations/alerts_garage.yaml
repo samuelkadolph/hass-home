@@ -1,0 +1,53 @@
+- id: alert_garage_door_closing_failed
+  alias: Alert (Garage) - Closing Failed
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: cover.garage_door
+    from: closing
+    to: opening
+  conditions:
+  - '{{ trigger.from_state and trigger.to_state and trigger.from_state.attributes.current_position < 5 }}'
+  - '{{ is_state("binary_sensor.garage_door_obstruction", "off") }}'
+  - '{{ is_state("input_boolean.garage_door_closing_failed_alert", "on") }}'
+  actions:
+  - action: notify.notify
+    data: { title: Garage Door, message: Failed to close }
+  - action: notify.alexa_media
+    data:
+      data: { type: announce }
+      message: Garage Door failed to close
+      target:
+      - media_player.garage_echo
+      - media_player.kitchen_echo
+      - media_player.living_room_echo
+      title: Garage Door
+
+- id: alert_garage_door_left_open
+  alias: Alert (Garage) - Door Left Open
+  mode: single
+  triggers:
+  - trigger: state
+    entity_id: cover.garage_door
+    to: open
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  - trigger: state
+    entity_id:
+    - binary_sensor.garage_door_motion
+    - binary_sensor.garage_door_obstruction
+    to: 'off'
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  conditions:
+  - condition: state
+    entity_id: cover.garage_door
+    state: open
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  - condition: state
+    entity_id:
+    - binary_sensor.garage_door_motion
+    - binary_sensor.garage_door_obstruction
+    state: 'off'
+    for: { minutes: '{{ states("input_number.garage_door_open_alert_time") }}' }
+  actions:
+  - action: notify.notify
+    data: { title: Garage Door, message: Left open }
