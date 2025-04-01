@@ -29,7 +29,7 @@ master_bedroom_air_night_bed_heat:
   step: 1
 
 master_bedroom_shades_first_open_percent:
-  <<: &shades_percent
+  <<: &cover_percent
     icon: mdi:roller-shade
     max: 100
     min: 1
@@ -37,6 +37,11 @@ master_bedroom_shades_first_open_percent:
     step: 1
     unit_of_measurement: '%'
   name: Master Bedroom Shades - First Open Percent
+
 master_bedroom_shades_second_open_percent:
-  <<: *shades_percent
+  <<: *cover_percent
   name: Master Bedroom Shades - Second Open Percent
+
+master_bedroom_shades_good_morning_open_percent:
+  <<: *cover_percent
+  name: Master Bedroom Shades - Good Morning Opne Percent

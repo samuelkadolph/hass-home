@@ -9,6 +9,7 @@ master_bedroom_turn_off:
       then:
       - action: climate.turn_off
         target: { entity_id: climate.master_bedroom_air }
+
 master_bedroom_turn_on:
   alias: Master Bedroom - Turn On
   icon: mdi:power-on
@@ -16,7 +17,7 @@ master_bedroom_turn_on:
   sequence:
   - parallel: []
 
-master_bedroom_air_set_day:
+master_bedroom_air_day:
   alias: Master Bedroom Air - Day
   icon: mdi:sun-thermometer
   mode: single
@@ -40,7 +41,8 @@ master_bedroom_air_set_day:
       else:
       - action: climate.turn_off
         target: { entity_id: climate.master_bedroom_air }
-master_bedroom_air_set_night:
+
+master_bedroom_air_night:
   alias: Master Bedroom Air - Night
   icon: mdi:snowflake-thermometer
   mode: single

@@ -7,8 +7,8 @@
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.back_door_shade_a_control_state
-      covers:
-      - cover.back_door_shade_a
+      covers: cover.back_door_shade_a
+
 - id: back_door_shade_b_dmz_lights_switch_triple
   alias: Back Door Shade B - DMZ Lights Switch (Triple)
   use_blueprint:
@@ -18,5 +18,4 @@
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.back_door_shade_b_control_state
-      covers:
-      - cover.back_door_shade_b
+      covers: cover.back_door_shade_b

@@ -1,3 +1,19 @@
+- id: guest_bedroom_shade_open
+  alias: Guest Bedroom Shade - Open
+  use_blueprint:
+    path: samuelkadolph/automaton.yaml
+    input:
+      first_trigger: none
+      second_trigger: time
+      second_time_helper: input_datetime.guest_bedroom_shade_open
+      second_conditions:
+      - '{{ is_state("input_boolean.guest_bedroom_shade_open", "on") }}'
+      - '{{ state_attr("cover.guest_bedroom_shade", "current_position") < float(states("input_number.guest_bedroom_shade_open_percent")) }}'
+      second_actions:
+      - action: cover.set_cover_position
+        data: { position: '{{ states("input_number.guest_bedroom_shade_open_percent") }}' }
+        target: { entity_id: cover.guest_bedroom_shade }
+
 - id: guest_bedroom_shade_shade_switch_single
   alias: Guest Bedroom Shade - Shade Switch (Single)
   use_blueprint:

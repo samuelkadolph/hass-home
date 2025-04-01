@@ -18,8 +18,7 @@
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.kitchen_shades_control_state
-      covers:
-      - cover.kitchen_shades
+      covers: cover.kitchen_shades
 
 - id: toaster_oven_off_04_00
   alias: Toaster Oven - Off @ 04:00

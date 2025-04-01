@@ -1,6 +1,9 @@
 basement_guest_staying_over:
   icon: mdi:bed
-  name: Basement Guest Staying Over
+  name: Basement - Guest Staying Over
+
+basement_shades_open:
+  name: Basement Shades - Open
 
 theatre_projector_closes_shades:
   icon: mdi:roller-shade
