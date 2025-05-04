@@ -5,8 +5,9 @@
     input:
       switch: &nook_switch
         03993ec59ce020155be44f997fd62d81
-      subjects:
-      - light.bookshelf_lights
+      double_tap: true
+      paddle_hold: true
+      subjects: light.bookshelf_lights
 - id: bookshelf_lights_on_off
   alias: Bookshelf Lights - On & Off
   use_blueprint:
@@ -33,6 +34,7 @@
   - condition: time
     before: input_datetime.bookshelf_lights_off_time
     after: '12:00:00'
+  - '{{ trigger.from_state and trigger.to_state and (int(trigger.from_state.state) < int(trigger.to_state.state)) }}'
   - '{{ state_attr("sun.sun", "elevation") < float(states("input_number.outside_lights_on_sun_elevation")) }}'
   actions:
   - action: light.turn_on
@@ -58,5 +60,4 @@
       switch: *nook_switch
       paddle_taps: KeyPressed3x
       state_variable: input_number.nook_shade_control_state
-      covers:
-      - cover.nook_shade
+      covers: cover.nook_shade

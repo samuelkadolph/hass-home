@@ -3,15 +3,18 @@
   use_blueprint:
     path: samuelkadolph/automaton.yaml
     input:
+      first_trigger: elevation_below
       first_elevation_helper: input_number.shades_close_sun_elevation
       first_conditions:
       - '{{ int(states("zone.home")) > 0 }}'
       first_actions:
       - action: script.family_room_close_shades
+      second_trigger: time
       second_time_helper: sensor.shades_open_time
       second_actions:
       - action: cover.open_cover
         target: { entity_id: cover.family_room_shades }
+
 - id: family_room_shades_close_w_arrival
   alias: Family Room Shades - Close w/ Arrival
   mode: single
@@ -20,6 +23,7 @@
     entity_id: zone.home
     from: '0'
   conditions:
+  - '{{ trigger.from_state and trigger.to_state and (int(trigger.from_state.state) < int(trigger.to_state.state)) }}'
   - '{{ state_attr("sun.sun", "elevation") < float(states("input_number.shades_close_sun_elevation")) }}'
   actions:
   - action: script.family_room_close_shades
