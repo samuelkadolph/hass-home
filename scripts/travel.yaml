@@ -3,7 +3,9 @@ travel_arriving:
   icon: mdi:home
   mode: restart
   sequence:
-  - parallel: []
+  - parallel:
+    - action: script.master_bedroom_turn_on
+    - action: script.office_turn_on
 
 travel_going_to_cottage:
   alias: Travel - Going to Cottage
