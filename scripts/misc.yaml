@@ -8,6 +8,7 @@ misc_living_room_dyson_point_at_sam:
       entity_id: fan.living_room_dyson
       angle_low: '{{ states("input_number.living_room_dyson_sam_angle") }}'
       angle_high: '{{ states("input_number.living_room_dyson_sam_angle") }}'
+
 misc_theatre_dyson_point_at_sam:
   alias: Misc - Theatre Dyson point at Sam
   icon: mdi:air-purifier
