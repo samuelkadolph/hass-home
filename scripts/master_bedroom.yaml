@@ -7,8 +7,10 @@ master_bedroom_turn_off:
     - if:
       - '{{ not is_state("climate.master_bedroom_air", "off") }}'
       then:
-      - action: climate.turn_off
-        target: { entity_id: climate.master_bedroom_air }
+      - action: script.midea_turn_off
+        data: target: { entity_id: climate.master_bedroom_air }
+      # - action: climate.turn_off
+      #   target: { entity_id: climate.master_bedroom_air }
 
 master_bedroom_turn_on:
   alias: Master Bedroom - Turn On
@@ -33,14 +35,22 @@ master_bedroom_air_day:
     - if:
       - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > float(states("input_number.master_bedroom_air_day_threshold")) }}'
       then:
-      - action: climate.set_temperature
+      - action: script.midea_set_temperature
         data:
-          hvac_mode: cool
-          temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
-        target: { entity_id: climate.master_bedroom_air }
+          data:
+            hvac_mode: cool
+            temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
+          target: { entity_id: climate.master_bedroom_air }
+      # - action: climate.set_temperature
+      #   data:
+      #     hvac_mode: cool
+      #     temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
+      #   target: { entity_id: climate.master_bedroom_air }
       else:
-      - action: climate.turn_off
-        target: { entity_id: climate.master_bedroom_air }
+      - action: script.midea_turn_off
+        data: target: { entity_id: climate.master_bedroom_air }
+      # - action: climate.turn_off
+      #   target: { entity_id: climate.master_bedroom_air }
 
 master_bedroom_air_night:
   alias: Master Bedroom Air - Night
@@ -54,11 +64,22 @@ master_bedroom_air_night:
       - '{{ is_state("climate.master_bedroom_air", "off") }}'
       - '{{ not is_state_attr("climate.master_bedroom_air", "temperature", float(states("input_number.master_bedroom_air_night_temperature"))) }}'
     then:
-    - action: climate.set_temperature
+    - action: script.midea_set_temperature
       data:
-        hvac_mode: cool
-        temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
-      target: { entity_id: climate.master_bedroom_air }
+        data:
+          hvac_mode: cool
+          temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
+        target: { entity_id: climate.master_bedroom_air }
+    # - action: climate.set_temperature
+    #   data:
+    #     hvac_mode: cool
+    #     temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
+    #   target: { entity_id: climate.master_bedroom_air }
+    - if:
+      - '{{ is_state("fan.master_bedroom_fan", "off") }}'
+      then:
+      - action: fan.turn_on
+        target: { entity_id: fan.master_bedroom_fan }
     - if:
       - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat", "on") }}'
       - '{{ is_state("person.sasha_keller", "home") }}'

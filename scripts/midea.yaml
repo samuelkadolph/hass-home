@@ -1,0 +1,73 @@
+midea_turn_off:
+  alias: Midea - Turn Off
+  icon: mdi:power-off
+  mode: parallel
+  fields:
+    target: &target-field
+      name: Targets
+      description: What should this action use as targeted areas, devices or entities.
+      required: true
+      selector:
+        target: { entity: { domain: 'climate' }}
+  sequence:
+  - repeat:
+      sequence:
+      - action: climate.turn_off
+        target: '{{ target }}'
+      - delay: &delay
+          seconds: 1
+      until:
+      - '{{ set(expand(target["entity_id"]) | map(attribute="state") | list) == set(["off"]) }}'
+
+midea_set_hvac_mode:
+  alias: Midea - Set HVAC Mode
+  icon: mdi:hvac
+  mode: parallel
+  fields: &data-target-fields
+    data: &data-field
+      name: Data
+      description: Data payload to be sent.
+      required: true
+      selector:
+        object:
+    target: *target-field
+  sequence:
+  - repeat:
+      sequence:
+      - action: climate.set_hvac_mode
+        data: '{{ data }}'
+        target: '{{ target }}'
+      - delay: *delay
+      until:
+      - '{{ "hvac_mode" not in data or set(expand(target["entity_id"]) | map(attribute="state") | list) == set([data["hvac_mode"]]) }}'
+
+midea_set_preset_mode:
+  alias: Midea - Set Preset Mode
+  icon: mdi:sofa
+  mode: parallel
+  fields: *data-target-fields
+  sequence:
+  - repeat:
+      sequence:
+      - action: climate.set_preset_mode
+        data: '{{ data }}'
+        target: '{{ target }}'
+      - delay: *delay
+      until:
+      - '{{ "preset_mode" not in data or set(expand(target["entity_id"]) | map(attribute="attributes.preset_mode") | list) == set([data["preset_mode"]]) }}'
+
+midea_set_temperature:
+  alias: Midea - Set Temperature
+  icon: mdi:thermometer
+  mode: parallel
+  fields: *data-target-fields
+  sequence:
+  - repeat:
+      sequence:
+      - action: climate.set_temperature
+        data: '{{ data }}'
+        target: '{{ target }}'
+      - delay: *delay
+      until:
+      - '{{ "hvac_mode" not in data or set(expand(target["entity_id"]) | map(attribute="state") | list) == set([data["hvac_mode"]]) }}'
+      - '{{ "temperature" not in data or set(expand(target["entity_id"]) | map(attribute="attributes.temperature") | list) == set([float(data["temperature"])]) }}'
