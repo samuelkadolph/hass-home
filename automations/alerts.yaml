@@ -5,6 +5,7 @@
     input:
       door: Bar Fridge
       door_sensors: sensor.bar_fridge_door
+
 - id: alert_door_basement_freezer_door_ajar
   alias: Alert (Door) - Basement Freezer Door Ajar
   use_blueprint:
@@ -23,6 +24,7 @@
   actions:
   - action: notify.notify
     data: { title: Dryer, message: Cycle complete }
+
 - id: alert_laundry_washer_finished
   alias: Alert (Laundry) - Washer Finished
   mode: single

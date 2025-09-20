@@ -7,8 +7,8 @@ basement_shades_open:
 
 theatre_projector_closes_shades:
   icon: mdi:roller-shade
-  name: Theatre Projector Closes Shades
+  name: Theatre - Projector Closes Shades
 
 theatre_projector_disables_bathroom_occupancy:
   icon: mdi:motion-sensor
-  name: Theatre Projector Disables Bathroom Occupancy
+  name: Theatre - Projector Disables Bathroom Occupancy
