@@ -14,8 +14,8 @@
       - action: light.turn_off
         target: { entity_id: light.outside_lights }
 
-- id: outside_lights_on_with_arrival
-  alias: Outside Lights - On with Arrival
+- id: outside_lights_on_w_arrival
+  alias: Outside Lights - On w/ Arrival
   mode: single
   triggers:
   - trigger: state
