@@ -14,7 +14,7 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: a57a0c1a456f8ba11102ca2f003c95e9
+      switch: 3712c852fbe82c0af857879df3fa1ce0
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.kitchen_shades_control_state

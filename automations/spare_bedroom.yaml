@@ -4,7 +4,7 @@
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
       switch: &bed_switch
-        70ee8763d0a78a902de6072fa6c21c50
+        6c36a5fbc6a154bb583f7ed96267c590
       double_tap: true
       paddle_hold: true
       subjects: light.spare_bedroom_lights
@@ -14,7 +14,7 @@
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
       switch: &shade_switch
-        e6792db4d8773b0c8a01a137c7b94942
+        a97d50d874a3e974485a0cd930915bae
       double_tap: true
       paddle_hold: true
       subjects: light.spare_bedroom_lights

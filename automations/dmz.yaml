@@ -3,7 +3,7 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: dc2cf8a30da5985305a82e3e57e34c53
+      switch: cf22432d22d2328417247fd1da4534db
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.back_door_shade_a_control_state
@@ -14,7 +14,7 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: a99f61d9db1784e9cb99427f72f0b52e
+      switch: cf22432d22d2328417247fd1da4534db
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.back_door_shade_b_control_state

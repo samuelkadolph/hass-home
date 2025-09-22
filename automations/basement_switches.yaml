@@ -1,64 +1,64 @@
-- id: basement_shade_a_bulkhead_lights_switch_triple
-  alias: Basement Shade A - Bulkhead Lights Switch (Triple)
+- id: gym_shade_bulkhead_lights_switch_triple
+  alias: Gym Shade - Bulkhead Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: 599978ce5793007dea03c549a81e3c79
+      switch: 44ce279439d4b66a0419e22279b9250a
       paddle_taps: KeyPressed3x
       paddle_hold: false
-      state_variable: input_number.basement_shade_a_control_state
-      covers: cover.basement_shade_a
+      state_variable: input_number.gym_shade_control_state
+      covers: cover.gym_shade
 
-- id: basement_shade_a_gym_lights_switch_triple
-  alias: Basement Shade A - Gym Lights Switch (Triple)
+- id: gym_shade_gym_lights_switch_triple
+  alias: Gym Shade - Gym Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: a251d167b3d935e449ef7b5548ac4edd
+      switch: 13abc0441c41e9c10835c3d2e598853e
       paddle_taps: KeyPressed3x
       paddle_hold: false
-      state_variable: input_number.basement_shade_a_control_state
-      covers: cover.basement_shade_a
+      state_variable: input_number.gym_shade_control_state
+      covers: cover.gym_shade
 
-- id: basement_shade_b_lounge_lights_switch_triple
-  alias: Basement Shade B - Lounge Lights Switch (Triple)
+- id: lounge_shade_lounge_lights_switch_triple
+  alias: Lounge Shade - Lounge Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: 2fe3d55693fcd35a97d1ea38b937b5f6
+      switch: ff0e1aa831989df2c4a47ee24985c40a
       paddle_taps: KeyPressed3x
       paddle_hold: false
-      state_variable: input_number.basement_shade_a_control_state
-      covers: cover.basement_shade_b
+      state_variable: input_number.lounge_shade_control_state
+      covers: cover.lounge_shade
 
-- id: basement_shade_c_bar_lights_switch_triple
-  alias: Basement Shade C - Bar Lights Switch (Triple)
+- id: theatre_shade_bar_lights_switch_triple
+  alias: Theatre Shade - Bar Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: 53505b262caddacebdcd90bad2460c67
+      switch: 0d2ae925e4ede2fff7b97d2beda086bc
       paddle_taps: KeyPressed3x
       paddle_hold: false
-      state_variable: input_number.basement_shade_a_control_state
-      covers: cover.basement_shade_c
+      state_variable: input_number.theatre_shade_control_state
+      covers: cover.threatre_shade
 
-- id: basement_shade_c_theatre_lights_switch_triple
-  alias: Basement Shade C - Theatre Lights Switch (Triple)
+- id: theatre_shade_theatre_lights_switch_triple
+  alias: Theatre Shade - Theatre Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: 535d2d0d2567643ac0ddd0b1c485a00a
+      switch: c1e3eb4e522240aba8a3b51d30a9dceb
       paddle_taps: KeyPressed3x
       paddle_hold: false
-      state_variable: input_number.basement_shade_a_control_state
-      covers: cover.basement_shade_c
+      state_variable: input_number.theatre_shade_control_state
+      covers: cover.threatre_shade
 
 - id: basement_shades_tbd_lights_switch_triple
   alias: Basement Shades - TBD Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
-      switch: 051d79dabdf6302147b22a7125f489ab
+      switch: cc08f6971551f030e31cfec42210075b
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.basement_shades_control_state

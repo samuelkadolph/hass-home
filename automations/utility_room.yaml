@@ -3,7 +3,7 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_actions.yaml
     input:
-      switch: 196fc66f331c8b629743792c79d72516
+      switch: 98598700a74e882d59bcf1d0ffd9ce5c
       down_actions:
       - action: light.turn_off
         target:

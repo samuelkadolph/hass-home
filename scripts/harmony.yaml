@@ -5,6 +5,7 @@ harmony_living_room_off:
   sequence:
   - action: remote.turn_off
     target: { entity_id: remote.living_room }
+
 harmony_living_room_watch_shield:
   alias: Harmony - Living Room Watch Shield
   icon: mdi:remote-tv
@@ -21,6 +22,7 @@ harmony_office_off:
   sequence:
   - action: remote.turn_off
     target: { entity_id: remote.office }
+
 harmony_office_watch_shield:
   alias: Harmony - Office Watch Shield
   icon: mdi:remote-tv
@@ -46,6 +48,7 @@ harmony_theatre_off:
   sequence:
   - action: remote.turn_off
     target: { entity_id: remote.theatre }
+
 harmony_theatre_watch_shield:
   alias: Harmony - Theatre Watch Shield
   icon: mdi:remote-tv

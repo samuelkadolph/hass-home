@@ -1,0 +1,23 @@
+- id: alert_door_bar_freezer_door_ajar
+  alias: Alert (Door) - Bar  Freezer Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Bar Freezer
+      binary_sensors: sensor.bar_fridge_freezer_door
+
+- id: alert_door_bar_fridge_door_ajar
+  alias: Alert (Door) - Bar  Fridge Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Bar Fridge
+      binary_sensors: sensor.bar_fridge_refrigerator_door
+
+- id: alert_door_basement_freezer_door_ajar
+  alias: Alert (Door) - Basement Freezer Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Basement Freezer
+      binary_sensors: binary_sensor.basement_freezer_door_sensor_window_door_is_open

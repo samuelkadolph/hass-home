@@ -12,7 +12,7 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
-      switch: 24425c7636ae955ad8bcec903cd323b8
+      switch: 4e1a97e407a9f5d6ee3717abbfafc4b8
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.garage_door_control_state

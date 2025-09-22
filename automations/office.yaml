@@ -22,12 +22,12 @@
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
       switch: &office_shade_switch
-        9c842e4e183b8c0983dc86c6e5486b4d
+        377491888ebce3477efd3943614694b6
       paddle_taps: KeyPressed2x
       paddle_hold: false
       state_variable: input_number.office_shade_a_control_state
-      covers:
-      - cover.office_shade_a
+      covers: cover.office_shade_a
+
 - id: office_shade_b_shade_switch_triple
   alias: Office Shade B - Shade Switch (Triple)
   use_blueprint:
@@ -37,8 +37,8 @@
       paddle_taps: KeyPressed3x
       paddle_hold: false
       state_variable: input_number.office_shade_b_control_state
-      covers:
-      - cover.office_shade_b
+      covers: cover.office_shade_b
+
 - id: office_shades_close_open
   alias: Office Shades - Close & Open
   use_blueprint:
@@ -58,6 +58,7 @@
       second_actions:
       - action: cover.open_cover
         target: { entity_id: cover.office_shades }
+
 - id: office_shades_shade_switch_single
   alias: Office Shades - Shade Switch (Single)
   use_blueprint:
@@ -65,5 +66,4 @@
     input:
       switch: *office_shade_switch
       state_variable: input_number.office_shades_control_state
-      covers:
-      - cover.office_shades
+      covers: cover.office_shades

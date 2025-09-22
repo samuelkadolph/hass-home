@@ -4,10 +4,11 @@
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
       switch: &nook_switch
-        03993ec59ce020155be44f997fd62d81
+        dd3384ec26ab7f0a6b263cbaa2819949
       double_tap: true
       paddle_hold: true
       subjects: light.bookshelf_lights
+
 - id: bookshelf_lights_on_off
   alias: Bookshelf Lights - On & Off
   use_blueprint:
@@ -23,6 +24,7 @@
       second_actions:
       - action: light.turn_off
         target: { entity_id: light.bookshelf_lights }
+
 - id: bookshelf_lights_on_w_arrival
   alias: Bookshelf Lights - On w/ Arrival
   mode: single
@@ -52,6 +54,7 @@
       second_actions:
       - action: cover.open_cover
         target: { entity_id: cover.nook_shade }
+
 - id: nook_shade_nook_switch_single
   alias: Nook Shade - Nook Switch (Single)
   use_blueprint:
