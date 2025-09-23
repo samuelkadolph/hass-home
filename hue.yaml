@@ -1,10 +1,55 @@
-host_ip: 10.4.16.60
-advertise_ip: 10.4.16.60
+host_ip: 10.4.16.53
+advertise_ip: 10.4.16.53
 advertise_port: 8300
 
 expose_by_default: false
 
 entities:
+  # Den
+  fan.den_fan:
+    hidden: false
+  light.den_fan_lights:
+    hidden: false
+  light.den_lamps:
+    hidden: false
+  light.den_lights:
+    hidden: false
+
+  # Guest Bedroom
+  fan.guest_bedroom_fan:
+    hidden: false
+  light.guest_bedroom_lights:
+    hidden: false
+
+  # Living Room
+  # fan.living_room_fan:
+  #   hidden: false
+  fan.living_room_dyson:
+    hidden: false
+  light.family_room_lights:
+    hidden: false
+  light.living_room_lights:
+    hidden: false
+
+  # Master Bedroom
+  fan.master_bedroom_fan:
+    hidden: false
+  # fan.master_bedroom_pedestal_fan:
+  #   hidden: false
+  light.master_bedroom_fan_lights:
+    hidden: false
+  light.master_bedroom_lights:
+    hidden: false
+
+  # Office
+  fan.office_fan:
+    hidden: false
+  light.office_lights:
+    hidden: false
+  light.workbench_lights:
+    hidden: false
+
+  # Theatre
   fan.theatre_dyson:
     hidden: false
   light.basement_lights:
@@ -15,42 +60,3 @@ entities:
     hidden: false
   # switch.lighthouses:
   #   hidden: false
-
-  fan.den_fan:
-    hidden: false
-  light.den_fan_lights:
-    hidden: false
-  light.den_lamps:
-    hidden: false
-  light.den_lights:
-    hidden: false
-
-  fan.guest_bedroom_fan:
-    hidden: false
-  light.guest_bedroom_lights:
-    hidden: false
-
-  fan.master_bedroom_fan:
-    hidden: false
-  # fan.master_bedroom_pedestal_fan:
-  #   hidden: false
-  light.master_bedroom_fan_lights:
-    hidden: false
-  light.master_bedroom_lights:
-    hidden: false
-
-  # fan.living_room_fan:
-  #   hidden: false
-  fan.living_room_dyson:
-    hidden: false
-  light.family_room_lights:
-    hidden: false
-  light.living_room_lights:
-    hidden: false
-
-  fan.office_fan:
-    hidden: false
-  light.office_lights:
-    hidden: false
-  light.workbench_lights:
-    hidden: false
