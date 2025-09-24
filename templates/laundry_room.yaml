@@ -1,0 +1,45 @@
+- sensor:
+  - name: Laundry Room - Washer State
+    unique_id: laundry_room_washer_state
+    icon: mdi:washing-machine
+    state: >
+      {% if states("sensor.washer_job_state") in ["finish", "none", "unavailable"] -%}
+        Off
+      {%- else -%}
+        {{ states("sensor.washer_job_state") | title }}
+      {%- endif %}
+    attributes:
+      time_left: >
+        {% if states("sensor.washer_completion_time") != "unavailable" -%}
+          {% set seconds = (as_datetime(states("sensor.washer_completion_time")) - now()).seconds -%}
+          {%- if seconds >= 7200 -%}
+            {{ int(seconds / 3600 * 10) / 10 }} hours
+          {%- elif seconds >= 120 -%}
+            {{ int(seconds / 60) }} minutes
+          {%- else -%}
+            {{ seconds }} seconds
+          {%- endif %}
+        {%- endif %}
+
+- sensor:
+  - name: Laundry Room - Dryer State
+    unique_id: laundry_room_dryer_state
+    icon: mdi:tumble-dryer
+    state: >
+      {% if states("sensor.dryer_job_state") in ["finished", "none", "unavailable"] -%}
+        Off
+      {%- else -%}
+        {{ states("sensor.dryer_job_state") | title }}
+      {%- endif %}
+    attributes:
+      time_left: >
+        {% if states("sensor.dryer_completion_time") != "unavailable" -%}
+          {% set seconds = (as_datetime(states("sensor.dryer_completion_time")) - now()).seconds -%}
+          {%- if seconds >= 7200 -%}
+            {{ int(seconds / 3600 * 10) / 10 }} hours
+          {%- elif seconds >= 120 -%}
+            {{ int(seconds / 60) }} minutes
+          {%- else -%}
+            {{ seconds }} seconds
+          {%- endif %}
+        {%- endif %}
