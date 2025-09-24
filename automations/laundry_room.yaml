@@ -1,3 +1,13 @@
+- id: laundry_room_fountain_on_04_00
+  alias: Laundry Room Fountain - On @ 04:00
+  mode: single
+  triggers:
+  - trigger: time
+    at: '04:00:00'
+  actions:
+  - action: switch.turn_on
+    target: { entity_id: switch.laundry_room_fountain }
+
 - id: laundry_room_lights_motion
   alias: Laundry Room Lights - Motion
   use_blueprint:

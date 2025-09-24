@@ -1,13 +1,12 @@
-- id: fountains_on_04_00
-  alias: Fountains - On @ 04:00
+- id: ktichen_fountain_on_04_00
+  alias: Kitchen Fountain - On @ 04:00
   mode: single
   triggers:
   - trigger: time
     at: '04:00:00'
   actions:
   - action: switch.turn_on
-    target:
-      entity_id: '{{ states.switch | selectattr("entity_id", "search", "fountain$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+    target: { entity_id: switch.kitchen_fountain }
 
 - id: kitchen_shades_counter_lights_switch_triple
   alias: Kitchen Shades - Counter Lights Switch (Triple)
