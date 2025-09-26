@@ -1,4 +1,5 @@
 sleep_good_night_arms_alarm_away:
   name: Sleep - Good Night Arms Alarm Away
-sleep_good_night_arms_alarm_stay:
-  name: Sleep - Good Night Arms Alarm Stay
+
+sleep_good_night_arms_alarm_home:
+  name: Sleep - Good Night Arms Alarm Home

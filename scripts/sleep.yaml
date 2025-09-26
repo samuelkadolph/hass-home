@@ -69,6 +69,12 @@ sleep_good_night:
         - light.master_bedroom_fan_lights
         - light.master_bedroom_lights
     - if:
+      - '{{ is_state("person.sasha_keller", "home") }}'
+      then:
+      - action: cover.set_position
+        data: { percentage: 10 }
+        target: { entity_id: cover.master_bedroom_shade_a }
+    - if:
       - '{{ is_state("person.samuel_kadolph", "home") }}'
       then:
       - action: fan.set_percentage
@@ -76,19 +82,19 @@ sleep_good_night:
         target: { entity_id: fan.master_bedroom_pedestal_fan }
         enabled: false
     - if:
-      - '{{ is_state("binary_sensor.armed_state", "on") }}'
+      - '{{ is_state("alarm_control_panel.konnected_alarm", "disarmed") }}'
       then:
-      - if:
-        - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_stay", "on") }}'
-        then:
-        - action: switch.turn_on
-          target: { entity_id: switch.arm_stay }
-        else:
-        - if:
+      - choose:
+        - conditions:
+          - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_home", "on") }}'
+          sequence:
+          - action: alarm_control_panel.alarm_arm_home
+            target: { entity_id: alarm_control_panel.konnected_alarm }
+        - conditions:
           - '{{ is_state("input_boolean.sleep_good_night_arms_alarm_away", "on") }}'
-          then:
-          - action: switch.turn_on
-            target: { entity_id: switch.arm_away }
+          sequence:
+          - action: alarm_control_panel.alarm_arm_away
+            target: { entity_id: alarm_control_panel.konnected_alarm }
 
 sleep_preheat_bed:
   alias: Sleep - Preheat Bed
