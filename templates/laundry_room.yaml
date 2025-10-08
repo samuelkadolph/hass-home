@@ -26,8 +26,8 @@
           {%- else -%}
             {{ seconds }} seconds
           {%- endif %}
+          {% if delta.days < 0 %}{{ " ago" }}{% endif %}
         {%- endif -%}
-        {% if delta.days < 0 %}{{ " ago" }}{% endif %}
 
 - sensor:
   - name: Laundry Room - Dryer State
@@ -57,5 +57,5 @@
           {%- else -%}
             {{ seconds }} seconds
           {%- endif %}
+          {% if delta.days < 0 %}{{ " ago" }}{% endif %}
         {%- endif -%}
-        {% if delta.days < 0 %}{{ " ago" }}{% endif %}
