@@ -1,0 +1,41 @@
+- name: "Garage Door"
+  port: 47100
+  mode: accessory
+  filter: { include_entities: cover.garage_door }
+  entity_config: { cover.garage_door: { name: "Garage Door" } }
+
+- name: "Back Door Lock Control"
+  port: 47101
+  mode: accessory
+  filter: { include_entities: input_boolean.homekit_lock_back_door_control }
+  entity_config: { input_boolean.homekit_lock_back_door_control: { name: "Back Door Lock Control" } }
+
+- name: "Back Door Lock State"
+  port: 47102
+  mode: accessory
+  filter: { include_entities: input_boolean.homekit_lock_back_door_state }
+  entity_config: { input_boolean.homekit_lock_back_door_state: { name: "Back Door Lock State" } }
+
+- name: "Front Door Lock Control"
+  port: 47103
+  mode: accessory
+  filter: { include_entities: input_boolean.homekit_lock_front_door_control }
+  entity_config: { input_boolean.homekit_lock_front_door_control: { name: "Front Door Lock Control" } }
+
+- name: "Front Door Lock State"
+  port: 47104
+  mode: accessory
+  filter: { include_entities: input_boolean.homekit_lock_front_door_state }
+  entity_config: { input_boolean.homekit_lock_front_door_state: { name: "Front Door Lock State" } }
+
+- name: "Side Door Lock Control"
+  port: 47105
+  mode: accessory
+  filter: { include_entities: input_boolean.homekit_lock_side_door_control }
+  entity_config: { input_boolean.homekit_lock_side_door_control: { name: "Side Door Lock Control" } }
+
+- name: "Side Door Lock State"
+  port: 47106
+  mode: accessory
+  filter: { include_entities: input_boolean.homekit_lock_side_door_state }
+  entity_config: { input_boolean.homekit_lock_side_door_state: { name: "Side Door Lock State" } }

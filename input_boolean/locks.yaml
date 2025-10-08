@@ -1,0 +1,17 @@
+homekit_lock_back_door_control:
+  name: HomeKit Lock - Back Door Control
+
+homekit_lock_back_door_state:
+  name: HomeKit Lock - Back Door State
+
+homekit_lock_front_door_control:
+  name: HomeKit Lock - Front Door Control
+
+homekit_lock_front_door_state:
+  name: HomeKit Lock - Front Door State
+
+homekit_lock_side_door_control:
+  name: HomeKit Lock - Side Door Control
+
+homekit_lock_side_door_state:
+  name: HomeKit Lock - Side Door State
