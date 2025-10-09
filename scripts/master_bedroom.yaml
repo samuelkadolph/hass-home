@@ -1,3 +1,45 @@
+master_bedroom_close_shades:
+  alias: Master Bedroom - Close Shades
+  icon: mdi:roller-shade-closed
+  mode: single
+  sequence:
+  - parallel:
+    - if:
+      - '{{ is_state("binary_sensor.master_bedroom_window_a_sensor_window_door_is_open", "off") }}'
+      then:
+      - action: cover.close_cover
+        target: { entity_id: cover.master_bedroom_shdade_a }
+    - if:
+      - '{{ is_state("binary_sensor.master_bedroom_window_b_sensor_window_door_is_open", "off") }}'
+      then:
+      - action: cover.close_cover
+        target: { entity_id: cover.master_bedroom_shdade_b }
+
+master_bedroom_set_shades:
+  alias: Master Bedroom - Set Shades
+  icon: mdi:roller-shade-closed
+  mode: single
+  fields:
+    position:
+      name: Position
+      description: Target position.
+      required: true
+      selector: { number: { min: 0, max: 100 } }
+  sequence:
+  - parallel:
+    - if:
+      - '{{ is_state("binary_sensor.master_bedroom_window_a_sensor_window_door_is_open", "off") }}'
+      then:
+      - action: cover.set_cover_position
+        data: { position: '{{ position }}' }
+        target: { entity_id: cover.master_bedroom_shade_a }
+    - if:
+      - '{{ is_state("binary_sensor.master_bedroom_window_b_sensor_window_door_is_open", "off") }}'
+      then:
+      - action: cover.set_cover_position
+        data: { position: '{{ position }}' }
+        target: { entity_id: cover.master_bedroom_shade_b }
+
 master_bedroom_turn_off:
   alias: Master Bedroom - Turn Off
   icon: mdi:power-off

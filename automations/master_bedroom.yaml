@@ -36,9 +36,8 @@
       first_conditions:
       - '{{ state_attr("cover.master_bedroom_shades", "current_position") > float(states("sensor.shades_close_percent")) }}'
       first_actions:
-      - action: cover.set_cover_position
+      - action: script.master_bedroom_set_shades
         data: { position: '{{ states("sensor.shades_close_percent") }}' }
-        target: { entity_id: cover.master_bedroom_shades }
       second_trigger: time
       second_time_helper: input_datetime.master_bedroom_shades_first_open
       second_conditions:
