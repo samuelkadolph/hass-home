@@ -22,11 +22,10 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
+      covers: cover.laundry_room_shade
       switch: aae6adcd021b82caa28dd808ef3ecf20
       paddle_taps: KeyPressed3x
-      paddle_hold: false
       state_variable: input_number.laundry_room_shade_control_state
-      covers: cover.laundry_room_shade
 
 - id: laundry_room_shade_open
   alias: Laundry Room Shade - Open

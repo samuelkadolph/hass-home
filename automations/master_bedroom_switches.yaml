@@ -25,8 +25,7 @@
     input:
       controller: *left_controller
       key: '001'
-      subjects:
-      - light.master_bedroom_fan_lights
+      subjects: light.master_bedroom_fan_lights
 
 - id: master_bedroom_fan_lights_right_controller_mid_left
   alias: Master Bedroom Fan Lights - Right Controller (Mid Left)
@@ -67,28 +66,27 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen32_covers.yaml
     input:
+      covers: cover.master_bedroom_shades
       controller: *left_controller
       key: '002'
       state_variable: input_number.master_bedroom_shades_control_state
-      covers: cover.master_bedroom_shades
 
 - id: master_bedroom_shades_lights_switch_triple
   alias: Master Bedroom Shades - Lights Switch (Triple)
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
+      covers: cover.master_bedroom_shades
       switch: 10bb74f9713becbe9c50472fed4c3fa2
       paddle_taps: KeyPressed3x
-      paddle_hold: false
       state_variable: input_number.master_bedroom_shades_control_state
-      covers: cover.master_bedroom_shades
 
 - id: master_bedroom_shades_right_controller_mid_right
   alias: Master Bedroom Shades - Right Controller (Mid Right)
   use_blueprint:
     path: samuelkadolph/zooz_zen32_covers.yaml
     input:
+      covers: cover.master_bedroom_shades
       controller: *right_controller
       key: '002'
       state_variable: input_number.master_bedroom_shades_control_state
-      covers: cover.master_bedroom_shades

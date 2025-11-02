@@ -19,6 +19,6 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
+      covers: cover.guest_bedroom_shade
       switch: a4630bfc13f6ab6db557839fc347ca3c
       state_variable: input_number.guest_bedroom_shade_control_state
-      covers: cover.guest_bedroom_shade

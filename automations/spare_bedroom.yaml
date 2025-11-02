@@ -3,21 +3,20 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
+      <<: &spare_bedroom_lights
+        subjects: light.spare_bedroom_lights
+        double_tap: true
+        paddle_hold: true
       switch: &bed_switch
         6c36a5fbc6a154bb583f7ed96267c590
-      double_tap: true
-      paddle_hold: true
-      subjects: light.spare_bedroom_lights
 - id: spare_bedroom_lights_shade_switch_single
   alias: Spare Bedroom Lights - Shade Switch (Single)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_lights.yaml
     input:
+      <<: *spare_bedroom_lights
       switch: &shade_switch
         a97d50d874a3e974485a0cd930915bae
-      double_tap: true
-      paddle_hold: true
-      subjects: light.spare_bedroom_lights
 
 - id: spare_bedroom_shade_open
   alias: Spare Bedroom Shade - Open
@@ -35,18 +34,15 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
+      <<: &spare_bedroom_shade
+        covers: cover.spare_bedroom_shade
+        paddle_taps: KeyPressed3x
+        state_variable: input_number.spare_bedroom_shade_control_state
       switch: *bed_switch
-      paddle_taps: KeyPressed3x
-      paddle_hold: false
-      state_variable: input_number.spare_bedroom_shade_control_state
-      covers: cover.spare_bedroom_shade
 - id: spare_bedroom_shade_shade_switch_triple
   alias: Spare Bedroom Shade - Shade Switch (Triple)
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
+      <<: *spare_bedroom_shade
       switch: *shade_switch
-      paddle_taps: KeyPressed3x
-      paddle_hold: false
-      state_variable: input_number.spare_bedroom_shade_control_state
-      covers: cover.spare_bedroom_shade

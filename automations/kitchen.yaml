@@ -13,11 +13,10 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
+      covers: cover.kitchen_shades
       switch: 3712c852fbe82c0af857879df3fa1ce0
       paddle_taps: KeyPressed3x
-      paddle_hold: false
       state_variable: input_number.kitchen_shades_control_state
-      covers: cover.kitchen_shades
 
 - id: toaster_oven_off_04_00
   alias: Toaster Oven - Off @ 04:00

@@ -20,8 +20,7 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
+      covers: cover.living_room_shades
       switch: 9bb418e4bbe6c04ca290e0caa7bc972c
       paddle_taps: KeyPressed3x
-      paddle_hold: false
       state_variable: input_number.living_room_shades_control_state
-      covers: cover.living_room_shades

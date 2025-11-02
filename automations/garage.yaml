@@ -12,11 +12,10 @@
   use_blueprint:
     path: samuelkadolph/zooz_zen7677_covers.yaml
     input:
+      covers: cover.garage_door
       switch: 4e1a97e407a9f5d6ee3717abbfafc4b8
       paddle_taps: KeyPressed3x
-      paddle_hold: false
       state_variable: input_number.garage_door_control_state
-      covers: cover.garage_door
 
 - id: garage_door_lights_garage_door_opened
   alias: Garage Door Lights - Garage Door Opened

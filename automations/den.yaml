@@ -3,11 +3,10 @@
   use_blueprint:
     path: samuelkadolph/homeseer_wx300_covers.yaml
     input:
+      covers: cover.den_shades
       switch: c1627661e431b15c832220eed2c26021
       paddle_taps: KeyPressed3x
-      paddle_hold: false
       state_variable: input_number.den_shades_control_state
-      covers: cover.den_shades
 
 - id: den_shades_open
   alias: Den Shades - Open
