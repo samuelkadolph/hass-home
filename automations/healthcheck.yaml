@@ -1,0 +1,10 @@
+- id: healthcheck
+  description: "healthcheck"
+  mode: single
+  triggers:
+  - trigger: time_pattern
+    hours: "*"
+    minutes: "*"
+    seconds: "0"
+  actions:
+  - action: shell_command.healthcheck
