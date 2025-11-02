@@ -2,7 +2,10 @@
   port: 47100
   mode: accessory
   filter: { include_entities: cover.garage_door }
-  entity_config: { cover.garage_door: { name: "Garage Door" } }
+  entity_config:
+    cover.garage_door:
+      name: "Garage Door"
+      linked_obstruction_sensor: binary_sensor.garage_door_obstruction
 
 - name: "Back Door Lock Control"
   port: 47101
