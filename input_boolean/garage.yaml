@@ -1,2 +1,3 @@
 garage_door_closing_failed_alert:
-  name: Garage Door - Closing Failed Alert Enabled
+  icon: mdi:garage-alert-variant
+  name: Garage Door - Closing Failed Alert
