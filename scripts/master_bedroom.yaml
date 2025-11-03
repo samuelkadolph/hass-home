@@ -130,11 +130,11 @@ master_bedroom_air_night:
       - if:
         - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat", "on") }}'
         - '{{ is_state("person.sasha_keller", "home") }}'
-        - '{{ is_state("switch.master_bed_side_b_power", "off") }}'
+        - '{{ is_state("switch.master_bed_switch_b", "off") }}'
         then:
         - action: select.select_option
           data: { option: '{{ int(states("input_number.master_bedroom_air_night_bed_heat")) }}' }
-          target: { entity_id: select.master_bed_side_b_heat_level }
+          target: { entity_id: select.master_bed_level_b }
     - action: zwave_js.set_config_parameter
       data: { parameter: 3, value: 2 }
       target: { entity_id: switch.master_bathroom_toilet_lights }

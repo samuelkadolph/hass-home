@@ -67,7 +67,7 @@ sleep_good_night:
       - '{{ is_state("person.sasha_keller", "home") }}'
       then:
       - action: cover.set_cover_position
-        data: { position: 10 }
+        data: { position: 6 }
         target: { entity_id: cover.master_bedroom_shade_a }
     - if:
       - '{{ is_state("person.samuel_kadolph", "home") }}'
@@ -98,4 +98,4 @@ sleep_preheat_bed:
   sequence:
   - action: select.select_option
     data: { option: '{{ int(states("input_number.master_bedroom_air_night_bed_heat")) }}' }
-    target: { entity_id: select.master_bed_side_b_heat_level }
+    target: { entity_id: select.master_bed_level_b }
