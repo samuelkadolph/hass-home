@@ -1,5 +1,5 @@
 - id: healthcheck
-  description: "healthcheck"
+  alias: Healthcheck
   mode: single
   triggers:
   - trigger: time_pattern
