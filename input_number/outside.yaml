@@ -1,0 +1,8 @@
+outside_lights_arrival_on_time:
+  name: Outside Lights - Arrival On Time
+  icon: mdi:home-lightbulb
+  max: 15
+  min: 1
+  mode: slider
+  step: 1
+  unit_of_measurement: m

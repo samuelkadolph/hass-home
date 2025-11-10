@@ -26,8 +26,6 @@ garage_turn_off:
       - action: script.midea_turn_off
         data:
           target: { entity_id: climate.garage_air }
-      # - action: climate.turn_off
-      #   target: { entity_id: climate.garage_air }
     - if:
       - '{{ not is_state("fan.garage_fan", "off") }}'
       then:
@@ -40,35 +38,34 @@ garage_turn_on:
   mode: single
   sequence:
   - parallel:
-    - if:
-      - '{{ float(states("sensor.garage_air_indoor_temperature")) < 15.0 }}'
-      - '{{ float(states("sensor.garage_sensor_air_temperature")) < 15.0 }}'
-      then:
-      - action: script.midea_set_temperature
-        data:
-          data: { hvac_mode: heat, temperature: '20.0' }
-          target: { entity_id: climate.garage_air }
-      # - action: climate.set_temperature
-      #   data: { hvac_mode: heat, temperature: '20.0' }
-      #   target: { entity_id: climate.garage_air }
-      - action: fan.turn_on
-        target: { entity_id: fan.garage_fan }
-      - action: script.midea_set_preset_mode
-        data:
-          data: { preset_mode: boost }
-          target: { entity_id: climate.garage_air }
-      # - action: climate.set_preset_mode
-      #   data: { preset_mode: boost }
-      #   target: { entity_id: climate.garage_air }
-    - if:
-      - '{{ float(states("sensor.garage_air_indoor_temperature")) > 25.0 }}'
-      - '{{ float(states("sensor.garage_sensor_air_temperature")) > 25.0 }}'
-      then:
-      - action: climate.set_temperature
-        data: { hvac_mode: cool, temperature: '22.0' }
-        target: { entity_id: climate.garage_air }
-      - action: fan.turn_on
-        target: { entity_id: fan.garage_fan }
-      - action: climate.set_preset_mode
-        data: { preset_mode: boost }
-        target: { entity_id: climate.garage_air }
+    - choose:
+      - conditions:
+        - '{{ float(states("sensor.garage_air_indoor_temperature")) <= float(states("input_number.garage_air_heat_threshold")) }}'
+        - '{{ float(states("sensor.garage_sensor_air_temperature")) <= float(states("input_number.garage_air_heat_threshold")) }}'
+        sequence:
+        - action: script.midea_set_temperature
+          data:
+            data: { hvac_mode: heat, temperature: '{{ states("input_number.garage_air_heat_temperature") }}' }
+            target: { entity_id: climate.garage_air }
+        - action: fan.turn_on
+          target: { entity_id: fan.garage_fan }
+        - delay: { seconds: 10 }
+        - action: script.midea_set_preset_mode
+          data:
+            data: { preset_mode: boost }
+            target: { entity_id: climate.garage_air }
+      - conditions:
+        - '{{ float(states("sensor.garage_air_indoor_temperature")) >= float(states("input_number.garage_air_cool_threshold")) }}'
+        - '{{ float(states("sensor.garage_sensor_air_temperature")) >= float(states("input_number.garage_air_cool_threshold")) }}'
+        sequence:
+        - action: script.midea_set_temperature
+          data:
+            data: { hvac_mode: cool, temperature: '{{ states("input_number.garage_air_cool_temperature") }}' }
+            target: { entity_id: climate.garage_air }
+        - action: fan.turn_on
+          target: { entity_id: fan.garage_fan }
+        - delay: { seconds: 10 }
+        - action: script.midea_set_preset_mode
+          data:
+            data: { preset_mode: boost }
+            target: { entity_id: climate.garage_air }
