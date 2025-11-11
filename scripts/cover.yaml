@@ -37,4 +37,4 @@ cover_slowly_open:
         target: { entity_id: '{{ covers }}' }
         data: { position: '{{ repeat.index }}' }
       - delay:
-          seconds: '{{ (time.hours * 3600 + time.minutes * 60 + time.seconds) / open_percent }}'
+          seconds: '{{ ((time.hours | default(0)) * 3600 + (time.minutes | default(0)) * 60 + (time.seconds | default(0))) / open_percent }}'
