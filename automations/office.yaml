@@ -46,8 +46,11 @@
       first_conditions:
       - condition: state
         entity_id:
+        - binary_sensor.office_closet_lights_motion_detection
         - binary_sensor.office_fan_occupancy
         - binary_sensor.office_sensor_motion_detection
+        - light.office_lights
+        - light.workbench_lights
         match: any
         state: 'on'
       first_actions:
