@@ -8,12 +8,12 @@ master_bedroom_close_shades:
       - '{{ is_state("binary_sensor.master_bedroom_window_a_sensor_window_door_is_open", "off") }}'
       then:
       - action: cover.close_cover
-        target: { entity_id: cover.master_bedroom_shdade_a }
+        target: { entity_id: cover.master_bedroom_shade_a }
     - if:
       - '{{ is_state("binary_sensor.master_bedroom_window_b_sensor_window_door_is_open", "off") }}'
       then:
       - action: cover.close_cover
-        target: { entity_id: cover.master_bedroom_shdade_b }
+        target: { entity_id: cover.master_bedroom_shade_b }
 
 master_bedroom_set_shades:
   alias: Master Bedroom - Set Shades
@@ -51,8 +51,6 @@ master_bedroom_turn_off:
       then:
       - action: script.midea_turn_off
         data: { target: { entity_id: climate.master_bedroom_air } }
-      # - action: climate.turn_off
-      #   target: { entity_id: climate.master_bedroom_air }
 
 master_bedroom_turn_on:
   alias: Master Bedroom - Turn On
@@ -69,7 +67,7 @@ master_bedroom_air_day:
   - parallel:
     - if:
       - '{{ not is_state("climate.master_bedroom_air", "off") }}'
-      - '{{ is_state_attr("climate.master_bedroom_air", "temperature", float(states("input_number.master_bedroom_air_night_temperature"))) }}'
+      - '{{ state_attr("climate.master_bedroom_air", "temperature") <= float(states("input_number.master_bedroom_air_night_temperature")) }}'
       then:
       - action: weather.get_forecasts
         data: { type: hourly }
@@ -84,16 +82,9 @@ master_bedroom_air_day:
               hvac_mode: cool
               temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
             target: { entity_id: climate.master_bedroom_air }
-        # - action: climate.set_temperature
-        #   data:
-        #     hvac_mode: cool
-        #     temperature: '{{ states("input_number.master_bedroom_air_day_temperature") }}'
-        #   target: { entity_id: climate.master_bedroom_air }
         else:
         - action: script.midea_turn_off
           data: { target: { entity_id: climate.master_bedroom_air } }
-        # - action: climate.turn_off
-        #   target: { entity_id: climate.master_bedroom_air }
     - action: zwave_js.set_config_parameter
       data: { parameter: 3, value: 3 }
       target: { entity_id: switch.master_bathroom_toilet_lights }
@@ -109,7 +100,7 @@ master_bedroom_air_night:
       - condition: or
         conditions:
         - '{{ is_state("climate.master_bedroom_air", "off") }}'
-        - '{{ not is_state_attr("climate.master_bedroom_air", "temperature", float(states("input_number.master_bedroom_air_night_temperature"))) }}'
+        - '{{ state_attr("climate.master_bedroom_air", "temperature") > float(states("input_number.master_bedroom_air_night_temperature")) }}'
       then:
       - action: script.midea_set_temperature
         data:
@@ -117,11 +108,6 @@ master_bedroom_air_night:
             hvac_mode: cool
             temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
           target: { entity_id: climate.master_bedroom_air }
-      # - action: climate.set_temperature
-      #   data:
-      #     hvac_mode: cool
-      #     temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
-      #   target: { entity_id: climate.master_bedroom_air }
       - if:
         - '{{ is_state("fan.master_bedroom_fan", "off") }}'
         then:
