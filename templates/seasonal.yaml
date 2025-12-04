@@ -1,0 +1,21 @@
+- light:
+  - unique_id: christmas_lights
+    name: Christmas Lights
+    state: '{{ expand(label_entities("Christmas")) | selectattr("state", "eq", "on") | list | count > 0 }}'
+    turn_on:
+    - action: homeassistant.turn_on
+      target: { label_id: christmas }
+    turn_off:
+    - action: homeassistant.turn_off
+      target: { label_id: christmas }
+
+- light:
+  - unique_id: seasonal_lights
+    name: Seasonal Lights
+    state: '{{ expand(label_entities("Seasonal")) | selectattr("state", "eq", "on") | list | count > 0 }}'
+    turn_on:
+    - action: homeassistant.turn_on
+      target: { label_id: seasonal }
+    turn_off:
+    - action: homeassistant.turn_off
+      target: { label_id: seasonal }
