@@ -4,28 +4,28 @@ master_bedroom_air_day_temperature:
     mode: slider
     step: 0.5
     unit_of_measurement: °C
+  name: Master Bedroom Air - Day Temperature
   icon: mdi:snowflake-thermometer
   min: 16.0
-  name: Master Bedroom Air - Day Temperature
 
 master_bedroom_air_day_threshold:
   <<: *temperature
+  name: Master Bedroom Air - Day Threshold
   icon: mdi:sun-thermometer
   min: 10.0
-  name: Master Bedroom Air - Day Threshold
 
 master_bedroom_air_night_temperature:
   <<: *temperature
+  name: Master Bedroom Air - Night Temperature
   icon: mdi:snowflake-thermometer
   min: 16.0
-  name: Master Bedroom Air - Night Temperature
 
 master_bedroom_air_night_bed_heat:
+  name: Master Bedroom Air - Night Bed Heat
   icon: mdi:snowflake-thermometer
   max: 10
   min: 1
   mode: slider
-  name: Master Bedroom Air - Night Bed Heat
   step: 1
 
 master_bedroom_shades_first_open_percent:

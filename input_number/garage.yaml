@@ -22,19 +22,16 @@ garage_air_cool_threshold:
   <<: &threshold
     <<: *temperture_base
     max: 36.0
-    min: 16.0
+    min: 10.0
   name: Garage Air - Cool Threshold
   icon: mdi:snowflake-thermometer
-  min: 10.0
 
 garage_air_heat_temperature:
   <<: *temperture
   name: Garage Air - Heat Temperature
   icon: mdi:weather-sunny
-  min: 16.0
 
 garage_air_heat_threshold:
   <<: *threshold
   name: Garage Air - Heat Threshold
   icon: mdi:sun-thermometer
-  min: 10.0

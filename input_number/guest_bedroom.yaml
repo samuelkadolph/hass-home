@@ -1,8 +1,8 @@
 guest_bedroom_shade_open_percent:
+  name: Guest Bedroom Shade - Open Percent
   icon: mdi:roller-shade
   max: 100
   min: 1
   mode: slider
   step: 1
   unit_of_measurement: '%'
-  name: Guest Bedroom Shade - Open Percent

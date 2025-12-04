@@ -1,28 +1,28 @@
 shades_close_percent_temperature_threshold:
+  name: Shades - Close Percent Temperature Threshold
   icon: mdi:snowflake-thermometer
   max: 5.0
   min: -10.0
   mode: slider
-  name: Shades - Close Percent Temperature Threshold
   step: 0.5
   unit_of_measurement: °C
 
 shades_close_percent:
+  name: Shades - Close Percent
   icon: mdi:roller-shade
   max: 100
   min: 1
   mode: slider
-  name: Shades - Close Percent
   step: 1
   unit_of_measurement: '%'
 
 back_door_shade_a_control_state:
   <<: &shade_control
-    min: 0
+    icon: mdi:swap-vertical-bold
     max: 4
+    min: 0
     mode: box
     step: 1
-    icon: mdi:swap-vertical-bold
   name: Back Door Shade A Control State
 
 back_door_shade_b_control_state:

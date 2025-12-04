@@ -5,10 +5,10 @@ office_air_indoor_temperature_threshold:
     mode: slider
     step: 0.5
     unit_of_measurement: °C
-  icon: mdi:sun-thermometer
   name: Office Air - Indoor Temperature Threshold
+  icon: mdi:sun-thermometer
 
 office_air_outdoor_temperature_threshold:
   <<: *threshold
-  icon: mdi:sun-thermometer-outline
   name: Office Air - Outdoor Temperature Threshold
+  icon: mdi:sun-thermometer-outline
