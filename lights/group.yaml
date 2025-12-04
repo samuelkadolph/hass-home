@@ -1,6 +1,6 @@
 - platform: group
-  name: Basement Lights
   unique_id: basement_lights
+  name: Basement Lights
   entities:
   - light.bar_lights
   - light.bar_counter_lights
@@ -11,15 +11,15 @@
   - light.theatre_lights
 
 - platform: group
-  name: Bookshelf Lights
   unique_id: bookshelf_lights
+  name: Bookshelf Lights
   entities:
   - light.bookshelf_potlights
   - light.bookshelf_spotlights
 
 - platform: group
-  name: Bottom Floor Lights
   unique_id: bottom_floor_lights
+  name: Bottom Floor Lights
   entities:
   - light.bar_lights
   - light.bar_counter_lights
@@ -37,24 +37,24 @@
   - light.utility_room_lights
 
 - platform: group
-  name: Den Lamps
   unique_id: den_lamps
+  name: Den Lamps
   entities:
   - light.den_lamp_a
   - light.den_lamp_b
   - light.den_lamp_c
 
 - platform: group
-  name: Family Room Lights
   unique_id: family_room_lights
+  name: Family Room Lights
   entities:
   - light.dmz_lights
   - light.kitchen_ceiling_lights
   - light.living_room_lights
 
 - platform: group
-  name: Main Floor Lights
   unique_id: main_floor_lights
+  name: Main Floor Lights
   entities:
   - light.backyard_lights
   - light.den_fan_lights
@@ -74,16 +74,16 @@
   - light.powder_room_lights
 
 - platform: group
-  name: Outside Lights
   unique_id: outside_lights
+  name: Outside Lights
   entities:
   - light.porch_lights
   - light.side_door_lights
   - light.soffit_lights
 
 - platform: group
-  name: Second Floor Lights
   unique_id: second_floor_lights
+  name: Second Floor Lights
   entities:
   - light.bookshelf_lights
   - light.guest_bedroom_lights
@@ -100,8 +100,8 @@
   - light.workbench_lights
 
 - platform: group
-  name: Workbench Lights
   unique_id: workbench_lights
+  name: Workbench Lights
   entities:
   - light.workbench_light_a
   - light.workbench_light_b

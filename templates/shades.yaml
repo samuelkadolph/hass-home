@@ -7,13 +7,13 @@
     target: { entity_id: weather.home }
     response_variable: forecast
   sensor:
-  - name: Shades - Close Percent
-    unique_id: shades_close_percent
+  - unique_id: shades_close_percent
+    name: Shades - Close Percent
     state: '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min < float(states("input_number.shades_close_percent_temperature_threshold")) and states("input_number.shades_close_percent") or 0 }}'
 
 - sensor:
-  - name: Shades - Open Time
-    unique_id: shades_open_time
+  - unique_id: shades_open_time
+    name: Shades - Open Time
     device_class: timestamp
     state: >
       {% if now().month in [3,4,5,6,7,8,9,10,11] -%}
