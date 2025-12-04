@@ -1,81 +1,81 @@
 - platform: group
-  name: Back Door Shades
   unique_id: back_door_shades
+  name: Back Door Shades
   entities:
   - cover.back_door_shade_a
   - cover.back_door_shade_b
 
 - platform: group
-  name: Basement Shades
   unique_id: basement_shades
+  name: Basement Shades
   entities:
   - cover.gym_shade
   - cover.lounge_shade
   - cover.theatre_shade
 
 - platform: group
-  name: Big Den Shade
   unique_id: big_den_shade
+  name: Big Den Shade
   entities:
   - cover.den_shade_a
 
 - platform: group
-  name: Big Living Room Shades
   unique_id: big_living_room_shades
+  name: Big Living Room Shades
   entities:
   - cover.living_room_shade_c
   - cover.living_room_shade_d
 
 - platform: group
-  name: Big Office Shade
   unique_id: big_office_shade
+  name: Big Office Shade
   entities:
   - cover.office_shade_a
 
 - platform: group
-  name: Den Shades
   unique_id: den_shades
+  name: Den Shades
   entities:
   - cover.den_shade_a
   - cover.den_shade_b
 
 - platform: group
-  name: Family Room Shades
   unique_id: family_room_shades
+  name: Family Room Shades
   entities:
   - cover.back_door_shades
   - cover.kitchen_shades
   - cover.living_room_shades
 
 - platform: group
-  name: Kitchen Shades
   unique_id: kitchen_shades
+  name: Kitchen Shades
   entities:
   - cover.kitchen_shade_a
   - cover.kitchen_shade_b
 
 - platform: group
-  name: Little Den Shade
   unique_id: little_den_shade
+  name: Little Den Shade
   entities:
   - cover.den_shade_b
 
 - platform: group
-  name: Little Living Room Shades
   unique_id: little_living_room_shades
+  name: Little Living Room Shades
   entities:
   - cover.living_room_shade_a
   - cover.living_room_shade_b
 
 - platform: group
-  name: Little Office Shade
   unique_id: little_office_shade
+  name: Little Office Shade
   entities:
   - cover.office_shade_b
 
 - platform: group
-  name: Living Room Shades
   unique_id: living_room_shades
+  name: Living Room Shades
   entities:
   - cover.living_room_shade_a
   - cover.living_room_shade_b
@@ -83,15 +83,15 @@
   - cover.living_room_shade_d
 
 - platform: group
-  name: Master Bedroom Shades
   unique_id: master_bedroom_shades
+  name: Master Bedroom Shades
   entities:
   - cover.master_bedroom_shade_a
   - cover.master_bedroom_shade_b
 
 - platform: group
-  name: Office Shades
   unique_id: office_shades
+  name: Office Shades
   entities:
   - cover.office_shade_a
   - cover.office_shade_b
