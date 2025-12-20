@@ -36,6 +36,7 @@
       unit_of_measurement: "°C"
       <<: &temperature_base
         device_class: temperature
+        state_class: measurement
         <<: *sensor_base
   - name: Basement Freezer Upper Temperature
     unique_id: basement_freezer_sensor_2_temperature

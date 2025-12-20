@@ -16,6 +16,7 @@
     default_entity_id: sensor.outside_sensor_humidity
     state_topic: "rtl_433/+/devices/Acurite-Tower/A/805/humidity"
     device_class: humidity
+    state_class: measurement
     unit_of_measurement: "%"
     <<: *sensor_base
   - name: "Outside Temperature"
@@ -23,5 +24,6 @@
     default_entity_id: sensor.outside_sensor_temperature
     state_topic: "rtl_433/+/devices/Acurite-Tower/A/805/temperature_C"
     device_class: temperature
+    state_class: measurement
     unit_of_measurement: "°C"
     <<: *sensor_base
