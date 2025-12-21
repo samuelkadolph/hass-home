@@ -8,8 +8,8 @@ garage_door_open_alert_time:
   unit_of_measurement: m
 
 garage_air_cool_temperature:
-  <<: &temperture
-    <<: &temperture_base
+  <<: &temperature
+    <<: &temperature_base
       mode: slider
       step: 0.5
       unit_of_measurement: °C
@@ -20,14 +20,14 @@ garage_air_cool_temperature:
 
 garage_air_cool_threshold:
   <<: &threshold
-    <<: *temperture_base
+    <<: *temperature_base
     max: 36.0
     min: 10.0
   name: Garage Air - Cool Threshold
   icon: mdi:snowflake-thermometer
 
 garage_air_heat_temperature:
-  <<: *temperture
+  <<: *temperature
   name: Garage Air - Heat Temperature
   icon: mdi:weather-sunny
 
