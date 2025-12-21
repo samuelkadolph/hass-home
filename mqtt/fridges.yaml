@@ -1,8 +1,8 @@
 - binary_sensor:
-  - name: "Basement Freezer Sensor 1 Battery"
-    unique_id: basement_freezer_sensor_1_battery
-    default_entity_id: binary_sensor.basement_freezer_sensor_1_battery
-    state_topic: "rtl_433/+/devices/LaCrosse-TX141THBv2/0/156/battery_ok"
+  - name: "Bar Freezer Sensor Battery"
+    unique_id: bar_freezer_sensor_battery
+    default_entity_id: binary_sensor.bar_freezer_sensor_battery
+    state_topic: "rtl_433/+/devices/Acurite-986/2F/52038/battery_ok"
     <<: &battery
       device_class: battery
       payload_off: 1
@@ -10,6 +10,17 @@
       <<: &sensor_base
         expire_after: 600
         force_update: true
+  - name: "Bar Fridge Sensor Battery"
+    unique_id: bar_fridge_sensor_battery
+    default_entity_id: binary_sensor.bar_fridge_sensor_battery
+    state_topic: "rtl_433/+/devices/Acurite-986/1R/51503/battery_ok"
+    <<: *battery
+
+  - name: "Basement Freezer Sensor 1 Battery"
+    unique_id: basement_freezer_sensor_1_battery
+    default_entity_id: binary_sensor.basement_freezer_sensor_1_battery
+    state_topic: "rtl_433/+/devices/LaCrosse-TX141THBv2/0/156/battery_ok"
+    <<: *battery
   - name: "Basement Freezer Sensor 2 Battery"
     unique_id: basement_freezer_sensor_2_battery
     default_entity_id: binary_sensor.basement_freezer_sensor_2_battery
@@ -28,31 +39,42 @@
     <<: *battery
 
 - sensor:
+  - name: Bar Freezer Temperature
+    unique_id: bar_freezer_sensor_temperature
+    default_entity_id: sensor.bar_freezer_sensor_temperature
+    state_topic: "rtl_433/+/devices/Acurite-986/2F/52038/temperature_F"
+    <<: &temperature_f
+      unit_of_measurement: "°F"
+      <<: &temperature_base
+        device_class: temperature
+        state_class: measurement
+        <<: *sensor_base
+  - name: Bar Fridge Temperature
+    unique_id: bar_fridge_sensor_temperature
+    default_entity_id: sensor.bar_fridge_sensor_temperature
+    state_topic: "rtl_433/+/devices/Acurite-986/1R/51503/temperature_F"
+    <<: *temperature_f
+
+  - name: Kitchen Freezer Temperature
+    unique_id: kitchen_freezer_sensor_temperature
+    default_entity_id: sensor.kitchen_freezer_sensor_temperature
+    state_topic: "rtl_433/+/devices/Acurite-515/AF/145/temperature_F"
+    <<: *temperature_f
+  - name: Kitchen Fridge Temperature
+    unique_id: kitchen_fridge_sensor_temperature
+    default_entity_id: sensor.kitchen_fridge_sensor_temperature
+    state_topic: "rtl_433/+/devices/Acurite-515/AR/10098/temperature_F"
+    <<: *temperature_f
+
   - name: Basement Freezer Lower Temperature
     unique_id: basement_freezer_sensor_1_temperature
     default_entity_id: sensor.basement_freezer_sensor_1_temperature
     state_topic: "rtl_433/+/devices/LaCrosse-TX141THBv2/0/156/temperature_C"
     <<: &temperature_c
       unit_of_measurement: "°C"
-      <<: &temperature_base
-        device_class: temperature
-        state_class: measurement
-        <<: *sensor_base
+      <<: *temperature_base
   - name: Basement Freezer Upper Temperature
     unique_id: basement_freezer_sensor_2_temperature
     default_entity_id: sensor.basement_freezer_sensor_2_temperature
     state_topic: "rtl_433/+/devices/LaCrosse-TX141THBv2/1/132/temperature_C"
     <<: *temperature_c
-
-  - name: Kitchen Freezer Temperature
-    unique_id: kitchen_freezer_sensor_temperature
-    default_entity_id: sensor.kitchen_freezer_sensor_temperature
-    state_topic: "rtl_433/+/devices/Acurite-515/AF/145/temperature_F"
-    <<: &temperature_f
-      <<: *temperature_base
-      unit_of_measurement: "°F"
-  - name: Kitchen Fridge Temperature
-    unique_id: kitchen_fridge_sensor_temperature
-    default_entity_id: sensor.kitchen_fridge_sensor_temperature
-    state_topic: "rtl_433/+/devices/Acurite-515/AR/10098/temperature_F"
-    <<: *temperature_f
