@@ -47,23 +47,11 @@ office_turn_on:
     - if:
       - '{{ is_state("binary_sensor.office_window_sensor_window_door_is_open", "off") }}'
       - '{{ is_state("climate.office_air", "off") }}'
-      - condition: or
-        conditions:
-        - '{{ float(state_attr("climate.office_air", "current_temperature")) > float(states("input_number.office_air_indoor_temperature_threshold")) }}'
-        - '{{ float(states("sensor.office_fan_temperature")) > float(states("input_number.office_air_indoor_temperature_threshold")) }}'
-        - '{{ float(states("sensor.office_sensor_air_temperature")) > float(states("input_number.office_air_indoor_temperature_threshold")) }}'
       then:
-      - action: weather.get_forecasts
-        data: { type: hourly }
-        target: { entity_id: weather.home }
-        response_variable: forecast
-      - if:
-        - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > float(states("input_number.office_air_outdoor_temperature_threshold")) }}'
-        then:
-        - action: script.midea_set_hvac_mode
-          data:
-            data: { hvac_mode: cool }
-            target: { entity_id: climate.office_air }
+      - action: script.midea_set_hvac_mode
+        data:
+          data: { hvac_mode: cool }
+          target: { entity_id: climate.office_air }
     - action: media_player.turn_on
       target: { entity_id: media_player.office_receiver }
     - action: switch.turn_on
