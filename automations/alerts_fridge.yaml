@@ -16,7 +16,7 @@
         upper_range: 0.0
         lower_range: -20.0
       <<: &default_notify
-        notify_action: notify.mobile_app_sak_iphone
+        notify_action: notify.default
 
 - id: alert_fridge_bar_fridge_door_ajar
   alias: Alert (Fridge) - Bar Fridge Door Ajar
