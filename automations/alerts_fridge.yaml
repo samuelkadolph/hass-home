@@ -1,0 +1,59 @@
+- id: alert_fridge_bar_freezer_door_ajar
+  alias: Alert (Fridge) - Bar Freezer Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Bar Freezer
+      binary_sensors: sensor.bar_fridge_freezer_door
+- id: alert_fridge_bar_freezer_temperature
+  alias: Alert (Fridge) - Bar Freezer Temperature
+  use_blueprint:
+    path: samuelkadolph/fridge_temperature_alert.yaml
+    input:
+      area: Bar Freezer
+      sensors: sensor.bar_freezer_sensor_temperature
+      <<: &freezer_range
+        upper_range: 0.0
+        lower_range: -20.0
+      <<: &default_notify
+        notify_action: notify.mobile_app_sak_iphone
+
+- id: alert_fridge_bar_fridge_door_ajar
+  alias: Alert (Fridge) - Bar Fridge Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Bar Fridge
+      binary_sensors: sensor.bar_fridge_refrigerator_door
+- id: alert_fridge_bar_fridge_temperature
+  alias: Alert (Fridge) - Bar Fridge Temperature
+  use_blueprint:
+    path: samuelkadolph/fridge_temperature_alert.yaml
+    input:
+      area: Bar Fridge
+      sensors: sensor.bar_fridge_sensor_temperature
+      <<: &fridge_range
+        upper_range: 8.0
+        lower_range: 1.0
+      <<: *default_notify
+
+- id: alert_fridge_basement_freezer_door_ajar
+  alias: Alert (Fridge) - Basement Freezer Door Ajar
+  use_blueprint:
+    path: samuelkadolph/door_ajar_alerts.yaml
+    input:
+      door: Basement Freezer
+      binary_sensors: binary_sensor.basement_freezer_door_sensor_window_door_is_open
+- id: alert_fridge_basement_freezer_temperature
+  alias: Alert (Fridge) - Basement Freezer Temperature
+  use_blueprint:
+    path: samuelkadolph/fridge_temperature_alert.yaml
+    input:
+      area: Basement Freezer
+      sensors:
+      - sensor.basement_freezer_sensor_1_temperature
+      - sensor.basement_freezer_sensor_2_temperature
+      <<: &deep_freeze_range
+        upper_range: -20.0
+        lower_range: -34.0
+      <<: *default_notify
