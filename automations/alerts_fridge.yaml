@@ -57,3 +57,23 @@
         upper_range: -20.0
         lower_range: -34.0
       <<: *default_notify
+
+- id: alert_fridge_kitchen_freezer_temperature
+  alias: Alert (Fridge) - Kitchen Freezer Temperature
+  use_blueprint:
+    path: samuelkadolph/fridge_temperature_alert.yaml
+    input:
+      area: Kitchen Freezer
+      sensors: sensor.kitchen_freezer_sensor_temperature
+      <<: *freezer_range
+      <<: *default_notify
+
+- id: alert_fridge_kitchen_fridge_temperature
+  alias: Alert (Fridge) - Kitchen Fridge Temperature
+  use_blueprint:
+    path: samuelkadolph/fridge_temperature_alert.yaml
+    input:
+      area: Kitchen Fridge
+      sensors: sensor.kitchen_fridge_sensor_temperature
+      <<: *fridge_range
+      <<: *default_notify
