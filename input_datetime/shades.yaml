@@ -8,4 +8,4 @@ shades_cold_open:
 shades_open_before_sunrise:
   name: Shades - Open Before Sunrise
   icon: mdi:timer
-  <<: &time
+  <<: *time
