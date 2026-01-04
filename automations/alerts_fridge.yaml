@@ -15,7 +15,7 @@
       <<: &freezer_range
         upper_range: 0.0
         lower_range: -20.0
-      <<: &default_notify
+      <<: &notify
         notify_action: notify.default
 
 - id: alert_fridge_bar_fridge_door_ajar
@@ -35,7 +35,7 @@
       <<: &fridge_range
         upper_range: 8.0
         lower_range: 1.0
-      <<: *default_notify
+      <<: *notify
 
 - id: alert_fridge_basement_freezer_door_ajar
   alias: Alert (Fridge) - Basement Freezer Door Ajar
@@ -56,7 +56,7 @@
       <<: &deep_freeze_range
         upper_range: -20.0
         lower_range: -34.0
-      <<: *default_notify
+      <<: *notify
 
 - id: alert_fridge_kitchen_freezer_temperature
   alias: Alert (Fridge) - Kitchen Freezer Temperature
@@ -66,7 +66,7 @@
       area: Kitchen Freezer
       sensors: sensor.kitchen_freezer_sensor_temperature
       <<: *freezer_range
-      <<: *default_notify
+      <<: *notify
 
 - id: alert_fridge_kitchen_fridge_temperature
   alias: Alert (Fridge) - Kitchen Fridge Temperature
@@ -76,4 +76,4 @@
       area: Kitchen Fridge
       sensors: sensor.kitchen_fridge_sensor_temperature
       <<: *fridge_range
-      <<: *default_notify
+      <<: *notify
