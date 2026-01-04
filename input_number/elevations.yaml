@@ -1,4 +1,4 @@
-outside_lights_on_sun_elevation:
+shades_close_sun_elevation:
   <<: &elevation
     icon: mdi:sun-angle
     max: 4.0
@@ -6,10 +6,6 @@ outside_lights_on_sun_elevation:
     mode: slider
     step: 0.5
     unit_of_measurement: °
-  name: Outside - Lights On Sun Elevation
-
-shades_close_sun_elevation:
-  <<: *elevation
   name: Shades - Close Sun Elevation
 
 theatre_projector_closes_shades_sun_elevation:

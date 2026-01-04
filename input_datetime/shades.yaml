@@ -1,0 +1,11 @@
+shades_cold_open:
+  name: Shades - Cold Open
+  icon: mdi:clock-time-five
+  <<: &time
+    has_date: false
+    has_time: true
+
+shades_open_before_sunrise:
+  name: Shades - Open Before Sunrise
+  icon: mdi:timer
+  <<: &time

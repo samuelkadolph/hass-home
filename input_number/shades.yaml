@@ -1,14 +1,5 @@
-shades_close_percent_temperature_threshold:
-  name: Shades - Close Percent Temperature Threshold
-  icon: mdi:snowflake-thermometer
-  max: 5.0
-  min: -10.0
-  mode: slider
-  step: 0.5
-  unit_of_measurement: °C
-
-shades_close_percent:
-  name: Shades - Close Percent
+shades_cold_close_percent:
+  name: Shades - Cold Close Percent
   icon: mdi:roller-shade
   max: 100
   min: 1
@@ -16,83 +7,11 @@ shades_close_percent:
   step: 1
   unit_of_measurement: '%'
 
-back_door_shade_a_control_state:
-  <<: &shade_control
-    icon: mdi:swap-vertical-bold
-    max: 4
-    min: 0
-    mode: box
-    step: 1
-  name: Back Door Shade A Control State
-
-back_door_shade_b_control_state:
-  <<: *shade_control
-  name: Back Door Shade B Control State
-
-basement_shades_control_state:
-  <<: *shade_control
-  name: Basement Shades Control State
-
-den_shades_control_state:
-  <<: *shade_control
-  name: Den Shades Control State
-
-dining_room_shade_control_state:
-  <<: *shade_control
-  name: Dining Room Shade Control State
-
-garage_door_control_state:
-  <<: *shade_control
-  name: Garage Door Control State
-
-guest_bedroom_shade_control_state:
-  <<: *shade_control
-  name: Guest Bedroom Shade Control State
-
-gym_shade_control_state:
-  <<: *shade_control
-  name: Gym Shade Control State
-
-kitchen_shades_control_state:
-  <<: *shade_control
-  name: Kitchen Shades Control State
-
-living_room_shades_control_state:
-  <<: *shade_control
-  name: Living Room Shades Control State
-
-laundry_room_shade_control_state:
-  <<: *shade_control
-  name: Laundry Room Shade Control State
-
-lounge_shade_control_state:
-  <<: *shade_control
-  name: Lounge Shade Control State
-
-master_bedroom_shades_control_state:
-  <<: *shade_control
-  name: Master Bedroom Shades Control State
-
-nook_shade_control_state:
-  <<: *shade_control
-  name: Nook Shade Control State
-
-office_shades_control_state:
-  <<: *shade_control
-  name: Office Shades Control State
-
-office_shade_a_control_state:
-  <<: *shade_control
-  name: Office Shade A Control State
-
-office_shade_b_control_state:
-  <<: *shade_control
-  name: Office Shade B Control State
-
-spare_bedroom_shade_control_state:
-  <<: *shade_control
-  name: Spare Bedroom Shade Control State
-
-theatre_shade_control_state:
-  <<: *shade_control
-  name: Theatre Shade Control State
+shades_cold_temperature_threshold:
+  name: Shades - Cold Temperature Threshold
+  icon: mdi:snowflake-thermometer
+  max: 10.0
+  min: -30.0
+  mode: slider
+  step: 0.5
+  unit_of_measurement: °C

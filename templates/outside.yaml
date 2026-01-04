@@ -1,10 +1,13 @@
-- sensor:
-  - name: Outside Lights - Off Time
-    unique_id: outside_lights_off_time
+- trigger:
+  - platform: time
+    at: '00:00:00'
+  sensor:
+  - unique_id: outside_lights_off_time
+    name: Outside Lights - Off Time
     device_class: timestamp
     state: >
-      {% if now().month in [5,6,7,8,9] -%}
-        {{ now().replace(hour=22,minute=0,second=0,microsecond=0).isoformat() }}
-      {% else -%}
-        {{ now().replace(hour=21,minute=0,second=0,microsecond=0).isoformat() }}
-      {% endif -%}
+      {% if now().month in [5, 6, 7, 8, 9] %}
+        {{ today_at("22:00:00") }}
+      {% else %}
+        {{ today_at("21:00:00") }}
+      {% endif %}

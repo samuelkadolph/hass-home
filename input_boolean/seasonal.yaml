@@ -1,7 +1,7 @@
 christmas_lights:
-  icon: mdi:string-lights
   name: Christmas Lights
+  icon: mdi:pine-tree
 
 seasonal_lights:
-  icon: mdi:halloween
   name: Seasonal Lights
+  icon: mdi:halloween

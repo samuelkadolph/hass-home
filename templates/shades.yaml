@@ -1,6 +1,12 @@
 - trigger:
-  - platform: time
-    at: '12:00:00'
+  - platform: time_pattern
+    hours: '/3'
+  - platform: state
+    entity_id:
+    - input_datetime.shades_cold_open
+    - input_number.shades_cold_close_percent
+    - input_number.shades_cold_temperature_threshold
+    - sensor.sun_next_rising
   action:
   - action: weather.get_forecasts
     data: { type: hourly }
@@ -9,15 +15,20 @@
   sensor:
   - unique_id: shades_close_percent
     name: Shades - Close Percent
-    state: '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min < float(states("input_number.shades_close_percent_temperature_threshold")) and states("input_number.shades_close_percent") or 0 }}'
-
-- sensor:
+    unit_of_measurement: '%'
+    state: >
+      {% if forecast["weather.home"].forecast | map(attribute="temperature") | min < float(states("input_number.shades_cold_temperature_threshold")) %}
+        {{ states("input_number.shades_cold_close_percent") }}
+      {% else %}
+        0
+      {% endif %}
   - unique_id: shades_open_time
     name: Shades - Open Time
     device_class: timestamp
     state: >
-      {% if now().month in [3,4,5,6,7,8,9,10,11] -%}
-        {{ (states("sensor.sun_next_rising") | as_datetime - timedelta(minutes=30)).isoformat() }}
-      {% else -%}
-        {{ now().replace(hour=5,minute=0,second=0,microsecond=0).isoformat() }}
-      {% endif -%}
+      {% if forecast["weather.home"].forecast | map(attribute="temperature") | min < float(states("input_number.shades_cold_temperature_threshold")) %}
+        {% set time = today_at(states("input_datetime.shades_cold_open")) %}
+        {{ iif(time < now(), time + timedelta(days = 1), time) }}
+      {% else %}
+        {{ (as_datetime(states("sensor.sun_next_rising")) - timedelta(minutes = 30)).isoformat() }}
+      {% endif %}

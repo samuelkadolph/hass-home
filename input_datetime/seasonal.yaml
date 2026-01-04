@@ -1,11 +1,12 @@
 christmas_lights_off:
+  name: Christmas Lights - Off
+  icon: mdi:clock-time-eleven
   <<: &time
     has_date: false
     has_time: true
-    icon: mdi:clock-time-ten
-  name: Christmas Lights - Off Time
 
 seasonal_lights_off:
+  name: Seasonal Lights - Off
+  icon: mdi:clock-time-twelve
   <<: *time
-  name: Seasonal Lights - Off Time
 
