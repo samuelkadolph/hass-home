@@ -7,8 +7,8 @@ shades_cold_close_percent:
   step: 1
   unit_of_measurement: '%'
 
-shades_cold_temperature_threshold:
-  name: Shades - Cold Temperature Threshold
+shades_cold_threshold:
+  name: Shades - Cold Threshold
   icon: mdi:snowflake-thermometer
   max: 10.0
   min: -30.0
