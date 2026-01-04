@@ -33,7 +33,7 @@
       area: Bar Fridge
       sensors: sensor.bar_fridge_sensor_temperature
       <<: &fridge_range
-        upper_range: 8.0
+        upper_range: 9.0
         lower_range: 1.0
       <<: *notify
 
