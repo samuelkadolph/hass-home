@@ -67,14 +67,14 @@ master_bedroom_air_day:
   - parallel:
     - if:
       - '{{ not is_state("climate.master_bedroom_air", "off") }}'
-      - '{{ state_attr("climate.master_bedroom_air", "temperature") <= float(states("input_number.master_bedroom_air_night_temperature")) }}'
+      - '{{ state_attr("climate.master_bedroom_air", "temperature") < float(states("input_number.master_bedroom_air_day_temperature")) }}'
       then:
       - action: weather.get_forecasts
         data: { type: hourly }
         target: { entity_id: weather.home }
         response_variable: forecast
       - if:
-        - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max > float(states("input_number.master_bedroom_air_day_threshold")) }}'
+        - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max >= float(states("input_number.master_bedroom_air_day_threshold")) }}'
         then:
         - action: script.midea_set_temperature
           data:
