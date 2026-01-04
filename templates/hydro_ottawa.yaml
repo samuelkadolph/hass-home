@@ -1,19 +1,23 @@
-- sensor:
-  - name: Hydro Ottawa TOU Price
-    unique_id: hydro_ottawa_tou_price
+- trigger:
+  - platform: time_pattern
+    hours: '/1'
+  - platform: event
+    event_type: event_template_reloaded
+  sensor:
+  - unique_id: hydro_ottawa_tou_price
+    name: Hydro Ottawa TOU Price
     unit_of_measurement: "$CAD/kWh"
     state: >
-      {% set holidays=["0101","0217","0418","0519","0701","0804","0901","1013","1225","1226"] -%}
-      {% set summer=[5,6,7,8,9,10] -%}
-      {% set off_peak=range(7,19) -%}
-      {% set on_peak=range(11,17) -%}
+      {% set holidays = ["0101","0216","0403","0518","0701","0803","0907","1012","1225","1228"] %}
+      {% set summer = [5,6,7,8,9,10] %}
+      {% set on_peak = range(7,19) %}
+      {% set mid_peak = range(11,17) %}
+      {% set n = now() %}
 
-      {% if (now().weekday() > 4) or (now().strftime('%m%d') in holidays) or
-            (now().hour not in off_peak) -%}
-        0.076
-      {% elif (now().month not in summer and now().hour in on_peak) or
-              (now().month in summer and now().hour not in on_peak) -%}
-        0.122
-      {% else -%}
-        0.158
-      {%- endif %}
+      {% if (n.weekday() > 4) or (n.strftime('%m%d') in holidays) or (n.hour not in on_peak) %}
+        0.098
+      {% elif (n.month not in summer and n.hour in mid_peak) or (n.month in summer and n.hour not in mid_peak) %}
+        0.157
+      {% else %}
+        0.203
+      {% endif %}
