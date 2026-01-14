@@ -9,7 +9,7 @@
     unit_of_measurement: "$CAD/kWh"
     state: >
       {% set holidays = ["0101","0216","0403","0518","0701","0803","0907","1012","1225","1228"] %}
-      {% set summer = [5,6,7,8,9,10] %}
+      {% set summer = range(5,11) %}
       {% set on_peak = range(7,19) %}
       {% set mid_peak = range(11,17) %}
       {% set n = now() %}
