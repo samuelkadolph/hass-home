@@ -47,7 +47,7 @@ sleep_good_morning:
         target: { entity_id: weather.home }
         response_variable: forecast
       - if:
-        - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | min > float(states("input_number.shades_cold_threshold")) }}'
+        - '{{ forecast["weather.home"].forecast[:24] | map(attribute="temperature") | min > float(states("input_number.shades_cold_threshold")) }}'
         then:
         - action: fan.turn_off
           target: { entity_id: fan.master_bedroom_fan }

@@ -74,7 +74,7 @@ master_bedroom_air_day:
         target: { entity_id: weather.home }
         response_variable: forecast
       - if:
-        - '{{ forecast["weather.home"].forecast | map(attribute="temperature") | max >= float(states("input_number.master_bedroom_air_day_threshold")) }}'
+        - '{{ forecast["weather.home"].forecast[:24] | map(attribute="temperature") | max >= float(states("input_number.master_bedroom_air_day_threshold")) }}'
         then:
         - action: script.midea_set_temperature
           data:

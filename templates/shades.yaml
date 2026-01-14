@@ -17,7 +17,7 @@
     name: Shades - Close Percent
     unit_of_measurement: '%'
     state: >
-      {% if forecast["weather.home"].forecast | map(attribute="temperature") | min <= float(states("input_number.shades_cold_threshold")) %}
+      {% if forecast["weather.home"].forecast[:24] | map(attribute="temperature") | min <= float(states("input_number.shades_cold_threshold")) %}
         {{ states("input_number.shades_cold_close_percent") }}
       {% else %}
         0
@@ -26,7 +26,7 @@
     name: Shades - Open Time
     device_class: timestamp
     state: >
-      {% if forecast["weather.home"].forecast | map(attribute="temperature") | min <= float(states("input_number.shades_cold_threshold")) %}
+      {% if forecast["weather.home"].forecast[:24] | map(attribute="temperature") | min <= float(states("input_number.shades_cold_threshold")) %}
         {% set time = today_at(states("input_datetime.shades_cold_open")) %}
         {{ iif(time < now(), time + timedelta(days = 1), time) }}
       {% else %}
