@@ -7,10 +7,10 @@
     to: finished
   actions:
   - action: notify.notify
-    data: { title: Dryer, message: Cycle complete }
+    data: { title: Dryer, message: Lower dryer is done! 😊 }
 
-- id: alert_laundry_washer_finished
-  alias: Alert (Laundry) - Washer Finished
+- id: alert_laundry_lower_washer_finished
+  alias: Alert (Laundry) - Lower Washer Finished
   mode: single
   triggers:
   - platform: state
@@ -18,4 +18,15 @@
     to: finish
   actions:
   - action: notify.notify
-    data: { title: Washer, message: Cycle complete }
+    data: { title: Washer, message: Lower washer is done! 😊 }
+
+- id: alert_laundry_upper_washer_finished
+  alias: Alert (Laundry) - Upper Washer Finished
+  mode: single
+  triggers:
+  - platform: state
+    entity_id: sensor.washer_upper_washer_job_state
+    to: finish
+  actions:
+  - action: notify.notify
+    data: { title: Washer, message: Upper washer is done! 😊 }
