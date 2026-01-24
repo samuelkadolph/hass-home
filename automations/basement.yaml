@@ -10,9 +10,19 @@
     then:
     - parallel:
       - action: script.basement_bathroom_disable_motion
+      - action: climate.set_temperature
+        target: { entity_id: climate.basement_bathroom_floor }
+        data:
+          hvac_mode: heat
+          temperature: '{{ states("input_number.basement_bathroom_floor_home_temperature") }}'
     else:
     - parallel:
       - action: script.basement_bathroom_enable_motion
+      - action: climate.set_temperature
+        target: { entity_id: climate.basement_bathroom_floor }
+        data:
+          hvac_mode: heat
+          temperature: '{{ states("input_number.basement_bathroom_floor_away_temperature") }}'
 
 - id: basement_shades_open
   alias: Basement Shades - Open

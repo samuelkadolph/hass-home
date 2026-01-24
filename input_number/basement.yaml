@@ -1,3 +1,18 @@
+basement_bathroom_floor_away_temperature:
+  <<: &temperature
+    max: 28.0
+    min: 5.0
+    mode: slider
+    step: 0.5
+    unit_of_measurement: °C
+  name: Basement Bathroom Floor - Away Temperature
+  icon: mdi:thermometer
+
+basement_bathroom_floor_home_temperature:
+  <<: *temperature
+  name: Basement Bathroom Floor - Home Temperature
+  icon: mdi:thermometer
+
 basement_shades_open_percent:
   name: Basement Shades - Open Percent
   icon: mdi:roller-shade
