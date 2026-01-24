@@ -51,6 +51,7 @@
         - binary_sensor.office_sensor_motion_detection
         - light.office_lights
         - light.workbench_lights
+        - remote.office
         match: any
         state: 'on'
       first_actions:
