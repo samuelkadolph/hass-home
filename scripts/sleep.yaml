@@ -52,6 +52,11 @@ sleep_good_morning:
         - action: fan.turn_off
           target: { entity_id: fan.master_bedroom_fan }
     - if:
+      - '{{ is_state("switch.master_bed_switch_b", "on") }}'
+      then:
+      - action: switch.turn_off
+        target: { entity_id: select.master_bed_switch_b }
+    - if:
       - '{{ is_state("binary_sensor.armed_state", "off") }}'
       then:
       - action: switch.turn_on
