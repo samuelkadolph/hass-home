@@ -8,7 +8,7 @@
 - id: alert_fridge_bar_freezer_temperature
   alias: Alert (Fridge) - Bar Freezer Temperature
   use_blueprint:
-    path: samuelkadolph/fridge_temperature_alert.yaml
+    path: samuelkadolph/temperature_alert.yaml
     input:
       area: Bar Freezer
       sensors: sensor.bar_freezer_sensor_temperature
@@ -28,7 +28,7 @@
 - id: alert_fridge_bar_fridge_temperature
   alias: Alert (Fridge) - Bar Fridge Temperature
   use_blueprint:
-    path: samuelkadolph/fridge_temperature_alert.yaml
+    path: samuelkadolph/temperature_alert.yaml
     input:
       area: Bar Fridge
       sensors: sensor.bar_fridge_sensor_temperature
@@ -47,7 +47,7 @@
 - id: alert_fridge_basement_freezer_temperature
   alias: Alert (Fridge) - Basement Freezer Temperature
   use_blueprint:
-    path: samuelkadolph/fridge_temperature_alert.yaml
+    path: samuelkadolph/temperature_alert.yaml
     input:
       area: Basement Freezer
       sensors:
@@ -61,7 +61,7 @@
 - id: alert_fridge_kitchen_freezer_temperature
   alias: Alert (Fridge) - Kitchen Freezer Temperature
   use_blueprint:
-    path: samuelkadolph/fridge_temperature_alert.yaml
+    path: samuelkadolph/temperature_alert.yaml
     input:
       area: Kitchen Freezer
       sensors: sensor.kitchen_freezer_sensor_temperature
@@ -71,7 +71,7 @@
 - id: alert_fridge_kitchen_fridge_temperature
   alias: Alert (Fridge) - Kitchen Fridge Temperature
   use_blueprint:
-    path: samuelkadolph/fridge_temperature_alert.yaml
+    path: samuelkadolph/temperature_alert.yaml
     input:
       area: Kitchen Fridge
       sensors: sensor.kitchen_fridge_sensor_temperature
