@@ -57,11 +57,10 @@ sleep_good_morning:
       - action: switch.turn_off
         target: { entity_id: select.master_bed_switch_b }
     - if:
-      - '{{ is_state("binary_sensor.armed_state", "off") }}'
+      - '{{ not is_state("alarm_control_panel.konnected_alarm", "disarmed") }}'
       then:
-      - action: switch.turn_on
-        target: { entity_id: switch.disarm }
-    - action: script.master_bedroom_air_day
+      - action: alarm_control_panel.alarm_disarm
+        target: { entity_id: alarm_control_panel.konnected_alarm }
 
 sleep_good_night:
   alias: Sleep - Good Night
