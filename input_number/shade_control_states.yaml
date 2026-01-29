@@ -19,7 +19,7 @@ den_shades_control_state:
   <<: *shade_control_state
   name: Den Shades Control State
 
-dining_room_shade_control_state_state:
+dining_room_shade_control_state:
   <<: *shade_control_state
   name: Dining Room Shade Control State
 
@@ -27,11 +27,11 @@ garage_door_control_state:
   <<: *shade_control_state
   name: Garage Door Control State
 
-guest_bedroom_shade_control_state_state:
+guest_bedroom_shade_control_state:
   <<: *shade_control_state
   name: Guest Bedroom Shade Control State
 
-gym_shade_control_state_state:
+gym_shade_control_state:
   <<: *shade_control_state
   name: Gym Shade Control State
 
@@ -43,11 +43,11 @@ living_room_shades_control_state:
   <<: *shade_control_state
   name: Living Room Shades Control State
 
-laundry_room_shade_control_state_state:
+laundry_room_shade_control_state:
   <<: *shade_control_state
   name: Laundry Room Shade Control State
 
-lounge_shade_control_state_state:
+lounge_shade_control_state:
   <<: *shade_control_state
   name: Lounge Shade Control State
 
@@ -55,7 +55,7 @@ master_bedroom_shades_control_state:
   <<: *shade_control_state
   name: Master Bedroom Shades Control State
 
-nook_shade_control_state_state:
+nook_shade_control_state:
   <<: *shade_control_state
   name: Nook Shade Control State
 
@@ -71,10 +71,10 @@ office_shade_b_control_state:
   <<: *shade_control_state
   name: Office Shade B Control State
 
-spare_bedroom_shade_control_state_state:
+spare_bedroom_shade_control_state:
   <<: *shade_control_state
   name: Spare Bedroom Shade Control State
 
-theatre_shade_control_state_state:
+theatre_shade_control_state:
   <<: *shade_control_state
   name: Theatre Shade Control State
