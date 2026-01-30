@@ -1,56 +1,63 @@
 - id: alert_leak_bar_dishwasher_leak
   alias: Alert (Leak) - Bar Dishwasher Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Bar Dishwasher
       leak_sensors: binary_sensor.bar_dishwasher_leak_sensor_water_leak_detected
+
 - id: alert_leak_bar_ice_maker_leak
   alias: Alert (Leak) - Bar Ice Maker Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Bar Ice Maker
       leak_sensors: binary_sensor.bar_ice_maker_leak_sensor_water_leak_detected
+
 - id: alert_leak_bar_sink_leak
   alias: Alert (Leak) - Bar Sink Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Bar Sink
       leak_sensors: binary_sensor.bar_sink_leak_sensor_water_leak_detected
+
 - id: alert_leak_basement_bathroom_sink_leak
   alias: Alert (Leak) - Basement Bathroom Sink Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Basement Bathroom Sink
       leak_sensors: binary_sensor.basement_bathroom_sink_leak_sensor_water_leak_detected
+
 - id: alert_leak_furnace_leak
   alias: Alert (Leak) - Furnace Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Furnace
       leak_sensors: binary_sensor.furnace_leak_sensor_water_leak_detected
+
 - id: alert_leak_rack_leak
   alias: Alert (Leak) - Rack Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Rack
       leak_sensors: binary_sensor.rack_leak_sensor_water_leak_detected
+
 - id: alert_leak_water_chiller_leak
   alias: Alert (Leak) - Water Chiller Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Water Chiller
       leak_sensors: binary_sensor.water_chiller_leak_sensor_water_leak_detected
+
 - id: alert_leak_water_heater_leak
   alias: Alert (Leak) - Water Heater Leak
   use_blueprint:
-    path: samuelkadolph/water_leak_alerts.yaml
+    path: samuelkadolph/water_leak_alert.yaml
     input:
       area: Water Heater
       leak_sensors: binary_sensor.water_heater_leak_sensor_water_leak_detected
