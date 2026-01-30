@@ -1,12 +1,12 @@
-- id: basement_guest_staying_over_changed
-  alias: Basement - Guest Staying Over Changed
+- id: basement_guest_presence
+  alias: Basement - Guest Presence
   mode: single
   triggers:
   - trigger: state
-    entity_id: input_boolean.basement_guest_staying_over
+    entity_id: input_boolean.basement_guest_present
   actions:
   - if:
-    - '{{ is_state("input_boolean.basement_guest_staying_over", "on") }}'
+    - '{{ is_state("input_boolean.basement_guest_present", "on") }}'
     then:
     - parallel:
       - action: script.basement_bathroom_disable_motion
@@ -14,7 +14,7 @@
         target: { entity_id: climate.basement_bathroom_floor }
         data:
           hvac_mode: heat
-          temperature: '{{ states("input_number.basement_bathroom_floor_home_temperature") }}'
+          temperature: '{{ states("input_number.basement_bathroom_floor_guest_temperature") }}'
     else:
     - parallel:
       - action: script.basement_bathroom_enable_motion
@@ -33,7 +33,7 @@
       second_trigger: time
       second_time_helper: input_datetime.basement_shades_open
       second_conditions:
-      - '{{ is_state("input_boolean.basement_guest_staying_over", "on") }}'
+      - '{{ is_state("input_boolean.basement_guest_present", "on") }}'
       - '{{ is_state("input_boolean.basement_shades_open", "on") }}'
       - '{{ state_attr("cover.basement_shades", "current_position") < float(states("input_number.basement_shades_open_percent")) }}'
       second_actions:
@@ -43,7 +43,7 @@
       third_trigger: time
       third_time_helper: sensor.shades_open_time
       third_conditions:
-      - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+      - '{{ is_state("input_boolean.basement_guest_present", "off") }}'
       third_actions:
       - action: cover.open_cover
         target: { entity_id: cover.basement_shades }
@@ -59,14 +59,14 @@
       off_actions:
       - parallel:
         - if:
-          - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+          - '{{ is_state("input_boolean.basement_guest_present", "off") }}'
           then:
           - action: fan.turn_off
             target: { entity_id: fan.theatre_dyson }
       activity_changed_actions:
       - parallel:
         - if:
-          - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+          - '{{ is_state("input_boolean.basement_guest_present", "off") }}'
           - '{{ is_state("input_boolean.theatre_projector_disables_bathroom_occupancy", "on") }}'
           then:
           - action: zwave_js.set_config_parameter
@@ -85,7 +85,7 @@
                 target: { entity_id: cover.basement_shades }
             else:
             - if:
-              - '{{ is_state("input_boolean.basement_guest_staying_over", "off") }}'
+              - '{{ is_state("input_boolean.basement_guest_present", "off") }}'
               then:
               - action: cover.open_cover
                 target: { entity_id: cover.basement_shades }

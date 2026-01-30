@@ -1,9 +1,6 @@
-basement_guest_staying_over:
-  name: Basement - Guest Staying Over
+basement_guest_present:
+  name: Basement - Guest Present
   icon: mdi:bed
-
-basement_shades_open:
-  name: Basement Shades - Open
 
 theatre_projector_closes_shades:
   name: Theatre - Projector Closes Shades
@@ -12,3 +9,7 @@ theatre_projector_closes_shades:
 theatre_projector_disables_bathroom_occupancy:
   name: Theatre - Projector Disables Bathroom Occupancy
   icon: mdi:motion-sensor
+
+basement_shades_open:
+  name: Basement Shades - Open
+  icon: mdi:roller-shade
