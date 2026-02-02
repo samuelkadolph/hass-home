@@ -1,7 +1,7 @@
 - lock:
   - name: Back Door
     unique_id: back_door
-    state: "{{ states('input_boolean.homekit_lock_back_door_state') }}"
+    state: '{{ states("input_boolean.homekit_lock_back_door_state") }}'
     lock:
       action: input_boolean.turn_on
       target: { entity_id: input_boolean.homekit_lock_back_door_control }
@@ -11,7 +11,7 @@
 
   - name: Front Door HomeKit
     unique_id: front_door_homekit
-    state: "{{ states('input_boolean.homekit_lock_front_door_state') }}"
+    state: '{{ states("input_boolean.homekit_lock_front_door_state") }}'
     lock:
       action: input_boolean.turn_on
       target: { entity_id: input_boolean.homekit_lock_front_door_control }
