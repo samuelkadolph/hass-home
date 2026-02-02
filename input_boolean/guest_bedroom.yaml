@@ -1,2 +1,6 @@
+guest_bedroom_guest_present:
+  name: Guest Bedroom - Guest Present
+  icon: mdi:bed
+
 guest_bedroom_shade_open:
   name: Guest Bedroom Shade - Open

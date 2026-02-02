@@ -4,28 +4,27 @@ sleep_bedtime:
   mode: restart
   sequence:
   - parallel:
-    - action: script.master_bedroom_air_night
-    - action: script.garage_turn_off
-    - action: script.office_turn_off
-    - action: fan.turn_off
+    - action: homeassistant.turn_off
       target:
-        entity_id: '{{ states.fan | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - action: light.turn_off
-      target:
-        entity_id: '{{ states.light | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
+        entity_id: >-
+          {%- set basement_ignore = label_entities("Bedtime Ignore - Basement") %}
+          {%- set guest_bedroom_ignore = label_entities("Bedtime Ignore - Guest Bedroom") %}
+          {%- set master_bedroom_ignore = label_entities("Bedtime Ignore - Master Bedroom") %}
+          {%- set on_stuff = states | selectattr("entity_id", "search", "^(fan|light|remote)") | selectattr("state", "eq", "on") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list %}
+          {%- set turn_off = difference(on_stuff, iif(is_state("input_boolean.basement_guest_present", "on"), basement_ignore, [])) %}
+          {%- set turn_off = difference(turn_off, iif(is_state("input_boolean.guest_bedroom_guest_present", "on"), guest_bedroom_ignore, [])) %}
+          {%- set turn_off = difference(turn_off, master_bedroom_ignore) %}
+          {{ turn_off | join(", ") }}
+    - action: light.turn_on
+      data: { brightness: '{{ iif(is_state("person.sasha_keller", "home"), 32, 160) }}' }
+      target: { entity_id: light.master_bedroom_fan_lights }
     - action: lock.lock
       target:
         entity_id: '{{ states.lock | selectattr("state", "eq", "unlocked") | selectattr("entity_id", "search", "door$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - action: remote.turn_off
-      target:
-        entity_id: '{{ states.remote | selectattr("state", "eq", "on") | rejectattr("entity_id", "search", "bedroom") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | list }}'
-    - if:
-      - '{{ state_attr("cover.master_bedroom_shades", "current_position") > 0 }}'
-      then:
-      - action: script.master_bedroom_close_shades
-    - action: light.turn_on
-      data: { brightness: '{{ is_state("person.sasha_keller", "home") and 32 or 160 }}' }
-      target: { entity_id: light.master_bedroom_fan_lights }
+    - action: script.garage_turn_off
+    - action: script.master_bedroom_air_night
+    - action: script.master_bedroom_close_shades
+    - action: script.office_turn_off
 
 sleep_good_morning:
   alias: Sleep - Good Morning
