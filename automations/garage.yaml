@@ -1,9 +1,9 @@
-- id: garage_off_22_00
-  alias: Garage - Off @ 22:00
+- id: garage_off
+  alias: Garage - Off
   mode: single
   triggers:
   - trigger: time
-    at: '22:00:00'
+    at: sensor.garage_off_time
   actions:
   - action: script.garage_turn_off
 
@@ -22,26 +22,28 @@
   mode: single
   max_exceeded: silent
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: binary_sensor.garage_door
     to: 'on'
+  conditions:
+  - '{{ is_state("light.garage_door_lights", "off") }}'
   actions:
-  - if:
-    - '{{ is_state("light.garage_door_lights", "off") }}'
-    then:
-    - action: light.turn_on
-      target: { entity_id: light.garage_door_lights }
-    - wait_for_trigger:
-      - trigger: state
+  - action: light.turn_on
+    target: { entity_id: light.garage_door_lights }
+  - repeat:
+      until:
+      - condition: state
         entity_id:
         - binary_sensor.garage_door
         state: 'off'
         for: { seconds: 30 }
-      - trigger: state
+      - condition: state
         entity_id:
         - binary_sensor.garage_door_motion
         - binary_sensor.garage_door_obstruction
         state: 'off'
         for: { seconds: 120 }
-    - action: light.turn_off
-      target: { entity_id: light.garage_door_lights }
+      sequence:
+      - delay: { seconds: 5 }
+  - action: light.turn_off
+    target: { entity_id: light.garage_door_lights }

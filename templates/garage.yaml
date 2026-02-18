@@ -1,0 +1,5 @@
+- sensor:
+  - name: Garage - Off Time
+    unique_id: garage_off_time
+    device_class: timestamp
+    state: '{{ as_datetime(states("sensor.master_bedroom_air_night_time")) - timedelta(minutes=30) }}'
