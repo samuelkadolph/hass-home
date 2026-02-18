@@ -2,7 +2,7 @@
   alias: Alert (Laundry) - Dryer Finished
   mode: single
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: sensor.dryer_job_state
     to: finished
   actions:
@@ -13,7 +13,7 @@
   alias: Alert (Laundry) - Lower Washer Finished
   mode: single
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: sensor.washer_job_state
     to: finish
   actions:
@@ -24,7 +24,7 @@
   alias: Alert (Laundry) - Upper Washer Finished
   mode: single
   triggers:
-  - platform: state
+  - trigger: state
     entity_id: sensor.washer_upper_washer_job_state
     to: finish
   actions:
