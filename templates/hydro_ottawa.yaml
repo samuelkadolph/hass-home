@@ -1,7 +1,7 @@
 - trigger:
-  - platform: time_pattern
+  - trigger: time_pattern
     hours: '/1'
-  - platform: event
+  - trigger: event
     event_type: event_template_reloaded
   sensor:
   - unique_id: hydro_ottawa_tou_price

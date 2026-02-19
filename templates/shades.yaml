@@ -1,7 +1,7 @@
 - trigger:
-  - platform: time_pattern
+  - trigger: time_pattern
     hours: '/3'
-  - platform: state
+  - trigger: state
     entity_id:
     - input_datetime.shades_cold_open
     - input_number.shades_cold_close_percent
