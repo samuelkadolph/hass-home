@@ -6,14 +6,14 @@ family_room_close_shades:
   - action: cover.set_cover_position
     data: { position: '{{ states("sensor.shades_close_percent") }}' }
     target:
-      entity_id: >
-        cover.living_room_shade_a
-        ,cover.living_room_shade_b
-        {% if is_state("binary_sensor.living_room_window_c_sensor_window_door_is_open", "off")  %},cover.living_room_shade_c{% endif %}
-        {% if is_state("binary_sensor.living_room_window_d_sensor_window_door_is_open", "off") %},cover.living_room_shade_d{% endif %}
-        {% if is_state("binary_sensor.back_door", "off") %},cover.back_door_shades{% endif %}
-        {% if is_state("binary_sensor.kitchen_window_a_sensor_window_door_is_open", "off") %},cover.kitchen_shade_a{% endif %}
-        {% if is_state("binary_sensor.kitchen_window_b_sensor_window_door_is_open", "off") %},cover.kitchen_shade_b{% endif %}
+      entity_id: >-
+        cover.living_room_shade_a,
+        cover.living_room_shade_b{% if is_state("binary_sensor.living_room_window_c_sensor_window_door_is_open", "off")  %},
+        cover.living_room_shade_c{% endif %}{% if is_state("binary_sensor.living_room_window_d_sensor_window_door_is_open", "off") %},
+        cover.living_room_shade_d{% endif %}{% if is_state("binary_sensor.back_door", "off") %},
+        cover.back_door_shades{% endif %}{% if is_state("binary_sensor.kitchen_window_a_sensor_window_door_is_open", "off") %},
+        cover.kitchen_shade_a{% endif %}{% if is_state("binary_sensor.kitchen_window_b_sensor_window_door_is_open", "off") %},
+        cover.kitchen_shade_b{% endif %}
 
 family_room_lockdown:
   alias: Family Room - Lockdown

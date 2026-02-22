@@ -5,9 +5,9 @@ office_close_shades:
   sequence:
   - action: cover.close_cover
     target:
-      entity_id: >
-        cover.office_shade_a
-        {% if is_state("binary_sensor.office_window_sensor_window_door_is_open", "off") %},cover.office_shade_b{% endif %}
+      entity_id: >-
+        cover.office_shade_a{% if is_state("binary_sensor.office_window_sensor_window_door_is_open", "off") %},
+        cover.office_shade_b{% endif %}
 
 office_lockdown:
   alias: Office - Lockdown
