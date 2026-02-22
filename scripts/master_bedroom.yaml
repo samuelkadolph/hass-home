@@ -46,11 +46,12 @@ master_bedroom_turn_off:
   mode: single
   sequence:
   - parallel:
-    - if:
-      - '{{ not is_state("climate.master_bedroom_air", "off") }}'
-      then:
-      - action: script.midea_turn_off
-        data: { target: { entity_id: climate.master_bedroom_air } }
+    - action: script.midea_turn_off
+      data: { target: { entity_id: climate.master_bedroom_air } }
+    - action: homeassistant.turn_off
+      target:
+        entity_id:
+        - fan.master_bedroom_fan
 
 master_bedroom_turn_on:
   alias: Master Bedroom - Turn On
@@ -85,9 +86,7 @@ master_bedroom_air_day:
         else:
         - action: script.midea_turn_off
           data: { target: { entity_id: climate.master_bedroom_air } }
-    - action: zwave_js.set_config_parameter
-      data: { parameter: 3, value: 3 }
-      target: { entity_id: switch.master_bathroom_toilet_lights }
+    - action: script.master_bathroom_toilet_enable_motion
 
 master_bedroom_air_night:
   alias: Master Bedroom Air - Night
@@ -96,31 +95,25 @@ master_bedroom_air_night:
   sequence:
   - parallel:
     - if:
+      - '{{ is_state("input_boolean.master_bedroom_air_night", "on") }}'
       - '{{ is_state("person.samuel_kadolph", "home") }}'
-      - condition: or
-        conditions:
-        - '{{ is_state("climate.master_bedroom_air", "off") }}'
-        - '{{ state_attr("climate.master_bedroom_air", "temperature") > float(states("input_number.master_bedroom_air_night_temperature")) }}'
+      - '{{ is_state("climate.master_bedroom_air", "off") or state_attr("climate.master_bedroom_air", "temperature") > float(states("input_number.master_bedroom_air_night_temperature")) }}'
       then:
-      - action: script.midea_set_temperature
-        data:
+      - parallel:
+        - action: script.midea_set_temperature
           data:
-            hvac_mode: cool
-            temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
-          target: { entity_id: climate.master_bedroom_air }
-      - if:
-        - '{{ is_state("fan.master_bedroom_fan", "off") }}'
-        then:
+            data:
+              hvac_mode: cool
+              temperature: '{{ states("input_number.master_bedroom_air_night_temperature") }}'
+            target: { entity_id: climate.master_bedroom_air }
         - action: fan.turn_on
           target: { entity_id: fan.master_bedroom_fan }
-      - if:
-        - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat", "on") }}'
-        - '{{ is_state("person.sasha_keller", "home") }}'
-        - '{{ is_state("switch.master_bed_switch_b", "off") }}'
-        then:
-        - action: select.select_option
-          data: { option: '{{ int(states("input_number.master_bedroom_air_night_bed_heat")) }}' }
-          target: { entity_id: select.master_bed_level_b }
-    - action: zwave_js.set_config_parameter
-      data: { parameter: 3, value: 2 }
-      target: { entity_id: switch.master_bathroom_toilet_lights }
+        - if:
+          - '{{ is_state("input_boolean.master_bedroom_air_night_bed_heat", "on") }}'
+          - '{{ is_state("person.sasha_keller", "home") }}'
+          - '{{ is_state("switch.master_bed_switch_b", "off") }}'
+          then:
+          - action: select.select_option
+            data: { option: '{{ int(states("input_number.master_bedroom_air_night_bed_heat")) }}' }
+            target: { entity_id: select.master_bed_level_b }
+    - action: script.master_bathroom_toilet_disable_motion

@@ -1,0 +1,17 @@
+master_bathroom_toilet_enable_motion:
+  alias: Master Bathroom Toilet - Enable Motion
+  icon: mdi:motion-sensor
+  mode: single
+  sequence:
+  - action: zwave_js.set_config_parameter
+    data: { parameter: 3, value: 3 }
+    target: { entity_id: switch.master_bathroom_toilet_lights }
+
+master_bathroom_toilet_disable_motion:
+  alias: Master Bathroom Toilet - Disable Motion
+  icon: mdi:motion-sensor-off
+  mode: single
+  sequence:
+  - action: zwave_js.set_config_parameter
+    data: { parameter: 3, value: 2 }
+    target: { entity_id: switch.master_bathroom_toilet_lights }
