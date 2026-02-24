@@ -14,11 +14,12 @@
         data: { position: '{{ states("input_number.guest_bedroom_shade_open_percent") }}' }
         target: { entity_id: cover.guest_bedroom_shade }
 
-- id: guest_bedroom_shade_shade_switch_single
-  alias: Guest Bedroom Shade - Shade Switch (Single)
+- id: guest_bedroom_shade_switch_single_guest_bedroom_shade
+  alias: Guest Bedroom Shade Switch (Single) - Guest Bedroom Shade
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
+      up_event: event.guest_bedroom_shade_switch_scene_001
+      down_event: event.guest_bedroom_shade_switch_scene_002
       covers: cover.guest_bedroom_shade
-      switch: a4630bfc13f6ab6db557839fc347ca3c
       state_variable: input_number.guest_bedroom_shade_control_state

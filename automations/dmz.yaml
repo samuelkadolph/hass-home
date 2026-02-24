@@ -1,20 +1,21 @@
-- id: back_door_shade_a_backyard_lights_switch_triple
-  alias: Back Door Shade A - Backyard Lights Switch (Triple)
+- id: backyard_lights_triple_back_door_shade_a
+  alias: Backyard Lights (Triple) - Back Door Shade A
   use_blueprint:
-    path: samuelkadolph/inovelli_white_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.back_door_shade_a
       up_event: event.backyard_lights_up
       down_event: event.backyard_lights_down
       paddle_taps: multi_press_3
+      covers: cover.back_door_shade_a
       state_variable: input_number.back_door_shade_a_control_state
 
-- id: back_door_shade_b_dmz_lights_switch_triple
-  alias: Back Door Shade B - DMZ Lights Switch (Triple)
+- id: dmz_lights_triple_back_door_shade_b
+  alias: DMZ Lights (Triple) - Back Door Shade B
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.back_door_shade_b
-      switch: cf22432d22d2328417247fd1da4534db
+      up_event: event.dmz_lights_scene_001
+      down_event: event.dmz_lights_scene_002
       paddle_taps: KeyPressed3x
+      covers: cover.back_door_shade_b
       state_variable: input_number.back_door_shade_b_control_state

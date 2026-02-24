@@ -1,3 +1,14 @@
+- id: living_room_lights_triple_living_room_shades
+  alias: Living Room Lights (Triple) - Living Room Shades
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: event.living_room_lights_scene_001
+      down_event: event.living_room_lights_scene_002
+      paddle_taps: KeyPressed3x
+      covers: cover.living_room_shades
+      state_variable: input_number.living_room_shades_control_state
+
 - id: living_room_remote_on_off
   alias: Living Room Remote - On & Off
   use_blueprint:
@@ -14,13 +25,3 @@
           target: { entity_id: fan.living_room_dyson }
         - action: switch.turn_on
           target: { entity_id: switch.kitchen_fountain }
-
-- id: living_room_shades_lights_switch_triple
-  alias: Living Room Shades - Lights Switch (Triple)
-  use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
-    input:
-      covers: cover.living_room_shades
-      switch: 9bb418e4bbe6c04ca290e0caa7bc972c
-      paddle_taps: KeyPressed3x
-      state_variable: input_number.living_room_shades_control_state

@@ -17,14 +17,15 @@
       light_target: { entity_id: light.laundry_room_lights }
       no_motion_wait: 0
 
-- id: laundry_roomy_shade_lights_switch_triple
-  alias: Laundry Room Shade - Lights Switch (Triple)
+- id: laundry_room_lights_triple_laundry_roomy_shade
+  alias: Laundry Room Lights (Triple) - Laundry Room Shade
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.laundry_room_shade
-      switch: aae6adcd021b82caa28dd808ef3ecf20
+      up_event: event.laundry_room_lights_scene_001
+      down_event: event.laundry_room_lights_scene_002
       paddle_taps: KeyPressed3x
+      covers: cover.laundry_room_shade
       state_variable: input_number.laundry_room_shade_control_state
 
 - id: laundry_room_shade_open

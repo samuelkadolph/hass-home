@@ -1,0 +1,33 @@
+- id: office_shade_switch_single_office_shades
+  alias: Office Shade Switch (Single) - Office Shades
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: &office_shade_switch_up event.office_shade_switch_scene_001
+      down_event: &office_shade_switch_down event.office_shade_switch_scene_002
+      paddle_hold: true
+      covers: cover.office_shades
+      state_variable: input_number.office_shades_control_state
+
+- id: office_shade_switch_double_office_shade_a
+  alias: Office Shade Switch (Double) - Office Shade A
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: *office_shade_switch_up
+      down_event: *office_shade_switch_down
+      paddle_taps: KeyPressed2x
+      covers: cover.office_shade_a
+      state_variable: input_number.office_shade_a_control_state
+
+- id: office_shade_switch_triple_office_shade_b
+  alias: Office Shade Switch (Triple) - Office Shade B
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: *office_shade_switch_up
+      down_event: *office_shade_switch_down
+      paddle_taps: KeyPressed3x
+      covers: cover.office_shade_b
+      state_variable: input_number.office_shade_b_control_state
+

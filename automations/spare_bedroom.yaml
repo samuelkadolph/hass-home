@@ -1,22 +1,26 @@
-- id: spare_bedroom_lights_bed_switch_single
-  alias: Spare Bedroom Lights - Bed Switch (Single)
+- id: spare_bedroom_bed_switch_single_spare_bedroom_lights
+  alias: Spare Bedroom Bed Switch (Single) - Spare Bedroom Lights
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_lights.yaml
+    path: samuelkadolph/zwave_switch_lights.yaml
     input:
+      up_event: &spare_bedroom_bed_switch_up event.spare_bedroom_bed_switch_scene_001
+      down_event: &spare_bedroom_bed_switch_down event.spare_bedroom_bed_switch_scene_002
       <<: &spare_bedroom_lights
-        subjects: light.spare_bedroom_lights
         double_tap: true
         paddle_hold: true
-      switch: &bed_switch
-        6c36a5fbc6a154bb583f7ed96267c590
-- id: spare_bedroom_lights_shade_switch_single
-  alias: Spare Bedroom Lights - Shade Switch (Single)
+        subjects: light.spare_bedroom_lights
+
+- id: spare_bedroom_bed_switch_triple_spare_bedroom_shade
+  alias: Spare Bedroom Bed Switch (Triple) - Spare Bedroom Shade
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_lights.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      <<: *spare_bedroom_lights
-      switch: &shade_switch
-        a97d50d874a3e974485a0cd930915bae
+      up_event: *spare_bedroom_bed_switch_up
+      down_event: *spare_bedroom_bed_switch_down
+      <<: &spare_bedroom_shade
+        paddle_taps: KeyPressed3x
+        covers: cover.spare_bedroom_shade
+        state_variable: input_number.spare_bedroom_shade_control_state
 
 - id: spare_bedroom_shade_open
   alias: Spare Bedroom Shade - Open
@@ -29,20 +33,20 @@
       - action: cover.open_cover
         target: { entity_id: cover.spare_bedroom_shade }
 
-- id: spare_bedroom_shade_bed_switch_triple
-  alias: Spare Bedroom Shade - Bed Switch (Triple)
+- id: spare_bedroom_shade_switch_single_spare_bedroom_lights
+  alias: Spare Bedroom Shade Switch (Single) - Spare Bedroom Lights
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_covers.yaml
+    path: samuelkadolph/zwave_switch_lights.yaml
     input:
-      <<: &spare_bedroom_shade
-        covers: cover.spare_bedroom_shade
-        paddle_taps: KeyPressed3x
-        state_variable: input_number.spare_bedroom_shade_control_state
-      switch: *bed_switch
-- id: spare_bedroom_shade_shade_switch_triple
-  alias: Spare Bedroom Shade - Shade Switch (Triple)
+      up_event: &spare_bedroom_shade_switch_up event.spare_bedroom_shade_switch_scene_001
+      down_event: &spare_bedroom_shade_switch_down event.spare_bedroom_shade_switch_scene_002
+      <<: *spare_bedroom_lights
+
+- id: spare_bedroom_shade_switch_triple_spare_bedroom_shade
+  alias: Spare Bedroom Shade Switch (Triple) - Spare Bedroom Shade
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
+      up_event: *spare_bedroom_shade_switch_up
+      down_event: *spare_bedroom_shade_switch_down
       <<: *spare_bedroom_shade
-      switch: *shade_switch

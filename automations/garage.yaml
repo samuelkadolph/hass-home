@@ -7,14 +7,15 @@
   actions:
   - action: script.garage_turn_off
 
-- id: garage_door_garage_lights_switch_triple
-  alias: Garage Door - Garage Lights Switch (Triple)
+- id: garage_lights_triple_garage_door
+  alias: Garage Lights (Triple) - Garage Door
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.garage_door
-      switch: 4e1a97e407a9f5d6ee3717abbfafc4b8
+      up_event: event.garage_lights_scene_001
+      down_event: event.garage_lights_scene_002
       paddle_taps: KeyPressed3x
+      covers: cover.garage_door
       state_variable: input_number.garage_door_control_state
 
 - id: garage_door_lights_garage_door_opened

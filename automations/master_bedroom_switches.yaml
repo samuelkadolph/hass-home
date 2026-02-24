@@ -52,6 +52,17 @@
       controller: *right_controller
       subjects: light.master_bedroom_lights
 
+- id: master_bedroom_lights_triple_master_bedroom_shades
+  alias: Master Bedroom Lights (Triple) - Master Bedroom Shades
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: event.master_bedroom_lights_scene_001
+      down_event: event.master_bedroom_lights_scene_002
+      paddle_taps: KeyPressed3x
+      covers: cover.master_bedroom_shades
+      state_variable: input_number.master_bedroom_shades_control_state
+
 - id: master_bedroom_pedestal_fan_left_controller_bottom_right
   alias: Master Bedroom Pedestal Fan - Left Controller (Bottom Right)
   use_blueprint:
@@ -69,16 +80,6 @@
       covers: cover.master_bedroom_shades
       controller: *left_controller
       key: '002'
-      state_variable: input_number.master_bedroom_shades_control_state
-
-- id: master_bedroom_shades_lights_switch_triple
-  alias: Master Bedroom Shades - Lights Switch (Triple)
-  use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
-    input:
-      covers: cover.master_bedroom_shades
-      switch: 10bb74f9713becbe9c50472fed4c3fa2
-      paddle_taps: KeyPressed3x
       state_variable: input_number.master_bedroom_shades_control_state
 
 - id: master_bedroom_shades_right_controller_mid_right

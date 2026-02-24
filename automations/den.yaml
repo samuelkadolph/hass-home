@@ -1,11 +1,12 @@
-- id: den_shades_lights_switch_triple
-  alias: Den Shades - Lights Switch (Triple)
+- id: den_lights_triple_den_shades
+  alias: Den Lights (Triple) - Den Shades
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.den_shades
-      switch: c1627661e431b15c832220eed2c26021
+      up_event: event.den_lights_scene_001
+      down_event: event.den_lights_scene_002
       paddle_taps: KeyPressed3x
+      covers: cover.den_shades
       state_variable: input_number.den_shades_control_state
 
 - id: den_shades_open

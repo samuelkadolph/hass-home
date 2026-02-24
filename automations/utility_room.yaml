@@ -1,9 +1,10 @@
-- id: utility_room_all_lights_of
-  alias: Utility Room - All Lights Off
+- id: utility_room_lights_all_lights_of
+  alias: Utility Room Lights - All Lights Off
   use_blueprint:
-    path: samuelkadolph/zooz_zen7677_actions.yaml
+    path: samuelkadolph/zwave_switch_actions.yaml
     input:
-      switch: 98598700a74e882d59bcf1d0ffd9ce5c
+      up_event: event.utility_room_lights_scene_001
+      down_event: event.utility_room_lights_scene_002
       down_actions:
       - action: light.turn_off
         target:

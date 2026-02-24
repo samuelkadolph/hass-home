@@ -1,59 +1,65 @@
-- id: gym_shade_bulkhead_lights_switch_triple
-  alias: Gym Shade - Bulkhead Lights Switch (Triple)
+- id: bar_lights_triple_theatre_shade
+  alias: Bar Lights (Triple) - Theatre Shade
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.gym_shade
-      switch: 44ce279439d4b66a0419e22279b9250a
+      up_event: event.bar_lights_scene_001
+      down_event: event.bar_lights_scene_002
       paddle_taps: KeyPressed3x
+      covers: cover.threatre_shade
+      state_variable: input_number.theatre_shade_control_state
+
+- id: bulkhead_lights_triple_gym_shade
+  alias: Bulkhead Lights (Triple) - Gym Shade
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: event.bulkhead_lights_scene_001
+      down_event: event.bulkhead_lights_scene_002
+      paddle_taps: KeyPressed3x
+      covers: cover.gym_shade
       state_variable: input_number.gym_shade_control_state
 
-- id: gym_shade_gym_lights_switch_triple
-  alias: Gym Shade - Gym Lights Switch (Triple)
+- id: gym_lights_triple_gym_shade
+  alias: Gym Lights (Triple) - Gym Shade
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.gym_shade
-      switch: 13abc0441c41e9c10835c3d2e598853e
+      up_event: event.gym_lights_scene_001
+      down_event: event.gym_lights_scene_002
       paddle_taps: KeyPressed3x
+      covers: cover.gym_shade
       state_variable: input_number.gym_shade_control_state
 
-- id: lounge_shade_lounge_lights_switch_triple
-  alias: Lounge Shade - Lounge Lights Switch (Triple)
+- id: lounge_lights_triple_lounge_shade
+  alias: Lounge Lights (Triple) - Lounge Shade
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
+      up_event: event.lounge_lights_scene_001
+      down_event: event.lounge_lights_scene_002
+      paddle_taps: KeyPressed3x
       covers: cover.lounge_shade
-      switch: ff0e1aa831989df2c4a47ee24985c40a
-      paddle_taps: KeyPressed3x
       state_variable: input_number.lounge_shade_control_state
 
-- id: theatre_shade_bar_lights_switch_triple
-  alias: Theatre Shade - Bar Lights Switch (Triple)
+- id: tbd_lights_triple_basement_shades
+  alias: TBD Lights (Triple) - Basement Shades
   use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
+    path: samuelkadolph/zwave_switch_covers.yaml
     input:
-      covers: cover.threatre_shade
-      switch: 0d2ae925e4ede2fff7b97d2beda086bc
+      up_event: event.tbd_lights_scene_001
+      down_event: event.tbd_lights_scene_002
       paddle_taps: KeyPressed3x
-      state_variable: input_number.theatre_shade_control_state
-
-- id: theatre_shade_theatre_lights_switch_triple
-  alias: Theatre Shade - Theatre Lights Switch (Triple)
-  use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
-    input:
-      covers: cover.threatre_shade
-      switch: c1e3eb4e522240aba8a3b51d30a9dceb
-      paddle_taps: KeyPressed3x
-      state_variable: input_number.theatre_shade_control_state
-
-- id: basement_shades_tbd_lights_switch_triple
-  alias: Basement Shades - TBD Lights Switch (Triple)
-  use_blueprint:
-    path: samuelkadolph/homeseer_wx300_covers.yaml
-    input:
       covers: cover.basement_shades
-      switch: cc08f6971551f030e31cfec42210075b
-      paddle_taps: KeyPressed3x
       state_variable: input_number.basement_shades_control_state
+
+- id: theatre_lights_triple_theatre_shade
+  alias: Theatre Lights (Triple) - Theatre Shade
+  use_blueprint:
+    path: samuelkadolph/zwave_switch_covers.yaml
+    input:
+      up_event: event.theatre_lights_scene_001
+      down_event: event.theatre_lights_scene_002
+      paddle_taps: KeyPressed3x
+      covers: cover.threatre_shade
+      state_variable: input_number.theatre_shade_control_state
