@@ -60,6 +60,7 @@ sleep_good_morning:
       then:
       - action: alarm_control_panel.alarm_disarm
         target: { entity_id: alarm_control_panel.konnected_alarm }
+    - action: script.master_bedroom_air_day
 
 sleep_good_night:
   alias: Sleep - Good Night
@@ -73,12 +74,6 @@ sleep_good_night:
         - light.master_bedroom_closet_lights
         - light.master_bedroom_fan_lights
         - light.master_bedroom_lights
-    - if:
-      - '{{ is_state("person.sasha_keller", "home") }}'
-      then:
-      - action: cover.set_cover_position
-        data: { position: 6 }
-        target: { entity_id: cover.master_bedroom_shade_a }
     - if:
       - '{{ is_state("person.samuel_kadolph", "home") }}'
       then:
