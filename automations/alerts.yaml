@@ -30,3 +30,51 @@
   actions:
   - action: notify.default
     data: { title: Washer, message: Upper washer is done! 😊 }
+
+- id: alert_home_alone
+  alias: Alert - Home Alone
+  mode: single
+  triggers:
+  - trigger: event
+    event_type: mobile_app_notification_action
+    event_data: { action: &home_alone_lock HOME_ALONE_LOCK }
+    id: lock_them
+  - trigger: state
+    entity_id: zone.home
+    not_from: ['unavailable', 'unknown']
+    to: '0'
+    id: no_one_home
+  actions:
+  - choose:
+    - conditions:
+      - '{{ trigger.id == "lock_them" }}'
+      sequence:
+      - action: lock.lock
+        target:
+          entity_id: '{{ states.lock | selectattr("state", "eq", "unlocked") | selectattr("entity_id", "search", "door$") | rejectattr("attributes.entity_id", "defined") | map(attribute="entity_id") | join(", ") }}'
+      - action: notify.default
+        data:
+          message: clear_notification
+          data: { tag: &home_alone_tag '{{ this.entity_id }}' }
+    - conditions:
+      - '{{ trigger.id == "no_one_home" }}'
+      - '{{ states.lock | selectattr("state", "eq", "unlocked") | selectattr("entity_id", "search", "door$") | rejectattr("attributes.entity_id", "defined") | list | count > 0 }}'
+      sequence:
+      - action: notify.default
+        data:
+          title: Forgot to lock? 🔓
+          message: >-
+            {% set unlocked = states.lock | selectattr("state", "eq", "unlocked") | selectattr("entity_id", "search", "door$") | rejectattr("attributes.entity_id", "defined") | map(attribute="attributes.friendly_name") | sort | list -%}
+            No one is home but
+            {% if unlocked | count > 1 -%}
+            {{ unlocked[:-1] | join(", ") }} and {{ unlocked[-1] }} are not
+            {% else -%}
+            {{ unlocked[0] }} is not
+            {% endif -%}
+            locked! 🫣
+          data:
+            persistent: true
+            tag: *home_alone_tag
+            actions:
+            - action: *home_alone_lock
+              title: Lock Them
