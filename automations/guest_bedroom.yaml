@@ -1,3 +1,16 @@
+- id: guest_bedroom_closet_lights_door_sensor
+  alias: Guest Bedroom Closet Lights - Door Sensor
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.guest_bedroom_closet_door_sensor_door
+    not_from: ['unavailable', 'unknown']
+    not_to: ['unavailable', 'unknown']
+  conditions:
+  - '{{ is_state("input_boolean.guest_bedroom_guest_present", "off") }}'
+  actions:
+  - action: '{{ iif(trigger.to_state.state == "on", "light.turn_on", "light.turn_off") }}'
+    target: { entity_id: light.guest_bedroom_closet_lights }
+
 - id: guest_bedroom_shade_open
   alias: Guest Bedroom Shade - Open
   use_blueprint:
