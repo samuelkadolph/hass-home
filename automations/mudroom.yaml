@@ -1,5 +1,16 @@
-- id: mudroom_lights_motion
-  alias: Mudroom Lights - Motion
+- id: mudroom_closet_lights_door_sensor
+  alias: Mudroom Closet Lights - Door Sensor
+  triggers:
+  - trigger: state
+    entity_id: binary_sensor.mudroom_closet_door_sensor_door
+    not_from: ['unavailable', 'unknown']
+    not_to: ['unavailable', 'unknown']
+  actions:
+  - action: '{{ iif(trigger.to_state.state == "on", "light.turn_on", "light.turn_off") }}'
+    target: { entity_id: light.mudroom_closet_lights }
+
+- id: mudroom_lights_motion_sensor
+  alias: Mudroom Lights - Motion Sensor
   use_blueprint:
     path: homeassistant/motion_light.yaml
     input:
